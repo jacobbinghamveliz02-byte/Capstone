@@ -17,5 +17,5 @@ void loop() {
   Serial.println("°F)");
   Serial.print("Light leve: ");
   Serial.println(light);
-  delay(60000);
+  delay(1000);
 }
