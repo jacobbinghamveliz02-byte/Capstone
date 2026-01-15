@@ -21,7 +21,7 @@ void loop() {
   if(fahrenheit != previousTemp) {
     Serial.print("Temperature: ");
     Serial.print(fahrenheit);
-    Serial.print("°F  ");
+    Serial.println("°F  ");
   }
   
   // Check if light level changed
@@ -29,6 +29,7 @@ void loop() {
     Serial.print("Light level: ");
     Serial.println(light);
   }
+  Serial.println("------------");
   // Update previous values
   previousTemp = fahrenheit;
   previousLightLevel = light;
