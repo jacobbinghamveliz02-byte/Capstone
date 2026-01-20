@@ -11,7 +11,15 @@ const driver = new Driver("/dev/ttyACM0",
         securityKeysLongRange: {
             S2_Authenticated: Buffer.from("63F7EF53997B0DDD9AED070FC2EF3FA7", "hex"),
             S2_AccessControl: Buffer.from("22905E5323D0D42DE1D754C9E44E5B77", "hex"),
-    }
+    },
+    timeouts: {
+        ack: 1000,  
+        response: 20000,
+        sendDataAbort: 10000,
+        sendDataCallback: 65000,
+        report: 10000,
+    },
+    enableSoftReset: true,
     }
 );
 
@@ -27,6 +35,12 @@ async function init(){
 async function main() {
     // Main code goes here
     console.log("Hello World!");
+    const controller = driver.controller;
+    console.log("Controller info:", {
+        homeId: controller.homeId,
+        ownNodeId: controller.ownNodeId,
+        sdkVersion: controller.sdkVersion,
+    });
 }
 
 init()
