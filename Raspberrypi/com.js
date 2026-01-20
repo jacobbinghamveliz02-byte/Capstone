@@ -1,6 +1,6 @@
 import { Driver } from "zwave-js";
 
-const driver = new Driver("/dev/ttyACM1", 
+const driver = new Driver("/dev/ttyACM0", 
     {
         securityKeys: {
             S0_Legacy: Buffer.from("51A28F651674472BD750E5EBA3E77146", "hex"),
