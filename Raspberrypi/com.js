@@ -15,14 +15,18 @@ const driver = new Driver("/dev/ttyACM0",
     }
 );
 
-driver.once("driver ready", () => {
+async function init(){
+    await driver.start();
+    driver.once("driver ready", () => {
     console.log("Driver is ready");
     driver.on("all nodes ready", main);
 });
 
-await driver.start();
+}
 
 async function main() {
     // Main code goes here
     console.log("Hello World!");
 }
+
+init
