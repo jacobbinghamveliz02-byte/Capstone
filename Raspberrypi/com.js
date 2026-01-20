@@ -12,13 +12,12 @@ const driver = new Driver("/dev/ttyACM0",
             S2_Authenticated: Buffer.from("63F7EF53997B0DDD9AED070FC2EF3FA7", "hex"),
             S2_AccessControl: Buffer.from("22905E5323D0D42DE1D754C9E44E5B77", "hex"),
     },
-    timeouts: {
-        ack: 1000,  
-        response: 20000,
-        sendDataAbort: 10000,
-        sendDataCallback: 65000,
-        report: 10000,
-    },
+    port: {
+        path: "/dev/ttyACM0",
+        baudRate: 115200,
+        dataBits: 8,
+        stopBits: 1,
+        parity: "none",
     enableSoftReset: true,
     }
 );
