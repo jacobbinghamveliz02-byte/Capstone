@@ -1,46 +1,69 @@
-import { Driver } from "zwave-js";
+// com.js
+const WebSocket = require('ws');
 
-const driver = new Driver("/dev/ttyACM0", 
-    {
-        securityKeys: {
-            S0_Legacy: Buffer.from("51A28F651674472BD750E5EBA3E77146", "hex"),
-            S2_Unauthenticated: Buffer.from("B748B57AB628AC74AFED8BF3EC82DF35", "hex"),
-            S2_Authenticated: Buffer.from("076362C7BFABB1F313E44280BAF5C627", "hex"),
-            S2_AccessControl: Buffer.from("60B3ACA9F7F00FBB479AC571AE6BC727", "hex"),
-        },
-        securityKeysLongRange: {
-            S2_Authenticated: Buffer.from("63F7EF53997B0DDD9AED070FC2EF3FA7", "hex"),
-            S2_AccessControl: Buffer.from("22905E5323D0D42DE1D754C9E44E5B77", "hex"),
-        },
-        port: {
-            path: "/dev/ttyACM0",
-            baudRate: 115200,
-            dataBits: 8,
-            stopBits: 1,
-            parity: "none",
-        enableSoftReset: true,
-        }
-    }
-);
+// Default Z-Wave JS UI WebSocket port
+const ws = new WebSocket('ws://192.168.0.75:8090');
 
-async function init(){
-    await driver.start();
-    driver.once("driver ready", () => {
-    console.log("Driver is ready");
-    driver.on("all nodes ready", main);
+ws.on('open', function open() {
+    console.log('Connected to Z-Wave JS UI');
+    
+    // Subscribe to all events
+    ws.send(JSON.stringify({
+        messageId: 'subscribe-all',
+        command: 'start_listening'
+    }));
 });
 
+ws.on('message', function incoming(data) {
+    const message = JSON.parse(data);
+    
+    switch (message.type) {
+        case 'result':
+            console.log('Result:', message.result);
+            break;
+        case 'event':
+            handleEvent(message.event);
+            break;
+        case 'version':
+            console.log('Server version:', message.serverVersion);
+            break;
+        default:
+            console.log('Unknown message type:', message.type);
+    }
+});
+
+function handleEvent(event) {
+    switch (event.source) {
+        case 'driver':
+            if (event.event === 'driver ready') {
+                console.log('Driver is ready!');
+                getAllNodes();
+            }
+            break;
+        case 'controller':
+            console.log('Controller event:', event);
+            break;
+        case 'value':
+            console.log('Value update:', event);
+            break;
+        case 'node':
+            console.log('Node event:', event);
+            break;
+    }
 }
 
-async function main() {
-    // Main code goes here
-    console.log("Hello World!");
-    const controller = driver.controller;
-    console.log("Controller info:", {
-        homeId: controller.homeId,
-        ownNodeId: controller.ownNodeId,
-        sdkVersion: controller.sdkVersion,
-    });
+async function getAllNodes() {
+    // Request all nodes
+    ws.send(JSON.stringify({
+        messageId: 'get-nodes',
+        command: 'driver.get_all_nodes'
+    }));
 }
 
-init()
+ws.on('error', function error(err) {
+    console.error('WebSocket error:', err);
+});
+
+ws.on('close', function close() {
+    console.log('WebSocket connection closed');
+});
