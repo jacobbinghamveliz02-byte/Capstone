@@ -1,69 +1,74 @@
-// com.js
+// get-nodes.js
 const WebSocket = require('ws');
 
-// Default Z-Wave JS UI WebSocket port
-const ws = new WebSocket('ws://192.168.0.75:8090');
+// 1. Connect to Z-Wave JS UI WebSocket
+const ws = new WebSocket('ws://localhost:3000');
 
-ws.on('open', function open() {
+// 2. Wait for connection
+ws.on('open', () => {
     console.log('Connected to Z-Wave JS UI');
     
-    // Subscribe to all events
+    // 3. Start listening to the Z-Wave network
     ws.send(JSON.stringify({
-        messageId: 'subscribe-all',
+        messageId: 'start-listening',
         command: 'start_listening'
     }));
 });
 
-ws.on('message', function incoming(data) {
+// 4. Handle responses
+ws.on('message', (data) => {
     const message = JSON.parse(data);
     
-    switch (message.type) {
-        case 'result':
-            console.log('Result:', message.result);
-            break;
-        case 'event':
-            handleEvent(message.event);
-            break;
-        case 'version':
-            console.log('Server version:', message.serverVersion);
-            break;
-        default:
-            console.log('Unknown message type:', message.type);
+    if (message.type === 'result') {
+        console.log('Result received');
+    } 
+    else if (message.type === 'event') {
+        const event = message.event;
+        
+        // 5. When driver is ready, request all nodes
+        if (event.type === 'driver ready') {
+            console.log('Driver is ready, requesting nodes...');
+            
+            // Send command to get all nodes
+            ws.send(JSON.stringify({
+                messageId: 'get-nodes',
+                command: 'driver.get_all_nodes'
+            }));
+        }
+        // 6. When all nodes are ready, request nodes again to be sure
+        else if (event.type === 'all nodes ready') {
+            console.log('All nodes are ready');
+            
+            ws.send(JSON.stringify({
+                messageId: 'get-all-nodes',
+                command: 'driver.get_all_nodes'
+            }));
+        }
+    }
+    // 7. Handle the nodes response
+    else if (message.messageId === 'get-nodes' || message.messageId === 'get-all-nodes') {
+        const nodes = message.result;
+        console.log(`\n✅ Found ${nodes.length} nodes:\n`);
+        
+        nodes.forEach((node, index) => {
+            console.log(`Node ${index + 1}:`);
+            console.log(`  ID: ${node.id}`);
+            console.log(`  Status: ${node.status}`);
+            console.log(`  Ready: ${node.ready}`);
+            console.log(`  Device: ${node.deviceClass?.basic?.label || 'Unknown'}`);
+            console.log(`  Manufacturer: ${node.manufacturer || 'Unknown'}`);
+            console.log(`  Product: ${node.productDescription || 'Unknown'}`);
+            console.log('---');
+        });
+        
+        // Close connection when done
+        setTimeout(() => {
+            ws.close();
+            process.exit(0);
+        }, 1000);
     }
 });
 
-function handleEvent(event) {
-    switch (event.source) {
-        case 'driver':
-            if (event.event === 'driver ready') {
-                console.log('Driver is ready!');
-                getAllNodes();
-            }
-            break;
-        case 'controller':
-            console.log('Controller event:', event);
-            break;
-        case 'value':
-            console.log('Value update:', event);
-            break;
-        case 'node':
-            console.log('Node event:', event);
-            break;
-    }
-}
-
-async function getAllNodes() {
-    // Request all nodes
-    ws.send(JSON.stringify({
-        messageId: 'get-nodes',
-        command: 'driver.get_all_nodes'
-    }));
-}
-
-ws.on('error', function error(err) {
-    console.error('WebSocket error:', err);
-});
-
-ws.on('close', function close() {
-    console.log('WebSocket connection closed');
+ws.on('error', (error) => {
+    console.error('Error:', error);
 });
