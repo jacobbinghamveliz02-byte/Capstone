@@ -43,10 +43,6 @@ for (const signal of ["SIGINT", "SIGTERM"]) {
     });
 }
 
-driver.once("driver ready", () => {
-    console.log("Driver is ready");
-});
-
 await driver.start();
 
 
