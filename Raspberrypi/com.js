@@ -43,8 +43,6 @@ for (const signal of ["SIGINT", "SIGTERM"]) {
     });
 }
 
-await driver.start();
-
 
 driver.once("driver ready", () => {
     console.log("Driver is ready");
@@ -54,4 +52,12 @@ driver.once("driver ready", () => {
 async function main() {
     // Main code goes here
     console.log("Hello World!");
+}
+
+try {
+    console.log("Testing basic communication...");
+    await driver.start();
+} catch (error) {
+    console.error("Failed:", error);
+    process.exit(1);
 }
