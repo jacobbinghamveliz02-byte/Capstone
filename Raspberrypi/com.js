@@ -31,90 +31,60 @@ const driver = new Driver(
             ),
         },
         
-        // CRITICAL FOR HOMESEER G8:
+
         timeouts: {
-            ack: 6500,      // G8 needs longer ACK timeout
-            response: 65000, // Much longer response timeout
+            ack: 10000,
+            response: 30000,
         },
         
         attempts: {
-            controller: 3,
+            controller: 5,
             sendData: 3,
         },
         
-        // Disable features that G8 might not support well
+
         features: {
-            softReset: false,  // G8 often has issues with soft reset
+            softReset: false,
         },
         
-        // Compatibility settings for G8
-        compatibility: {
-            // These settings help with 800 series chips
-            preserveEndpoints: false,
-            disableStrictEntryControlDataValidation: true,
-            enableSoftReset: false,
-            queryOnWakeup: false,
-            // Some G8 sticks need this:
-            treatSetAsReport: {
-                "Basic": true,
-            },
-        },
-        
-        // API settings
-        api: {
-            // Try forcing API version
-            min: 1,
-            max: 3,
-        },
-        
-        // Logging for debugging
-        logging: {
-            level: "debug",
-            logToFile: false,
-        },
-        
-        // Storage settings
+
         storage: {
-            cacheDir: "/tmp/zwave-cache",  // Use tmp for testing
-            deviceConfigPriorityDir: "/tmp/zwave-configs",
-        }
+            cacheDir: "./zwave-cache",
+            deviceConfigPriorityDir: "./zwave-configs",
+        },
+        
     }
 );
 
+// Error handling
 driver.on("error", (error) => {
     console.error("Driver error:", error);
 });
 
+// Also listen for specific driver events
+driver.on("driver ready", () => {
+    console.log("Driver is ready!");
+});
+
+driver.on("all nodes ready", () => {
+    console.log("All nodes ready!");
+});
+
+// Signal handling
 for (const signal of ["SIGINT", "SIGTERM"]) {
     process.on(signal, async () => {
-        console.log(`Received ${signal}, shutting down...`);
+        console.log(`\nReceived ${signal}, shutting down...`);
         await driver.destroy();
         process.exit(0);
     });
 }
 
-// Event handlers
-driver.once("driver ready", () => {
-    console.log("SUCCESS: Driver is ready!");
-    console.log("Controller type:", driver.controller.type);
-    console.log("Home ID:", driver.controller.homeId?.toString(16));
-    console.log("Node ID:", driver.controller.ownNodeId);
-    
-    driver.on("all nodes ready", () => {
-        console.log("All nodes ready!");
-        const nodes = driver.controller.nodes;
-        console.log(`Found ${nodes.size} nodes`);
-        for (const [nodeId, node] of nodes) {
-            console.log(`Node ${nodeId}: ${node.getLabel() || 'Unknown'}`);
-        }
-    });
-});
-
 // Start with error handling
 async function start() {
     try {
         console.log("Starting Z-Wave JS with HomeSeer G8...");
-        console.log("This may take up to 60 seconds due to longer timeouts...");
+        console.log("Using port: /dev/serial/by-id/usb-1a86_USB_Single_Serial_5A49039988-if00");
+        console.log("Initialization may take 30-60 seconds...");
         await driver.start();
     } catch (error) {
         console.error("Failed to start driver:", error);
