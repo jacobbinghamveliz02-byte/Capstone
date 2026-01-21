@@ -38,7 +38,7 @@ const driver = new Driver(
         },
         
         attempts: {
-            controller: 5,
+            controller: 3,
             sendData: 3,
         },
         
