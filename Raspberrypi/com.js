@@ -1,10 +1,12 @@
 // @ts-check
+
 import { Driver } from "zwave-js";
 
 const driver = new Driver(
-    "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5A49039988-if00",
+    // Tell the driver which serial port to use
+    "/dev/serial/by-id/my-usb-port",
+    // and configure options like security keys
     {
-        // Security keys (keep yours)
         securityKeys: {
             S0_Legacy: Buffer.from("0102030405060708090a0b0c0d0e0f10", "hex"),
             S2_Unauthenticated: Buffer.from(
@@ -30,66 +32,27 @@ const driver = new Driver(
                 "hex",
             ),
         },
-        
-
-        timeouts: {
-            ack: 10000,
-            response: 30000,
-        },
-        
-        attempts: {
-            controller: 3,
-            sendData: 3,
-        },
-        
-
-        features: {
-            softReset: false,
-        },
-        
-
-        storage: {
-            cacheDir: "./zwave-cache",
-            deviceConfigPriorityDir: "./zwave-configs",
-        },
-        
-    }
+    },
 );
 
-// Error handling
-driver.on("error", (error) => {
-    console.error("Driver error:", error);
-});
 
-// Also listen for specific driver events
-driver.on("driver ready", () => {
-    console.log("Driver is ready!");
-});
-
-driver.on("all nodes ready", () => {
-    console.log("All nodes ready!");
-});
-
-// Signal handling
 for (const signal of ["SIGINT", "SIGTERM"]) {
     process.on(signal, async () => {
-        console.log(`\nReceived ${signal}, shutting down...`);
         await driver.destroy();
         process.exit(0);
     });
 }
 
-// Start with error handling
-async function start() {
-    try {
-        console.log("Starting Z-Wave JS with HomeSeer G8...");
-        console.log("Using port: /dev/serial/by-id/usb-1a86_USB_Single_Serial_5A49039988-if00");
-        console.log("Initialization may take 30-60 seconds...");
-        await driver.start();
-    } catch (error) {
-        console.error("Failed to start driver:", error);
-        process.exit(1);
-    }
-}
 
-start();
+// Listen for the driver ready event before doing anything with the driver
+driver.once("driver ready", () => {
+    console.log("Driver is ready");
+    driver.on("all nodes ready", main);
+});
+
+async function main() {
+    // Main code goes here
+    console.log("Hello World!");
+}
+// Start the driver
+await driver.start();
