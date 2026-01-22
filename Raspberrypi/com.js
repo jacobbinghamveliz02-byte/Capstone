@@ -1,6 +1,6 @@
 // @ts-check
 
-import { commandClass, Driver, Endpoint } from "zwave-js";
+import { Driver } from "zwave-js";
 
 const driver = new Driver(
     // Tell the driver which serial port to use
@@ -55,32 +55,24 @@ driver.once("driver ready", () => {
 const heatingValueId = {
     endpoint: 0,
     commandClass: 67,
-    property: "setpoint",
-    propertyKey: 1
+    property: "Heating",
 };
 
 async function main() {
-    try {
-        const node = driver.controller.nodes.get(5);
-        const thermostatAPI = node.commandClasses["Thermostat Setpoint"];
+const thermId = 5;
+        const node = driver.controller.nodes.get(thermId);
         
-        // Get supported setpoint types first
-        const supportedTypes = await thermostatAPI.getSupportedSetpointTypes();
-        console.log("Supported setpoint types:", supportedTypes);
+        if (!node) {
+            console.log(`Node ${thermId} not found`);
+            return;
+        }
         
-        // Set using the API (this is the easiest way!)
-        await thermostatAPI.set(1, 75);  // 1 = Heating
-        console.log("Heating set to 75°F");
+        console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`);
         
-        await thermostatAPI.set(2, 78);  // 2 = Cooling
-        console.log("Cooling set to 78°F");
+        console.log(`Setting to 75°F...`);
+        const result = await node.setValue(heatingValueId, 75);
+        console.log("Result:", result);
         
-        // Or using string names if supported
-        await thermostatAPI.set("Heating", 75);
-        
-    } catch (error) {
-        console.error("Error:", error);
-    }
 }
 // Start the driver
 await driver.start();
