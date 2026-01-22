@@ -1,6 +1,8 @@
 // @ts-check
 
 import { Driver } from "zwave-js";
+// removing this once I get the ouptput I want
+import fs from 'fs';
 
 const driver = new Driver(
     // Tell the driver which serial port to use
@@ -71,7 +73,6 @@ const thermId = 5;
         }
         const allValueIds = node.getDefinedValueIDs();
         // This shows all the value IDs for the node USE THIS WHEN GETTING ERRORS ABOUT VALUE IDS
-        const fs = require('fs');
         console.log = function(...args) {
         fs.appendFileSync('thermostatValueIds.txt', args.join(' ') + '\n', 'utf8');
         };
