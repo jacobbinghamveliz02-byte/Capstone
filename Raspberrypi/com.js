@@ -74,7 +74,7 @@ const thermId = 5;
         const allValueIds = node.getDefinedValueIDs();
         // This shows all the value IDs for the node USE THIS WHEN GETTING ERRORS ABOUT VALUE IDS
         console.log = function(...args) {
-        fs.appendFileSync('thermostatValueIds.txt', args.join(' ') + '\n', 'utf8');
+        fs.appendFileSync('thermostatValueIds.js', args.join(' ') + '\n', 'utf8');
         };
         console.log("All value IDs:" , allValueIds);
         console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`);
