@@ -80,7 +80,7 @@ const thermId = 5;
         console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`);
         
         // console.log(`Setting to 75°F...`);
-        const result = await node.setValue(heatingValueId, 75);
+        const result = await node.setValue(heatingValueId, 69);
         // console.log("Result:", result);
         
 }
