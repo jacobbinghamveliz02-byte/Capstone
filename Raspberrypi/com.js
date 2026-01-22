@@ -1,6 +1,6 @@
 // @ts-check
 
-import { Driver } from "zwave-js";
+import { commandClass, Driver, Endpoint } from "zwave-js";
 
 const driver = new Driver(
     // Tell the driver which serial port to use
@@ -50,8 +50,28 @@ driver.once("driver ready", () => {
     driver.on("all nodes ready", main);
 });
 
+// [5-67-0-setpoint-1] Setpoint (Heating) 
+
+let heatingID = {
+    Endpoint: 5,
+    commandClass: 67,
+    property: "setpoint-1",
+    proerptyKey: "0",
+} 
+
 async function main() {
-    // Main code goes here
+    const thermId = 5
+    const node = driver.controller.nodes.get(thermId);
+    if (!node) {
+        console.log(`Node ${thermId} not found`);
+        return;
+    }
+    else{
+        // @ts-ignore
+        console.log(`Node ${thermId} found: ${node.deviceConfig.label}`);
+    }
+
+    await node.setValue(heatingID, 75);
     console.log("Hello World!");
 }
 // Start the driver
