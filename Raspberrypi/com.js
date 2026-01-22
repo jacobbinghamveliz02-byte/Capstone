@@ -4,7 +4,7 @@ import { Driver } from "zwave-js";
 
 const driver = new Driver(
     // Tell the driver which serial port to use
-    "/dev/serial/by-id/my-usb-port",
+    "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5A49039988-if00",
     // and configure options like security keys
     {
         securityKeys: {
