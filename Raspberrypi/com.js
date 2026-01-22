@@ -81,8 +81,9 @@ async function thermostat() {
             console.log(`Node ${thermId} not found`);
             return;
         }
+    await node.ping();
     await changeHeat(node);
-
+    await changeCool(node);
 }
 
 
