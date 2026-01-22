@@ -60,8 +60,7 @@ const heatingValueId = {
 };
 
 async function main() {
-    try {
-        const thermId = 5;
+const thermId = 5;
         const node = driver.controller.nodes.get(thermId);
         
         if (!node) {
@@ -72,69 +71,10 @@ async function main() {
         
         console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`);
         
-        // Get all defined value IDs (this shows everything the node supports)
-        console.log("\n=== All Value IDs on Node ===");
-        const allValueIds = node.getDefinedValueIDs();
+        console.log(`Setting to 75°F...`);
+        const result = await node.setValue(heatingValueId, 75);
+        console.log("Result:", result);
         
-        // Filter for thermostat setpoints (command class 67)
-        const thermostatValues = allValueIds.filter(v => v.commandClass === 67);
-        
-        if (thermostatValues.length === 0) {
-            console.log("No thermostat setpoint values found!");
-            
-            // Show ALL values to see what's available
-            console.log("\n=== All available values ===");
-            allValueIds.forEach((v, i) => {
-                const currentValue = node.getValue(v);
-                console.log(`[${i}] [${v.endpoint}-${v.commandClass}-${v.propertyKey} ${v.property}] = ${currentValue}`);
-            });
-            return;
-        }
-        
-        console.log(`Found ${thermostatValues.length} thermostat setpoint(s):`);
-        thermostatValues.forEach((v, i) => {
-            const currentValue = node.getValue(v);
-            console.log(`[${i}] [${v.endpoint}-${v.commandClass}-${v.propertyKey} ${v.property}] = ${currentValue}`);
-        });
-        
-        // Find the heating setpoint
-        const heatingValueId = thermostatValues.find(v => 
-            v.property === "setpoint-1" || 
-            v.property === "Heating"
-        );
-        
-        if (!heatingValueId) {
-            console.log("No heating setpoint found. Available setpoint properties:");
-            thermostatValues.forEach(v => console.log(`  - ${v.property}`));
-            
-            // Try the first thermostat value
-            console.log("\nTrying first thermostat value...");
-            const firstValueId = thermostatValues[0];
-            console.log("Setting:", firstValueId);
-            
-            await node.setValue(firstValueId, 75);
-        } else {
-            console.log(`\nFound heating setpoint:`, heatingValueId);
-            console.log(`Current value: ${node.getValue(heatingValueId)}`);
-            
-            // Try to set it
-            console.log(`Setting to 75°F...`);
-            const result = await node.setValue(heatingValueId, 75);
-            console.log("Result:", result);
-        }
-        
-        // Wait and check if value changed
-        setTimeout(async () => {
-            console.log("\n=== Checking current values after 3 seconds ===");
-            thermostatValues.forEach(v => {
-                const current = node.getValue(v);
-                console.log(`${v.property}: ${current}°F`);
-            });
-        }, 3000);
-        
-    } catch (error) {
-        console.error("Error in main:", error);
-    }
 }
 // Start the driver
 await driver.start();
