@@ -52,12 +52,12 @@ driver.once("driver ready", () => {
 
 // [5-67-0-setpoint-1] Setpoint (Heating) 
 
-let heatingID = {
+const heatingValueId = {
     endpoint: 5,
     commandClass: 67,
     property: "setpoint-1",
-    propertyKey: 0,
-} 
+    propertyKey: 0
+};
 
 async function main() {
     const thermId = 5
@@ -71,7 +71,7 @@ async function main() {
         console.log(`Node ${thermId} found: ${node.deviceConfig.label}`);
     }
 
-    await node.setValue(heatingID, 75);
+    await node.setValue(heatingValueId, 75);
     console.log("Hello World!");
 }
 // Start the driver
