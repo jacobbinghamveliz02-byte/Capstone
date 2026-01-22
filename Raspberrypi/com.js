@@ -71,12 +71,16 @@ const thermId = 5;
         }
         const allValueIds = node.getDefinedValueIDs();
         // This shows all the value IDs for the node USE THIS WHEN GETTING ERRORS ABOUT VALUE IDS
+        const fs = require('fs');
+        console.log = function(...args) {
+        fs.appendFileSync('thermostatValueIds.txt', args.join(' ') + '\n', 'utf8');
+        };
         console.log("All value IDs:" , allValueIds);
         console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`);
         
-        console.log(`Setting to 75°F...`);
+        // console.log(`Setting to 75°F...`);
         const result = await node.setValue(heatingValueId, 75);
-        console.log("Result:", result);
+        // console.log("Result:", result);
         
 }
 // Start the driver
