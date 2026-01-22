@@ -45,34 +45,57 @@ for (const signal of ["SIGINT", "SIGTERM"]) {
 
 
 // Listen for the driver ready event before doing anything with the driver
-driver.once("driver ready", () => {
-    console.log("Driver is ready");
-    driver.on("all nodes ready", main);
-});
-
-// [5-67-0-setpoint-1] Setpoint (Heating) 
-
-const heatingValueId = {
-    endpoint: 5,
-    commandClass: 67,
-    property: "setpoint-1",
-    propertyKey: 0
-};
-
 async function main() {
-    const thermId = 5
-    const node = driver.controller.nodes.get(thermId);
-    if (!node) {
-        console.log(`Node ${thermId} not found`);
-        return;
+    try {
+        const thermId = 5;
+        const node = driver.controller.nodes.get(thermId);
+        
+        if (!node) {
+            console.log(`Node ${thermId} not found`);
+            // Let's see what nodes ARE available
+            console.log("Available nodes:", Array.from(driver.controller.nodes.keys()));
+            return;
+        }
+        
+        console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`);
+        console.log(`Node ready status: ${node.ready}`);
+        
+        // Wait if node isn't ready yet
+        if (!node.ready) {
+            console.log("Waiting for node to be ready...");
+            await new Promise(resolve => node.once("ready", resolve));
+        }
+        
+        // Let's see what command classes the node supports
+        console.log("Supported command classes:", 
+            Array.from(node.commandClasses.keys())
+                .filter(cc => node.commandClasses.get(cc)?.isSupported())
+                .map(cc => `CC ${cc}`)
+        );
+        
+        // Check if Thermostat Setpoint CC (67) is supported
+        const thermostatCC = node.commandClasses.get(67);
+        if (!thermostatCC || !thermostatCC.isSupported()) {
+            console.error("Thermostat Setpoint CC not supported!");
+            return;
+        }
+        
+        console.log("Thermostat Setpoint CC is supported");
+        
+        // Try setting the value
+        console.log(`Setting heating to 75°F...`);
+        const result = await node.setValue(heatingValueId, 75);
+        console.log(`SetValue result:`, result);
+        
+        // Wait a moment and check if value changed
+        setTimeout(async () => {
+            const currentValue = await node.getValue(heatingValueId);
+            console.log(`Current heating value: ${currentValue}°F`);
+        }, 3000);
+        
+    } catch (error) {
+        console.error("Error in main:", error);
     }
-    else{
-        // @ts-ignore
-        console.log(`Node ${thermId} found: ${node.deviceConfig.label}`);
-    }
-
-    await node.setValue(heatingValueId, 75);
-    console.log("Hello World!");
 }
 // Start the driver
 await driver.start();
