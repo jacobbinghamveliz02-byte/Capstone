@@ -40,7 +40,7 @@ All value IDs: [
     propertyName: 'state'
   },
   {
-    commandClassName: 'Thermostat Setpoint',
+    commandClassName: 'Thermostat Setpoint',                                                        HEATING
     commandClass: 67,
     endpoint: 0,
     property: 'setpoint',
@@ -49,7 +49,7 @@ All value IDs: [
     propertyKeyName: 'Heating'
   },
   {
-    commandClassName: 'Thermostat Setpoint',
+    commandClassName: 'Thermostat Setpoint',                                                        COOLING
     commandClass: 67,
     endpoint: 0,
     property: 'setpoint',

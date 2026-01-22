@@ -1,8 +1,7 @@
-// @ts-check
+// @ts-nocheck
 
 import { Driver } from "zwave-js";
-// removing this once I get the ouptput I want
-import fs from 'fs';
+const thermId = 5; // Node ID of the thermostat
 
 const driver = new Driver(
     // Tell the driver which serial port to use
@@ -63,21 +62,40 @@ const heatingValueId = {
     propertyKeyName: 'Heating'
 };
 
+const coolingValueId = {
+    commandClass: 67,
+    endpoint: 0,
+    property: 'setpoint',
+    propertyKey: 2,
+    propertyName: 'setpoint',
+    propertyKeyName: 'Cooling'
+};
+
 async function main() {
-const thermId = 5;
-        const node = driver.controller.nodes.get(thermId);
-        
+    thermostat();    
+}
+
+async function thermostat() {
+    const node = driver.controller.nodes.get(thermId);
         if (!node) {
             console.log(`Node ${thermId} not found`);
             return;
         }
-        const allValueIds = node.getDefinedValueIDs();
-        // This shows all the value IDs for the node USE THIS WHEN GETTING ERRORS ABOUT VALUE IDS
-        console.log("All value IDs:" , allValueIds);
-        console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`);
-        
-        await node.setValue(heatingValueId, 68);
-        
+    await changeHeat(node);
+
 }
+
+
+// @ts-ignore
+async function changeHeat(node){
+    await node.setValue(heatingValueId, 68);
+}
+// @ts-ignore
+async function changeCool(node){
+    await node.setValue(coolingValueId, 69);
+}
+
+
+
 // Start the driver
 await driver.start();
