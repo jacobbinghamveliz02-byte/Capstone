@@ -60,21 +60,27 @@ const heatingValueId = {
 };
 
 async function main() {
-const thermId = 5;
-        const node = driver.controller.nodes.get(thermId);
+    try {
+        const node = driver.controller.nodes.get(5);
+        const thermostatAPI = node.commandClasses["Thermostat Setpoint"];
         
-        if (!node) {
-            console.log(`Node ${thermId} not found`);
-            console.log("Available node IDs:", Array.from(driver.controller.nodes.keys()));
-            return;
-        }
+        // Get supported setpoint types first
+        const supportedTypes = await thermostatAPI.getSupportedSetpointTypes();
+        console.log("Supported setpoint types:", supportedTypes);
         
-        console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`);
+        // Set using the API (this is the easiest way!)
+        await thermostatAPI.set(1, 75);  // 1 = Heating
+        console.log("Heating set to 75°F");
         
-        console.log(`Setting to 75°F...`);
-        const result = await node.setValue(heatingValueId, 75);
-        console.log("Result:", result);
+        await thermostatAPI.set(2, 78);  // 2 = Cooling
+        console.log("Cooling set to 78°F");
         
+        // Or using string names if supported
+        await thermostatAPI.set("Heating", 75);
+        
+    } catch (error) {
+        console.error("Error:", error);
+    }
 }
 // Start the driver
 await driver.start();
