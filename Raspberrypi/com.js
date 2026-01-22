@@ -80,8 +80,10 @@ const thermId = 5;
         // console.log("All value IDs:" , allValueIds);
         // console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`);
         
-        await node.setValue(heatingValueId, 69);
-        await node.getValue(heatingValueId);        
+        // console.log(`Setting to 75°F...`);
+        const result = await node.setValue(heatingValueId, 68);
+        // console.log("Result:", result);
+        
 }
 // Start the driver
 await driver.start();
