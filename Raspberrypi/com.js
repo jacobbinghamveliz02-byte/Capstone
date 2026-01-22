@@ -53,10 +53,10 @@ driver.once("driver ready", () => {
 // [5-67-0-setpoint-1] Setpoint (Heating) 
 
 let heatingID = {
-    Endpoint: 5,
+    endpoint: 5,
     commandClass: 67,
     property: "setpoint-1",
-    proerptyKey: "0",
+    propertyKey: 0,
 } 
 
 async function main() {
