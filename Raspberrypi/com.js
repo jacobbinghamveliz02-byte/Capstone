@@ -55,8 +55,8 @@ driver.once("driver ready", () => {
 const heatingValueId = {
     endpoint: 0,
     commandClass: 67,
-    property: "setpoint-1",
-    propertyKey: 0
+    property: "setpoint",
+    propertyKey: 1
 };
 
 async function main() {
