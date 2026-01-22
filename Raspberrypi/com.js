@@ -66,7 +66,8 @@ const thermId = 5;
             console.log(`Node ${thermId} not found`);
             return;
         }
-        
+        const allValueIds = node.getDefinedValueIDs();
+        console.log("All value IDs:" , allValueIds);
         console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`);
         
         console.log(`Setting to 75°F...`);
