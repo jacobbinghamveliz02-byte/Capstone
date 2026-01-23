@@ -2,7 +2,7 @@
 import fs from "fs";
 import { Driver } from "zwave-js";
 const thermId = 5; // Node ID of the thermostat
-const lightId = [2,4]; // Node IDs of the lights
+const lightId = [2, 4]; // Node IDs of the lights
 
 const currentDir = process.cwd();
 
@@ -94,10 +94,10 @@ const lightLevelValueId = {
 
 
 async function main() {
-    const node = driver.controller.nodes.get(lightId[1]);
+    const node = driver.controller.nodes.get(2);
     const allValueIds = node.getDefinedValueIDs();
     console.log(allValueIds);
-     fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
+    fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
     // lightControl();
 }
