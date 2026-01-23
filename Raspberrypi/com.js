@@ -72,12 +72,20 @@ const coolingValueId = {
     propertyKeyName: 'Cooling'
 };
 
-const lightLevelValueId = {
+const lightTargetLevelValueId = {
     commandClassName: "Multilevel Switch",
     commandClass: 38,
     endpoint: 0,
     property: "targetValue",
     propertyName: "targetValue"
+  }
+
+const lightLevelValueId = {
+    commandClassName: "Multilevel Switch",
+    commandClass: 38,
+    endpoint: 0,
+    property: "currentValue",
+    propertyName: "currentValue"
   }
 
 
@@ -99,14 +107,18 @@ async function thermostat() {
 }
 
 async function lightControl() {
-    const node = driver.controller.nodes.get(2);
-    await node.ping();
-    if(!node){
-        console.log(`Node ${lightId[0]} not found`);
-        return;
+    for( id of lightId){
+        const node = driver.controller.nodes.get(id);
+        await node.ping();
+        if(!node){
+            console.log(`Node ${id} not found`);
+            return;
+        }
+        await node.setValue(lightTargetLevelValueId, 99);
+        const currentValue = await node.getValue(lightLevelValueId);
+        console.log(`Current light level: ${currentValue}`);
     }
-    await node.setValue(lightLevelValueId, 0);
-    console.log(`Current light level: ${currentValue}`);
+    
 }
 
 // @ts-ignore
