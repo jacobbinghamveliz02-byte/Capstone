@@ -2,6 +2,7 @@
 
 import { Driver } from "zwave-js";
 const thermId = 5; // Node ID of the thermostat
+const lightId = [2,4]; // Node IDs of the lights
 
 const driver = new Driver(
     // Tell the driver which serial port to use
@@ -72,7 +73,11 @@ const coolingValueId = {
 };
 
 async function main() {
-    thermostat();    
+    // thermostat();
+    const node = driver.controller.nodes.get(lightId[0]);
+    const allValueIds = node.getDefinedValueIDs();
+    console.log("All value IDs:" , allValueIds);
+    console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`); 
 }
 
 async function thermostat() {
