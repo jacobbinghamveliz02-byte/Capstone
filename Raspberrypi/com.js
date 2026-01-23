@@ -107,17 +107,21 @@ async function thermostat() {
 }
 
 async function lightControl() {
-    for( const id of lightId){
-        const node = driver.controller.nodes.get(id);
-        await node.ping();
-        if(!node){
-            console.log(`Node ${id} not found`);
-            return;
-        }
-        await node.setValue(lightTargetLevelValueId, 0);
-        const currentValue = await node.getValue(lightLevelValueId);
-        console.log(`Current light level: ${currentValue}`);
+    const node = driver.controller.nodes.get(lightId[0]);
+    const node2 = driver.controller.nodes.get(lightId[1]);
+    changeLight(node, lightId[0]);
+    changeLight(node2, lightId[1]);
+}
+
+async function changeLight(node, id){
+    await node.ping();
+    if(!node){
+        console.log(`Node ${id} not found`);
+        return;
     }
+    await node.setValue(lightTargetLevelValueId, 0);
+    const currentValue = await node.getValue(lightLevelValueId);
+    console.log(`Current light level: ${currentValue}`);
     
 }
 
