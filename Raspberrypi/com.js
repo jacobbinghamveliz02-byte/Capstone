@@ -52,7 +52,9 @@ for (const signal of ["SIGINT", "SIGTERM"]) {
 // Listen for the driver ready event before doing anything with the driver
 driver.once("driver ready", () => {
     console.log("Driver is ready");
-    driver.on("all nodes ready", main);
+    driver.on("all nodes ready", async () => {
+        await main();
+    });
 });
 
 // Start the driver
@@ -160,7 +162,7 @@ async function testTargetValue() {
         });
         console.log(`Current targetValue: ${currentTarget}`);
     } catch (err) {
-        console.log(`❌ Cannot READ targetValue: ${err.message}`);
+        console.log(`Cannot READ targetValue: ${err.message}`);
     }
     
     // Try to WRITE a new targetValue
