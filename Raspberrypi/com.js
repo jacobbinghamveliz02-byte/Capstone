@@ -4,6 +4,8 @@ import { Driver } from "zwave-js";
 const thermId = 5; // Node ID of the thermostat
 const lightId = [2,4]; // Node IDs of the lights
 
+const fs = require('fs');
+
 const driver = new Driver(
     // Tell the driver which serial port to use
     "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5A49039988-if00",
@@ -72,12 +74,16 @@ const coolingValueId = {
     propertyKeyName: 'Cooling'
 };
 
+
+
 async function main() {
     // thermostat();
     const node = driver.controller.nodes.get(lightId[0]);
     const allValueIds = node.getDefinedValueIDs();
+    const outPut = allValueIds.map(valueId => node.getValue(valueId));
+    fs.writeFileSync('light1.json', JSON.stringify(outPut, null, 2));
     console.log("All value IDs:" , allValueIds);
-    console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`); 
+    // console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`); 
 }
 
 async function thermostat() {
@@ -91,6 +97,14 @@ async function thermostat() {
     await changeCool(node);
 }
 
+async function lightControl() {
+    const node = driver.controller.nodes.get(lightId[0]);
+    await node.ping();
+    if(!node){
+        console.log(`Node ${lightId[0]} not found`);
+        return;
+    }
+}
 
 // @ts-ignore
 async function changeHeat(node){
@@ -100,6 +114,8 @@ async function changeHeat(node){
 async function changeCool(node){
     await node.setValue(coolingValueId, 69);
 }
+
+
 
 
 
