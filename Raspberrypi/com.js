@@ -83,6 +83,7 @@ const lightLevelValueId = {
 
 async function main() {
     // thermostat();
+    lightControl();
 }
 
 async function thermostat() {
