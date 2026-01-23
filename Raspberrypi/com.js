@@ -94,12 +94,12 @@ const lightLevelValueId = {
 
 
 async function main() {
-    const node = driver.controller.nodes.get(2);
-    const allValueIds = node.getDefinedValueIDs();
-    console.log(allValueIds);
-    fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
+    // const node = driver.controller.nodes.get(2);
+    // const allValueIds = node.getDefinedValueIDs();
+    // console.log(allValueIds);
+    // fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
-    // lightControl();
+    lightControl();
 }
 
 async function thermostat() {
