@@ -55,6 +55,9 @@ driver.once("driver ready", () => {
     driver.on("all nodes ready", main);
 });
 
+// Start the driver
+await driver.start();
+
 // [5-67-0-setpoint-1] Setpoint (Heating) 
 
 const heatingValueId = {
@@ -81,15 +84,15 @@ const lightTargetLevelValueId = {
     endpoint: 0,
     property: "targetValue",
     propertyName: "targetValue"
-  }
+}
 
 const lightLevelValueId = {
     commandClassName: "Multilevel Switch",
     commandClass: 38,
     endpoint: 0,
     property: "currentValue",
-    propertyName: "currentValue"
-  }
+    propertyName: "currentValue" 
+}
 
 
 
@@ -188,10 +191,3 @@ async function testTargetValue() {
 }
 
 await testTargetValue();
-
-
-
-
-
-// Start the driver
-await driver.start();
