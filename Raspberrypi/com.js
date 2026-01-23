@@ -94,6 +94,8 @@ const lightLevelValueId = {
 
 
 async function main() {
+    const node = driver.controller.nodes.get(lightId[1]);
+    const allValueIds = node.getDefinedValueIDs();
      fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
     // lightControl();
