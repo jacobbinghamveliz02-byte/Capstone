@@ -81,8 +81,7 @@ async function main() {
     // thermostat();
     const node = driver.controller.nodes.get(lightId[0]);
     const allValueIds = node.getDefinedValueIDs();
-    const outPut = allValueIds.map(valueId => node.getValue(valueId));
-    fs.writeFileSync(`${currentDir}/light1.json`, JSON.stringify(outPut, null, 2));
+    fs.writeFileSync(`${currentDir}/light1.json`, JSON.stringify(allValueIds, null, 2));
     console.log("All value IDs:" , allValueIds);
     // console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`); 
 }
