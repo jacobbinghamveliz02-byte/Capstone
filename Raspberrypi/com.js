@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import Driver from "zwave-js";
+import { Driver } from "zwave-js";
 const thermId = 5; // Node ID of the thermostat
 const lightId = [2,4]; // Node IDs of the lights
 
