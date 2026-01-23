@@ -5,6 +5,7 @@ const thermId = 5; // Node ID of the thermostat
 const lightId = [2,4]; // Node IDs of the lights
 
 const fs = require('fs');
+const currentDir = process.cwd();
 
 const driver = new Driver(
     // Tell the driver which serial port to use
