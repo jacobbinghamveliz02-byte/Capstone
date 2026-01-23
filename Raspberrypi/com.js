@@ -107,7 +107,7 @@ async function thermostat() {
 }
 
 async function lightControl() {
-    for( id of lightId){
+    for( const id of lightId){
         const node = driver.controller.nodes.get(id);
         await node.ping();
         if(!node){
