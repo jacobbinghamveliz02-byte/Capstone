@@ -52,13 +52,8 @@ for (const signal of ["SIGINT", "SIGTERM"]) {
 // Listen for the driver ready event before doing anything with the driver
 driver.once("driver ready", () => {
     console.log("Driver is ready");
-    driver.on("all nodes ready", async () => {
-        await main();
-    });
+    driver.on("all nodes ready", main);
 });
-
-// Start the driver
-await driver.start();
 
 // [5-67-0-setpoint-1] Setpoint (Heating) 
 
@@ -105,7 +100,7 @@ async function main() {
     // fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
     // lightControl();
-    // testTargetValue();
+    await testTargetValue();
 }
 
 async function thermostat() {
@@ -192,4 +187,4 @@ async function testTargetValue() {
     }, 2000);
 }
 
-await testTargetValue();
+await driver.start();
