@@ -4,7 +4,7 @@ import { Driver } from "zwave-js";
 const thermId = 5; // Node ID of the thermostat
 const lightId = [2,4]; // Node IDs of the lights
 
-const fs = require('fs');
+import fs from 'fs';
 const currentDir = process.cwd();
 
 const driver = new Driver(
@@ -82,7 +82,7 @@ async function main() {
     const node = driver.controller.nodes.get(lightId[0]);
     const allValueIds = node.getDefinedValueIDs();
     const outPut = allValueIds.map(valueId => node.getValue(valueId));
-    fs.writeFileSync('light1.json', JSON.stringify(outPut, null, 2));
+    fs.writeFileSync(`${currentDir}/light1.json`, JSON.stringify(outPut, null, 2));
     console.log("All value IDs:" , allValueIds);
     // console.log(`Node ${thermId} found: ${node.deviceConfig?.label}`); 
 }
