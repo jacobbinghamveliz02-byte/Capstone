@@ -76,6 +76,7 @@ const lightLevelValueId = {
     commandClass: 38,
     endpoint: 0,
     property: "currentValue",
+    propertyKeyName: "currentValue"
   }
 
 
