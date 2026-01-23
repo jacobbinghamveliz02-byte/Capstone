@@ -100,6 +100,7 @@ async function main() {
     // fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
     lightControl();
+    testTargetValue();
 }
 
 async function thermostat() {
@@ -140,6 +141,53 @@ async function changeHeat(node){
 async function changeCool(node){
     await node.setValue(coolingValueId, 69);
 }
+
+
+async function testTargetValue() {
+    const node = driver.controller.nodes.get(4);
+    
+    console.log("=== Testing targetValue on Node 4 ===");
+    
+    // First, try to READ the current targetValue
+    try {
+        const currentTarget = await node.getValue({
+            commandClass: 38,
+            endpoint: 0,
+            property: "targetValue"
+        });
+        console.log(`Current targetValue: ${currentTarget}`);
+    } catch (err) {
+        console.log(`❌ Cannot READ targetValue: ${err.message}`);
+    }
+    
+    // Try to WRITE a new targetValue
+    try {
+        const success = await node.setValue({
+            commandClass: 38,
+            endpoint: 0,
+            property: "targetValue"
+        }, 50);
+        console.log(`✅ Set targetValue to 50: ${success}`);
+    } catch (err) {
+        console.log(`❌ Cannot WRITE targetValue: ${err.message}`);
+    }
+    
+    // Check currentValue after attempt
+    setTimeout(async () => {
+        try {
+            const current = await node.getValue({
+                commandClass: 38,
+                endpoint: 0,
+                property: "currentValue"
+            });
+            console.log(`Current value after attempt: ${current}`);
+        } catch (err) {
+            console.log(`Cannot read currentValue: ${err.message}`);
+        }
+    }, 2000);
+}
+
+await testTargetValue();
 
 
 
