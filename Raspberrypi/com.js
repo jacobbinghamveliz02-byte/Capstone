@@ -76,7 +76,6 @@ const lightLevelValueId = {
     commandClass: 38,
     endpoint: 0,
     property: "currentValue",
-    propertyName: "currentValue"
   }
 
 
@@ -98,13 +97,14 @@ async function thermostat() {
 }
 
 async function lightControl() {
-    const node = driver.controller.nodes.get(lightId[0]);
+    const node = driver.controller.nodes.get(2);
     await node.ping();
     if(!node){
         console.log(`Node ${lightId[0]} not found`);
         return;
     }
     await node.setValue(lightLevelValueId, 0);
+    console.log(`Current light level: ${currentValue}`);
 }
 
 // @ts-ignore
