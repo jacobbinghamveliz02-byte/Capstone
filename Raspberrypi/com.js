@@ -114,7 +114,7 @@ async function lightControl() {
             console.log(`Node ${id} not found`);
             return;
         }
-        await node.setValue(lightTargetLevelValueId, 99);
+        await node.setValue(lightTargetLevelValueId, 0);
         const currentValue = await node.getValue(lightLevelValueId);
         console.log(`Current light level: ${currentValue}`);
     }
