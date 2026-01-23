@@ -73,10 +73,11 @@ const coolingValueId = {
 };
 
 const lightLevelValueId = {
+    commandClassName: "Multilevel Switch",
     commandClass: 38,
     endpoint: 0,
-    property: "currentValue",
-    propertyKeyName: "currentValue"
+    property: "targetValue",
+    propertyName: "targetValue"
   }
 
 
