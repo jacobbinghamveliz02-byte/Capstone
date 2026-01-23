@@ -100,7 +100,7 @@ async function main() {
     // fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
     // lightControl();
-    await testTargetValue();
+    await diagnoseNode4();
 }
 
 async function thermostat() {
@@ -143,48 +143,60 @@ async function changeCool(node){
 }
 
 
-async function testTargetValue() {
+async function diagnoseNode4() {
     const node = driver.controller.nodes.get(4);
     
-    console.log("=== Testing targetValue on Node 4 ===");
+    if (!node) {
+        console.log("Node 4 not found");
+        return;
+    }
     
-    // First, try to READ the current targetValue
-    try {
-        const currentTarget = await node.getValue({
-            commandClass: 38,
-            endpoint: 0,
-            property: "targetValue"
+    console.log("=== Diagnosing Node 4 ===");
+    console.log(`Status: ${node.status}`);
+    console.log(`Ready: ${node.ready}`);
+    console.log(`Manufacturer: ${node.manufacturer}`);
+    console.log(`Product: ${node.productLabel}`);
+    console.log(`Device class: ${node.deviceClass?.generic?.label} - ${node.deviceClass?.specific?.label}`);
+    
+    // List all command classes
+    console.log("\nCommand Classes:");
+    const ccs = Array.from(node.commandClasses.entries());
+    
+    if (ccs.length === 0) {
+        console.log("No command classes found - node may not be properly interviewed");
+    } else {
+        ccs.forEach(([cc, api]) => {
+            console.log(`  - ${cc} (v${api.version}): supported=${api.isSupported()}`);
         });
-        console.log(`Current targetValue: ${currentTarget}`);
-    } catch (err) {
-        console.log(`Cannot READ targetValue: ${err.message}`);
     }
     
-    // Try to WRITE a new targetValue
-    try {
-        const success = await node.setValue({
-            commandClass: 38,
-            endpoint: 0,
-            property: "targetValue"
-        }, 50);
-        console.log(`✅ Set targetValue to 50: ${success}`);
-    } catch (err) {
-        console.log(`❌ Cannot WRITE targetValue: ${err.message}`);
-    }
-    
-    // Check currentValue after attempt
-    setTimeout(async () => {
+    // Check specifically for Multilevel Switch
+    console.log("\nMultilevel Switch details:");
+    const multilevelSwitch = node.commandClasses["Multilevel Switch"];
+    if (multilevelSwitch) {
+        console.log(`  Exists in API: Yes`);
+        console.log(`  Version: v${multilevelSwitch.version}`);
+        console.log(`  Supported: ${multilevelSwitch.isSupported()}`);
+        console.log(`  Controlled: ${multilevelSwitch.isControlled()}`);
+        
+        // Try to get the value ID directly
         try {
-            const current = await node.getValue({
-                commandClass: 38,
-                endpoint: 0,
-                property: "currentValue"
-            });
-            console.log(`Current value after attempt: ${current}`);
+            const valueId = multilevelSwitch.getValueId("currentValue");
+            console.log(`  Value ID for currentValue:`, valueId);
         } catch (err) {
-            console.log(`Cannot read currentValue: ${err.message}`);
+            console.log(`  Cannot get value ID: ${err.message}`);
         }
-    }, 2000);
+    } else {
+        console.log(`  Not found in command classes`);
+    }
+    
+    // Check if Basic CC is available as fallback
+    const basicCC = node.commandClasses.Basic;
+    if (basicCC && basicCC.isSupported()) {
+        console.log("\nBasic CC available - can use for on/off control");
+    }
 }
+
+
 
 await driver.start();
