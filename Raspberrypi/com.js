@@ -186,7 +186,7 @@ async function diagnoseNode4() {
         } catch (err) {
             console.log(`  Cannot get value ID: ${err.message}`);
         }
-    }, 2000);
+    };
 }
 
 
