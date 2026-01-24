@@ -146,66 +146,45 @@ async function changeCool(node){
 async function controlNode4Workaround() {
     const node = driver.controller.nodes.get(4);
     
-    console.log("=== Controlling Node 4 (Workaround) ===");
+    console.log("=== Checking Light Type ===");
     
-    // Method 1: Try using Basic CC instead
-    console.log("\nMethod 1: Using Basic CC (Command Class 32)...");
-    try {
-        // First check if Basic CC is supported
-        const basicCC = node.commandClasses[32]; // 32 = Basic
-        if (basicCC && basicCC.isSupported && basicCC.isSupported()) {
-            console.log("Basic CC is supported");
-            
-            // Turn OFF
-            await basicCC.set(0);
-            console.log("Sent Basic.set(0) - should turn OFF");
-            
-            return;
-        } else {
-            console.log("Basic CC not supported or not available");
-        }
-    } catch (error) {
-        console.log(`Basic CC failed: ${error.message}`);
-    }
-    
-    // Method 2: Try different endpoint
-    console.log("\nMethod 2: Trying different endpoints...");
-    const endpoints = node.getAllEndpoints();
-    
-    for (const endpoint of endpoints) {
-        const endpointIndex = endpoint.index;
-        console.log(`Trying endpoint ${endpointIndex}...`);
+    // Get device config from database
+    if (node.deviceConfig) {
+        console.log("Device config from database:");
+        console.log(`  Description: ${node.deviceConfig.description}`);
+        console.log(`  Device type: ${node.deviceConfig.deviceType}`);
+        console.log(`  Manufacturer: ${node.deviceConfig.manufacturer}`);
+        console.log(`  Product: ${node.deviceConfig.label}`);
         
+        // Check if it's actually a dimmer
+        const isDimmer = node.deviceConfig.deviceType?.toLowerCase().includes('dimmer') ||
+                        node.deviceConfig.description?.toLowerCase().includes('dimmer');
+        
+        console.log(`  Is dimmer: ${isDimmer ? 'Yes' : 'No'}`);
+        
+        if (!isDimmer) {
+            console.log("\nWARNING: Device may not be a dimmer at all!");
+            console.log("It might be a different type of device that was mis-identified");
+        }
+    }
+    
+    // Check associations
+    console.log("\nChecking associations...");
+    const associationCC = node.commandClasses.Association;
+    if (associationCC && associationCC.isSupported()) {
         try {
-            // Try with endpoint
-            await node.setValue({
-                commandClass: 38,
-                endpoint: endpointIndex,
-                property: "targetValue"
-            }, 50);
-            console.log(`Success with endpoint ${endpointIndex}`);
-            return;
-        } catch (error) {
-            console.log(`Endpoint ${endpointIndex} failed: ${error.message}`);
+            const groupCount = await associationCC.getGroupCount();
+            console.log(`Association groups: ${groupCount}`);
+            
+            // Check group 1 (usually lifeline)
+            const group1 = await associationCC.getGroup(1);
+            if (group1 && group1.nodeIds.length > 0) {
+                console.log(`Group 1 (Lifeline) associated with: ${group1.nodeIds.join(', ')}`);
+            }
+        } catch (err) {
+            console.log(`Cannot check associations: ${err.message}`);
         }
     }
-    
-    // Method 3: Try direct command
-    console.log("\nMethod 3: Sending raw command...");
-    try {
-        // Get the Multilevel Switch API
-        const ccAPI = node.commandClasses[38];
-        if (ccAPI) {
-            // Try to call set method directly
-            await ccAPI.set(0);
-            console.log("Direct ccAPI.set(0) succeeded");
-            return;
-        }
-    } catch (error) {
-        console.log(`Direct API failed: ${error.message}`);
-    }
-    
-    console.log("\nAll methods failed for Node 4");
 }
 
 
