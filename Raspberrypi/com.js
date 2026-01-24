@@ -1,15 +1,27 @@
 // @ts-nocheck
 // import fs from "fs";
 import { Driver } from "zwave-js";
+const { serialPort } = require("serialport");
+const { ReadlineParser } = require('@serialport/parser-readline');
+
 const thermId = 5; // Node ID of the thermostat
 const lightId = [2, 4]; // Node IDs of the lights
 
-// const currentDir = process.cwd();
 
+// const currentDir = process.cwd();
+const baudRate = 9600
+const pathToController = "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5A49039988-if00"
+
+const port = new SerialPort({ 
+    path: pathToController, 
+    baudRate: baudRate 
+});
+
+const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 
 const driver = new Driver(
     // Tell the driver which serial port to use
-    "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5A49039988-if00",
+    pathToController,
     // and configure options like security keys
     {
         securityKeys: {
@@ -100,7 +112,6 @@ async function main() {
     // fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
     // lightControl();
-    await diagnoseNode4();
 }
 
 async function thermostat() {
@@ -141,62 +152,6 @@ async function changeHeat(node){
 async function changeCool(node){
     await node.setValue(coolingValueId, 69);
 }
-
-
-async function diagnoseNode4() {
-    const node = driver.controller.nodes.get(4);
-    
-    if (!node) {
-        console.log("Node 4 not found");
-        return;
-    }
-    
-    console.log("=== Diagnosing Node 4 ===");
-    console.log(`Status: ${node.status}`);
-    console.log(`Ready: ${node.ready}`);
-    console.log(`Manufacturer: ${node.manufacturer}`);
-    console.log(`Product: ${node.productLabel}`);
-    console.log(`Device class: ${node.deviceClass?.generic?.label} - ${node.deviceClass?.specific?.label}`);
-    
-    // List all command classes
-    console.log("\nCommand Classes:");
-    const ccs = Array.from(node.commandClasses.entries());
-    
-    if (ccs.length === 0) {
-        console.log("No command classes found - node may not be properly interviewed");
-    } else {
-        ccs.forEach(([cc, api]) => {
-            console.log(`  - ${cc} (v${api.version}): supported=${api.isSupported()}`);
-        });
-    }
-    
-    // Check specifically for Multilevel Switch
-    console.log("\nMultilevel Switch details:");
-    const multilevelSwitch = node.commandClasses["Multilevel Switch"];
-    if (multilevelSwitch) {
-        console.log(`  Exists in API: Yes`);
-        console.log(`  Version: v${multilevelSwitch.version}`);
-        console.log(`  Supported: ${multilevelSwitch.isSupported()}`);
-        console.log(`  Controlled: ${multilevelSwitch.isControlled()}`);
-        
-        // Try to get the value ID directly
-        try {
-            const valueId = multilevelSwitch.getValueId("currentValue");
-            console.log(`  Value ID for currentValue:`, valueId);
-        } catch (err) {
-            console.log(`  Cannot get value ID: ${err.message}`);
-        }
-    } else {
-        console.log(`  Not found in command classes`);
-    }
-    
-    // Check if Basic CC is available as fallback
-    const basicCC = node.commandClasses.Basic;
-    if (basicCC && basicCC.isSupported()) {
-        console.log("\nBasic CC available - can use for on/off control");
-    }
-}
-
 
 
 await driver.start();

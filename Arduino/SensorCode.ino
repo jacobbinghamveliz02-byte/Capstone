@@ -29,7 +29,6 @@ void loop() {
     Serial.print("Light level: ");
     Serial.println(light);
   }
-  Serial.println("------------");
   // Update previous values
   previousTemp = fahrenheit;
   previousLightLevel = light;
