@@ -143,50 +143,75 @@ async function changeCool(node){
 }
 
 
-async function diagnoseNode4() {
+async function controlNode4Workaround() {
     const node = driver.controller.nodes.get(4);
     
-    if (!node) {
-        console.log("Node 4 not found");
-        return;
-    }
+    console.log("=== Controlling Node 4 (Workaround) ===");
     
-    console.log("=== Diagnosing Node 4 ===");
-    console.log(`Status: ${node.status}`);
-    console.log(`Ready: ${node.ready}`);
-    console.log(`Manufacturer: ${node.manufacturer}`);
-    console.log(`Product: ${node.productLabel}`);
-    console.log(`Device class: ${node.deviceClass?.generic?.label} - ${node.deviceClass?.specific?.label}`);
-    
-    // List all command classes
-    console.log("\nCommand Classes:");
-    const ccs = Array.from(node.commandClasses.entries());
-    
-    if (ccs.length === 0) {
-        console.log("No command classes found - node may not be properly interviewed");
-    } else {
-        ccs.forEach(([cc, api]) => {
-            console.log(`  - ${cc} (v${api.version}): supported=${api.isSupported()}`);
-        });
-    }
-    
-    // Check specifically for Multilevel Switch
-    console.log("\nMultilevel Switch details:");
-    const multilevelSwitch = node.commandClasses["Multilevel Switch"];
-    if (multilevelSwitch) {
-        console.log(`  Exists in API: Yes`);
-        console.log(`  Version: v${multilevelSwitch.version}`);
-        console.log(`  Supported: ${multilevelSwitch.isSupported()}`);
-        console.log(`  Controlled: ${multilevelSwitch.isControlled()}`);
-        
-        // Try to get the value ID directly
-        try {
-            const valueId = multilevelSwitch.getValueId("currentValue");
-            console.log(`  Value ID for currentValue:`, valueId);
-        } catch (err) {
-            console.log(`  Cannot get value ID: ${err.message}`);
+    // Method 1: Try using Basic CC instead
+    console.log("\nMethod 1: Using Basic CC (Command Class 32)...");
+    try {
+        // First check if Basic CC is supported
+        const basicCC = node.commandClasses[32]; // 32 = Basic
+        if (basicCC && basicCC.isSupported && basicCC.isSupported()) {
+            console.log("Basic CC is supported");
+            
+            // Turn OFF
+            await basicCC.set(0);
+            console.log("Sent Basic.set(0) - should turn OFF");
+            
+            // Wait and turn ON
+            setTimeout(async () => {
+                await basicCC.set(255); // Usually 255 = ON
+                console.log("Sent Basic.set(255) - should turn ON");
+            }, 3000);
+            
+            return;
+        } else {
+            console.log("Basic CC not supported or not available");
         }
-    };
+    } catch (error) {
+        console.log(`Basic CC failed: ${error.message}`);
+    }
+    
+    // Method 2: Try different endpoint
+    console.log("\nMethod 2: Trying different endpoints...");
+    const endpoints = node.getAllEndpoints();
+    
+    for (const endpoint of endpoints) {
+        const endpointIndex = endpoint.index;
+        console.log(`Trying endpoint ${endpointIndex}...`);
+        
+        try {
+            // Try with endpoint
+            await node.setValue({
+                commandClass: 38,
+                endpoint: endpointIndex,
+                property: "targetValue"
+            }, 50);
+            console.log(`Success with endpoint ${endpointIndex}`);
+            return;
+        } catch (error) {
+            console.log(`Endpoint ${endpointIndex} failed: ${error.message}`);
+        }
+    }
+    
+    // Method 3: Try direct command
+    console.log("\nMethod 3: Sending raw command...");
+    try {
+        // Get the Multilevel Switch API
+        const ccAPI = node.commandClasses[38];
+        if (ccAPI) {
+            // Try to call set method directly
+            await ccAPI.set(0);
+            console.log("Direct ccAPI.set(0) succeeded");
+            return;
+        }
+    } catch (error) {
+        console.log(`Direct API failed: ${error.message}`);
+    }
+    
+    console.log("\nAll methods failed for Node 4");
 }
 
 
