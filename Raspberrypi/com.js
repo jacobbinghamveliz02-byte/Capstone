@@ -100,7 +100,15 @@ async function main() {
     // fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
     //lightControl();
-    controlNode4Workaround();
+    const node2 = driver.controller.nodes.get(lightId[1]);
+    node2.ping();
+    if(!node2){
+        console.log(`Node ${lightId[1]} not found`);
+        return;
+    }else{
+        console.log(`Node ${lightId[1]} found`);
+    }
+    
 }
 
 async function thermostat() {
@@ -140,51 +148,6 @@ async function changeHeat(node){
 // @ts-ignore
 async function changeCool(node){
     await node.setValue(coolingValueId, 69);
-}
-
-
-async function controlNode4Workaround() {
-    const node = driver.controller.nodes.get(4);
-    
-    console.log("=== Checking Light Type ===");
-    
-    // Get device config from database
-    if (node.deviceConfig) {
-        console.log("Device config from database:");
-        console.log(`  Description: ${node.deviceConfig.description}`);
-        console.log(`  Device type: ${node.deviceConfig.deviceType}`);
-        console.log(`  Manufacturer: ${node.deviceConfig.manufacturer}`);
-        console.log(`  Product: ${node.deviceConfig.label}`);
-        
-        // Check if it's actually a dimmer
-        const isDimmer = node.deviceConfig.deviceType?.toLowerCase().includes('dimmer') ||
-                        node.deviceConfig.description?.toLowerCase().includes('dimmer');
-        
-        console.log(`  Is dimmer: ${isDimmer ? 'Yes' : 'No'}`);
-        
-        if (!isDimmer) {
-            console.log("\nWARNING: Device may not be a dimmer at all!");
-            console.log("It might be a different type of device that was mis-identified");
-        }
-    }
-    
-    // Check associations
-    console.log("\nChecking associations...");
-    const associationCC = node.commandClasses.Association;
-    if (associationCC && associationCC.isSupported()) {
-        try {
-            const groupCount = await associationCC.getGroupCount();
-            console.log(`Association groups: ${groupCount}`);
-            
-            // Check group 1 (usually lifeline)
-            const group1 = await associationCC.getGroup(1);
-            if (group1 && group1.nodeIds.length > 0) {
-                console.log(`Group 1 (Lifeline) associated with: ${group1.nodeIds.join(', ')}`);
-            }
-        } catch (err) {
-            console.log(`Cannot check associations: ${err.message}`);
-        }
-    }
 }
 
 
