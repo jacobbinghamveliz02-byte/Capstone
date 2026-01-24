@@ -99,8 +99,8 @@ async function main() {
     // console.log(allValueIds);
     // fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
-    // lightControl();
-    testTargetValue();
+    lightControl();
+    // testTargetValue();
 }
 
 async function thermostat() {
@@ -188,11 +188,6 @@ async function diagnoseNode4() {
         }
     }, 2000);
 }
-
-await testTargetValue();
-
-
-
 
 
 // Start the driver
