@@ -126,6 +126,8 @@ async function changeLight(node, id){
     if(!node){
         console.log(`Node ${id} not found`);
         return;
+    }else{
+        console.log(`Changing light ${id}`);
     }
     await node.setValue(lightTargetLevelValueId, 0);
     const currentValue = await node.getValue(lightLevelValueId);
