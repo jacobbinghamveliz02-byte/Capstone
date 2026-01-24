@@ -26,28 +26,13 @@ const driver = new Driver(
     {
         securityKeys: {
             S0_Legacy: Buffer.from("0102030405060708090a0b0c0d0e0f10", "hex"),
-            S2_Unauthenticated: Buffer.from(
-                "B748B57AB628AC74AFED8BF3EC82DF35",
-                "hex",
-            ),
-            S2_AccessControl: Buffer.from(
-                "60B3ACA9F7F00FBB479AC571AE6BC727",
-                "hex",
-            ),
-            S2_Authenticated: Buffer.from(
-                "076362C7BFABB1F313E44280BAF5C627",
-                "hex",
-            ),
+            S2_Unauthenticated: Buffer.from("B748B57AB628AC74AFED8BF3EC82DF35", "hex"),
+            S2_AccessControl: Buffer.from("60B3ACA9F7F00FBB479AC571AE6BC727","hex"),
+            S2_Authenticated: Buffer.from("076362C7BFABB1F313E44280BAF5C627","hex"),
         },
         securityKeysLongRange: {
-            S2_Authenticated: Buffer.from(
-                "63F7EF53997B0DDD9AED070FC2EF3FA7",
-                "hex",
-            ),
-            S2_AccessControl: Buffer.from(
-                "22905E5323D0D42DE1D754C9E44E5B77",
-                "hex",
-            ),
+            S2_Authenticated: Buffer.from("63F7EF53997B0DDD9AED070FC2EF3FA7", "hex"),
+            S2_AccessControl: Buffer.from("22905E5323D0D42DE1D754C9E44E5B77","hex"),
         },
     },
 );
@@ -112,7 +97,9 @@ async function main() {
     // fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
     // lightControl();
+    await diagnoseNode4();
 }
+
 
 async function thermostat() {
     const node = driver.controller.nodes.get(thermId);
@@ -137,7 +124,9 @@ async function changeLight(node, id){
     if(!node){
         console.log(`Node ${id} not found`);
         return;
-    }
+    }else{
+        console.log(`Changing light ${id}`);
+    }   
     await node.setValue(lightTargetLevelValueId, 0);
     const currentValue = await node.getValue(lightLevelValueId);
     console.log(`Current light level: ${currentValue}`);
@@ -152,6 +141,62 @@ async function changeHeat(node){
 async function changeCool(node){
     await node.setValue(coolingValueId, 69);
 }
+
+
+async function diagnoseNode4() {
+    const node = driver.controller.nodes.get(4);
+    
+    if (!node) {
+        console.log("Node 4 not found");
+        return;
+    }
+    
+    console.log("=== Diagnosing Node 4 ===");
+    console.log(`Status: ${node.status}`);
+    console.log(`Ready: ${node.ready}`);
+    console.log(`Manufacturer: ${node.manufacturer}`);
+    console.log(`Product: ${node.productLabel}`);
+    console.log(`Device class: ${node.deviceClass?.generic?.label} - ${node.deviceClass?.specific?.label}`);
+    
+    // List all command classes
+    console.log("\nCommand Classes:");
+    const ccs = Array.from(node.commandClasses.entries());
+    
+    if (ccs.length === 0) {
+        console.log("No command classes found - node may not be properly interviewed");
+    } else {
+        ccs.forEach(([cc, api]) => {
+            console.log(`  - ${cc} (v${api.version}): supported=${api.isSupported()}`);
+        });
+    }
+    
+    // Check specifically for Multilevel Switch
+    console.log("\nMultilevel Switch details:");
+    const multilevelSwitch = node.commandClasses["Multilevel Switch"];
+    if (multilevelSwitch) {
+        console.log(`  Exists in API: Yes`);
+        console.log(`  Version: v${multilevelSwitch.version}`);
+        console.log(`  Supported: ${multilevelSwitch.isSupported()}`);
+        console.log(`  Controlled: ${multilevelSwitch.isControlled()}`);
+        
+        // Try to get the value ID directly
+        try {
+            const valueId = multilevelSwitch.getValueId("currentValue");
+            console.log(`  Value ID for currentValue:`, valueId);
+        } catch (err) {
+            console.log(`  Cannot get value ID: ${err.message}`);
+        }
+    } else {
+        console.log(`  Not found in command classes`);
+    }
+    
+    // Check if Basic CC is available as fallback
+    const basicCC = node.commandClasses.Basic;
+    if (basicCC && basicCC.isSupported()) {
+        console.log("\nBasic CC available - can use for on/off control");
+    }
+}
+
 
 
 await driver.start();
