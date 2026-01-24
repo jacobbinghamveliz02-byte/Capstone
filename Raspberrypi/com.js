@@ -100,16 +100,8 @@ async function main() {
     // fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
     lightControl();
-    const node2 = driver.controller.nodes.get(lightId[1]);
-    node2.ping();
-    if(!node2){
-        console.log(`Node ${lightId[1]} not found`);
-        return;
-    }else{
-        console.log(`Node ${lightId[1]} found`);
     }
-    
-}
+
 
 async function thermostat() {
     const node = driver.controller.nodes.get(thermId);
