@@ -160,12 +160,6 @@ async function controlNode4Workaround() {
             await basicCC.set(0);
             console.log("Sent Basic.set(0) - should turn OFF");
             
-            // Wait and turn ON
-            setTimeout(async () => {
-                await basicCC.set(255); // Usually 255 = ON
-                console.log("Sent Basic.set(255) - should turn ON");
-            }, 3000);
-            
             return;
         } else {
             console.log("Basic CC not supported or not available");
