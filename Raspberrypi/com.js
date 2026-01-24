@@ -99,7 +99,7 @@ async function main() {
     // console.log(allValueIds);
     // fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
-    // lightControl();
+    lightControl();
     testTargetValue();
 }
 
@@ -186,8 +186,6 @@ async function testTargetValue() {
         }
     }, 2000);
 }
-
-await testTargetValue();
 
 
 
