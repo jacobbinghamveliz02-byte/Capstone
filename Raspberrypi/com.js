@@ -14,28 +14,13 @@ const driver = new Driver(
     {
         securityKeys: {
             S0_Legacy: Buffer.from("0102030405060708090a0b0c0d0e0f10", "hex"),
-            S2_Unauthenticated: Buffer.from(
-                "B748B57AB628AC74AFED8BF3EC82DF35",
-                "hex",
-            ),
-            S2_AccessControl: Buffer.from(
-                "60B3ACA9F7F00FBB479AC571AE6BC727",
-                "hex",
-            ),
-            S2_Authenticated: Buffer.from(
-                "076362C7BFABB1F313E44280BAF5C627",
-                "hex",
-            ),
+            S2_Unauthenticated: Buffer.from("B748B57AB628AC74AFED8BF3EC82DF35", "hex"),
+            S2_AccessControl: Buffer.from("60B3ACA9F7F00FBB479AC571AE6BC727","hex"),
+            S2_Authenticated: Buffer.from("076362C7BFABB1F313E44280BAF5C627","hex"),
         },
         securityKeysLongRange: {
-            S2_Authenticated: Buffer.from(
-                "63F7EF53997B0DDD9AED070FC2EF3FA7",
-                "hex",
-            ),
-            S2_AccessControl: Buffer.from(
-                "22905E5323D0D42DE1D754C9E44E5B77",
-                "hex",
-            ),
+            S2_Authenticated: Buffer.from("63F7EF53997B0DDD9AED070FC2EF3FA7", "hex"),
+            S2_AccessControl: Buffer.from("22905E5323D0D42DE1D754C9E44E5B77","hex"),
         },
     },
 );
@@ -99,6 +84,7 @@ async function main() {
     // console.log(allValueIds);
     // fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
+    reInterviewNode4();
     lightControl();
     }
 
@@ -128,7 +114,7 @@ async function changeLight(node, id){
         return;
     }else{
         console.log(`Changing light ${id}`);
-    }
+    }   
     await node.setValue(lightTargetLevelValueId, 0);
     const currentValue = await node.getValue(lightLevelValueId);
     console.log(`Current light level: ${currentValue}`);
@@ -143,6 +129,20 @@ async function changeHeat(node){
 async function changeCool(node){
     await node.setValue(coolingValueId, 69);
 }
+
+async function reInterviewNode4() {
+    const node4 = driver.controller.nodes.get(4);
+    if (node4) {
+        console.log("Re-interviewing Node 4...");
+        try {
+            await node4.refreshInfo();
+            console.log("Re-interview completed");
+        } catch (error) {
+            console.error("Failed to re-interview:", error.message);
+        }
+    }
+}
+
 
 
 // Start the driver
