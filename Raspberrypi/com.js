@@ -99,7 +99,7 @@ async function main() {
     // console.log(allValueIds);
     // fs.writeFileSync(`${currentDir}/light2.json`, JSON.stringify(allValueIds, null, 2));
     // thermostat();
-    //lightControl();
+    lightControl();
     const node2 = driver.controller.nodes.get(lightId[1]);
     node2.ping();
     if(!node2){
