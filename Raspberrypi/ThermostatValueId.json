@@ -1,0 +1,294 @@
+[
+  {
+    "commandClassName": "Multilevel Sensor",
+    "commandClass": 49,
+    "endpoint": 0,
+    "property": "Air temperature",
+    "propertyKey": "undefined",
+    "propertyName": "Air temperature"
+  },
+  {
+    "commandClassName": "Multilevel Sensor",
+    "commandClass": 49,
+    "endpoint": 0,
+    "property": "Humidity",
+    "propertyKey": "undefined",
+    "propertyName": "Humidity"
+  },
+  {
+    "commandClassName": "Thermostat Mode",
+    "commandClass": 64,
+    "endpoint": 0,
+    "property": "mode",
+    "propertyKey": "undefined",
+    "propertyName": "mode"
+  },
+  {
+    "commandClassName": "Thermostat Mode",
+    "commandClass": 64,
+    "endpoint": 0,
+    "property": "manufacturerData",
+    "propertyKey": "undefined",
+    "propertyName": "manufacturerData"
+  },
+  {
+    "commandClassName": "Thermostat Operating State",
+    "commandClass": 66,
+    "endpoint": 0,
+    "property": "state",
+    "propertyKey": "undefined",
+    "propertyName": "state"
+  },
+  {
+    "commandClassName": "Thermostat Setpoint",
+    "commandClass": 67,
+    "endpoint": 0,
+    "property": "setpoint",
+    "propertyKey": 1,
+    "propertyName": "setpoint",
+    "propertyKeyName": "Heating"
+  },
+  {
+    "commandClassName": "Thermostat Setpoint",
+    "commandClass": 67,
+    "endpoint": 0,
+    "property": "setpoint",
+    "propertyKey": 2,
+    "propertyName": "setpoint",
+    "propertyKeyName": "Cooling"
+  },
+  {
+    "commandClassName": "Thermostat Setpoint",
+    "commandClass": 67,
+    "endpoint": 0,
+    "property": "setpoint",
+    "propertyKey": 11,
+    "propertyName": "setpoint",
+    "propertyKeyName": "Energy Save Heating"
+  },
+  {
+    "commandClassName": "Thermostat Setpoint",
+    "commandClass": 67,
+    "endpoint": 0,
+    "property": "setpoint",
+    "propertyKey": 12,
+    "propertyName": "setpoint",
+    "propertyKeyName": "Energy Save Cooling"
+  },
+  {
+    "commandClassName": "Thermostat Fan Mode",
+    "commandClass": 68,
+    "endpoint": 0,
+    "property": "mode",
+    "propertyKey": "undefined",
+    "propertyName": "mode"
+  },
+  {
+    "commandClassName": "Thermostat Fan State",
+    "commandClass": 69,
+    "endpoint": 0,
+    "property": "state",
+    "propertyKey": "undefined",
+    "propertyName": "state"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 15,
+    "propertyKey": "undefined",
+    "propertyName": "Fan Timer"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 2,
+    "propertyKey": "undefined",
+    "propertyName": "HVAC Settings"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 4,
+    "propertyKey": "undefined",
+    "propertyName": "C-Wire/Battery Status"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 5,
+    "propertyKey": "undefined",
+    "propertyName": "Humidity Reporting Threshold"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 6,
+    "propertyKey": "undefined",
+    "propertyName": "Auxiliary/Emergency Heat Pump Mode"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 7,
+    "propertyKey": "undefined",
+    "propertyName": "Thermostat Swing Temp"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 8,
+    "propertyKey": "undefined",
+    "propertyName": "Thermostat Diff Temp"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 9,
+    "propertyKey": "undefined",
+    "propertyName": "Thermostat Recovery Mode"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 11,
+    "propertyKey": "undefined",
+    "propertyName": "Simple UI Mode"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 12,
+    "propertyKey": "undefined",
+    "propertyName": "Multicast"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 17,
+    "propertyKey": "undefined",
+    "propertyName": "Temperature Calibration"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 18,
+    "propertyKey": "undefined",
+    "propertyName": "Display Units"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 1,
+    "propertyKey": "undefined",
+    "propertyName": "Temperature Reporting Threshold (8-Bit)"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 3,
+    "propertyKey": "undefined",
+    "propertyName": "Utility Lock"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 13,
+    "propertyKey": "undefined",
+    "propertyName": "Main Display Selection"
+  },
+  {
+    "commandClassName": "Configuration",
+    "commandClass": 112,
+    "endpoint": 0,
+    "property": 14,
+    "propertyKey": "undefined",
+    "propertyName": "Save Energy Mode Type"
+  },
+  {
+    "commandClassName": "Manufacturer Specific",
+    "commandClass": 114,
+    "endpoint": 0,
+    "property": "productId",
+    "propertyKey": "undefined",
+    "propertyName": "productId"
+  },
+  {
+    "commandClassName": "Manufacturer Specific",
+    "commandClass": 114,
+    "endpoint": 0,
+    "property": "productType",
+    "propertyKey": "undefined",
+    "propertyName": "productType"
+  },
+  {
+    "commandClassName": "Manufacturer Specific",
+    "commandClass": 114,
+    "endpoint": 0,
+    "property": "manufacturerId",
+    "propertyKey": "undefined",
+    "propertyName": "manufacturerId"
+  },
+  {
+    "commandClassName": "Battery",
+    "commandClass": 128,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": "undefined",
+    "propertyName": "level"
+  },
+  {
+    "commandClassName": "Version",
+    "commandClass": 134,
+    "endpoint": 0,
+    "property": "hardwareVersion",
+    "propertyKey": "undefined",
+    "propertyName": "hardwareVersion"
+  },
+  {
+    "commandClassName": "Version",
+    "commandClass": 134,
+    "endpoint": 0,
+    "property": "firmwareVersions",
+    "propertyKey": "undefined",
+    "propertyName": "firmwareVersions"
+  },
+  {
+    "commandClassName": "Version",
+    "commandClass": 134,
+    "endpoint": 0,
+    "property": "protocolVersion",
+    "propertyKey": "undefined",
+    "propertyName": "protocolVersion"
+  },
+  {
+    "commandClassName": "Version",
+    "commandClass": 134,
+    "endpoint": 0,
+    "property": "libraryType",
+    "propertyKey": "undefined",
+    "propertyName": "libraryType"
+  },
+  {
+    "commandClassName": "Indicator",
+    "commandClass": 135,
+    "endpoint": 0,
+    "property": "value",
+    "propertyKey": "undefined",
+    "propertyName": "value"
+  }
+]
