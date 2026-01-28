@@ -122,12 +122,6 @@ client.on('message', async function (topic, message) {
     }
 });
 
-// assign nodes
-// ping nodes
-// if ping good read current values
-// change values based on current values
-// else log node not found
-
 async function main() {
 }
 
@@ -149,7 +143,6 @@ async function changeLight(node, settingLightLevel){
     await node.setValue(LIGHTTARGETVALUEID, settingLightLevel);
     let currentValue = await node.getValue(LIGHTLEVELVALUEID);
     console.log(`Current light level: ${currentValue}`);
-    
 }
 
 // @ts-ignore
@@ -159,61 +152,6 @@ async function changeHeat(node){
 // @ts-ignore
 async function changeCool(node){
     await node.setValue(coolingValueId, 69);
-}
-
-
-async function diagnoseNode4() {
-    const node = driver.controller.nodes.get(4);
-    
-    if (!node) {
-        console.log("Node 4 not found");
-        return;
-    }
-    
-    console.log("=== Diagnosing Node 4 ===");
-    console.log(`Status: ${node.status}`);
-    console.log(`Ready: ${node.ready}`);
-    console.log(`Manufacturer: ${node.manufacturer}`);
-    console.log(`Product: ${node.productLabel}`);
-    console.log(`Device class: ${node.deviceClass?.generic?.label} - ${node.deviceClass?.specific?.label}`);
-    
-    // List all command classes
-    console.log("\nCommand Classes:");
-    const ccs = Array.from(node.commandClasses.entries());
-    
-    if (ccs.length === 0) {
-        console.log("No command classes found - node may not be properly interviewed");
-    } else {
-        ccs.forEach(([cc, api]) => {
-            console.log(`  - ${cc} (v${api.version}): supported=${api.isSupported()}`);
-        });
-    }
-    
-    // Check specifically for Multilevel Switch
-    console.log("\nMultilevel Switch details:");
-    const multilevelSwitch = node.commandClasses["Multilevel Switch"];
-    if (multilevelSwitch) {
-        console.log(`  Exists in API: Yes`);
-        console.log(`  Version: v${multilevelSwitch.version}`);
-        console.log(`  Supported: ${multilevelSwitch.isSupported()}`);
-        console.log(`  Controlled: ${multilevelSwitch.isControlled()}`);
-        
-        // Try to get the value ID directly
-        try {
-            const valueId = multilevelSwitch.getValueId("currentValue");
-            console.log(`  Value ID for currentValue:`, valueId);
-        } catch (err) {
-            console.log(`  Cannot get value ID: ${err.message}`);
-        }
-    } else {
-        console.log(`  Not found in command classes`);
-    }
-    
-    // Check if Basic CC is available as fallback
-    const basicCC = node.commandClasses.Basic;
-    if (basicCC && basicCC.isSupported()) {
-        console.log("\nBasic CC available - can use for on/off control");
-    }
 }
 
 await driver.start();
