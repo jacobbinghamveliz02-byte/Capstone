@@ -48,6 +48,7 @@ const driver = new Driver(
     // Tell the driver which serial port to use
     pathToController,
     //configure options like security keys
+    //configure options like security keys
     {
         securityKeys: {
             S0_Legacy: Buffer.from("0102030405060708090a0b0c0d0e0f10", "hex"),
@@ -151,39 +152,67 @@ async function changeLight(node, settingLightLevel){
     
 }
 
-async function readLight(node, id){
-    // currently assigning Global variable currentLightValue
-    let oldLightValue = currentLightValue;
-    currentLightValue = await node.getValue(lightLevelValueId);
-    if (oldLightValue != currentLightValue && CHANGEMEWHENFINISHED){
-        console.log(`Light ${id} level changed: ${currentLightValue}`);
-        client.publish('home/zwave/light/level', `Light ${id} Level: ${currentLightValue}`);
-    }
+// @ts-ignore
+async function changeHeat(node){
+    await node.setValue(heatingValueId, 68);
+}
+// @ts-ignore
+async function changeCool(node){
+    await node.setValue(coolingValueId, 69);
 }
 
-async function readThermostat(node){
-    let heatingSetpoint = await node.getValue(heatingValueId);
-    let coolingSetpoint = await node.getValue(coolingValueId);
-    if(temps[0] != heatingSetpoint || temps[1] != coolingSetpoint){
-        console.log(`Thermostat ${node.id} setpoints changed: Heating - ${heatingSetpoint}, Cooling - ${coolingSetpoint}`);
-        client.publish('home/zwave/thermostat/setpoints', `Heating: ${heatingSetpoint}, Cooling: ${coolingSetpoint}`);
-    }
-    // currently assigning Global variable temps
-    let temps = [heatingSetpoint, coolingSetpoint];
-}
 
-async function pingingNode(node){
-    if(node != null){
-        let isAlive = await node.ping();
-        if (!isAlive) {
-            console.log(`Node not found`);
-            return false;
-        }else{
-            return true;
+async function diagnoseNode4() {
+    const node = driver.controller.nodes.get(4);
+    
+    if (!node) {
+        console.log("Node 4 not found");
+        return;
+    }
+    
+    console.log("=== Diagnosing Node 4 ===");
+    console.log(`Status: ${node.status}`);
+    console.log(`Ready: ${node.ready}`);
+    console.log(`Manufacturer: ${node.manufacturer}`);
+    console.log(`Product: ${node.productLabel}`);
+    console.log(`Device class: ${node.deviceClass?.generic?.label} - ${node.deviceClass?.specific?.label}`);
+    
+    // List all command classes
+    console.log("\nCommand Classes:");
+    const ccs = Array.from(node.commandClasses.entries());
+    
+    if (ccs.length === 0) {
+        console.log("No command classes found - node may not be properly interviewed");
+    } else {
+        ccs.forEach(([cc, api]) => {
+            console.log(`  - ${cc} (v${api.version}): supported=${api.isSupported()}`);
+        });
+    }
+    
+    // Check specifically for Multilevel Switch
+    console.log("\nMultilevel Switch details:");
+    const multilevelSwitch = node.commandClasses["Multilevel Switch"];
+    if (multilevelSwitch) {
+        console.log(`  Exists in API: Yes`);
+        console.log(`  Version: v${multilevelSwitch.version}`);
+        console.log(`  Supported: ${multilevelSwitch.isSupported()}`);
+        console.log(`  Controlled: ${multilevelSwitch.isControlled()}`);
+        
+        // Try to get the value ID directly
+        try {
+            const valueId = multilevelSwitch.getValueId("currentValue");
+            console.log(`  Value ID for currentValue:`, valueId);
+        } catch (err) {
+            console.log(`  Cannot get value ID: ${err.message}`);
         }
-    }else{
-        console.log(`Node not found`);
-        return false;
+    } else {
+        console.log(`  Not found in command classes`);
+    }
+    
+    // Check if Basic CC is available as fallback
+    const basicCC = node.commandClasses.Basic;
+    if (basicCC && basicCC.isSupported()) {
+        console.log("\nBasic CC available - can use for on/off control");
     }
 }
 
