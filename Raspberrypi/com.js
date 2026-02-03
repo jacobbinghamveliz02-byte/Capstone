@@ -104,7 +104,7 @@ client.on('message', async function (topic, message) {
             console.log("Light node not found");
         }
     }else if(stringMessage.includes("Thermostat")){
-        let thermostatArray = stringMessage.split(", ")[1];
+        let thermostatArray = stringMessage.split(": ");
         const ThermostatNode = driver.controller.nodes.get(THERMID);
         let pingThermostat = await pingingNode(ThermostatNode);
         if(pingThermostat){
@@ -125,16 +125,22 @@ client.on('message', async function (topic, message) {
 async function main() {
 }
 
-// reasoning for currentTime limits is to avoid AC running at night and heating during the morining hours
+// reasoning for currentTime limits is to avoid heating running at night and the morining hours
 // 23 = 11pm, 11 = 11am
 // Jean keeps balcony door open at night
 async function thermostat(node, coolingSetpoint, heatingSetpoint, shouldHeat){
     let currentTime = new Date().getHours();
-    if(currentTime <=  23 && currentTime >= 11 && shouldHeat){
-        await node.setValue(HEATINGVALUEID, heatingSetpoint);
-    }
-    if(currentTime <=  23 && currentTime >= 11 && !shouldHeat){
-        await node.setValue(COOLINGVALUEID, coolingSetpoint);
+    if(currentTime < 11 || currentTime > 23){
+        if(shouldHeat){
+            await node.setValue(HEATINGVALUEID, heatingSetpoint);
+            client.publish(`home/zwave/thermostat/current`, `Heating set to ${heatingSetpoint}`);
+        }
+        if(!shouldHeat){
+            await node.setValue(COOLINGVALUEID, coolingSetpoint);
+            client.publish(`home/zwave/thermostat/current`, `Cooling set to ${coolingSetpoint}`);
+        }
+    }else{
+        client.publish(`home/zwave/thermostat/current`, `unable to adjust temperature outside of time window`);
     }
 }
 
@@ -142,16 +148,7 @@ async function changeLight(node, settingLightLevel){
     console.log(`Changing light ${node.id} level to ${settingLightLevel}`); 
     await node.setValue(LIGHTTARGETVALUEID, settingLightLevel);
     let currentValue = await node.getValue(LIGHTLEVELVALUEID);
-    console.log(`Current light level: ${currentValue}`);
-}
-
-// @ts-ignore
-async function changeHeat(node){
-    await node.setValue(heatingValueId, 68);
-}
-// @ts-ignore
-async function changeCool(node){
-    await node.setValue(coolingValueId, 69);
+    client.publish(`home/zwave/light/current`, `${currentValue}`);
 }
 
 await driver.start();
