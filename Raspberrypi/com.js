@@ -1,8 +1,8 @@
 // @ts-nocheck
 // import fs from "fs";
 import { Driver } from "zwave-js";
-import tempetureValueId from 'ThermostatValueId.json' assert { type: "json" };
-import lightValueId from 'light1.json' assert { type: "json" };
+import tempetureValueId from './ThermostatValueId.json' assert { type: 'json' };
+import lightValueId from './light1.json' assert { type: 'json' };
 import mqtt from "mqtt";
 
 const PATHTOCONTROLLER = "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5A49039988-if00"
@@ -34,7 +34,7 @@ var options = {
     username: "Raspberry",
     password: "RaspberrypiPassword1"
     };
-    
+
 // [5-67-0-setpoint-1] Setpoint (Heating) 
 
 const TEMPATURE = tempetureValueId[0];
