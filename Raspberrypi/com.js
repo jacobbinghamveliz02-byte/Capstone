@@ -41,6 +41,7 @@ const TEMPATURE = tempetureValueId[0];
 const HEATINGVALUEID = tempetureValueId[6];
 const COOLINGVALUEID = tempetureValueId[7];
 const CURRENTTHERMOSTATMODEID = tempetureValueId[3];
+const CURRENTTHERMOSTATBARRIERVALUEID = tempetureValueId[30];
 const LIGHTLEVELVALUEID = lightValueId[1];
 const LIGHTTARGETVALUEID = lightValueId[3];
 const THERMID = 5; // Node ID of the thermostat
@@ -58,6 +59,7 @@ let timedInfo;
 let timeSetTemp;
 let oldTimeSetTemp;
 let previouslyThermostatMode;
+let batteryLevel;
 
 let thermostatNode;
 let lightNode1;
@@ -86,10 +88,13 @@ driver.once("driver ready", () => {
 // home/zwave/thermostat/set
 // home/zwave/thermostat/time/set
 // home/zwave/thermostat/time/remove
+// home/zwave/thermostat/power/set
 
 // home/app/light/current
 // home/app/thermostat/current
-// home/app/thermostat/time/current <current 
+// home/app/thermostat/time/current
+// home/app/thermostat/battery
+// home/app/thermostat/power
 
 async function main() {
     thermostatNode = driver.controller.nodes.get(THERMID);
@@ -105,7 +110,7 @@ async function main() {
 
     client.subscribe('home/zwave/#');
 
-    client.on('message', async function (topic, message) {
+    client.on('message', async function (topic, message) {    
     let topicString = String(topic);
     let messageString = String(message);
     if(topicString == 'home/zwave/light/set'){
@@ -117,7 +122,7 @@ async function main() {
                 await changeLight(LIGHTOFF);
             }
         }else{
-            client.publish(`home/zwave/light/current`, `Light node not found`);
+            client.publish(`home/app/light/current`, `Light node not found`);
         }
     }else if(topicString.startsWith('home/zwave/thermostat')){
         let pingThermostat = await pingingNode(thermostatNode);
@@ -143,14 +148,20 @@ async function main() {
                 timedInfo = null;
                 oldTimeSetTemp = null;
                 client.publish(`home/app/thermostat/current`, `Timed temperature control removed`);
-        }
+            }else if(topicString == 'home/zwave/thermostat/power/set'){
+                if(messageString == 'on'){
+                    await turnThermostatOff(1);
+                }else if(messageString == 'off'){
+                    await turnThermostatOff(0);
+                }
         }else{
             client.publish(`home/app/thermostat/current`, `Thermostat node not found`);
         }
+        }
     }
-    });
-
+});
     setInterval(scheduleCheck, 60000); // Check every minute
+    setInterval(getBatteryLevel, 60000);
 }
 
 async function scheduleCheck(){
@@ -182,6 +193,23 @@ async function scheduleCheck(){
     }
 }
 
+async function getBatteryLevel(){
+    oldBatteryLevel = batteryLevel; 
+    batteryLevel = await thermostatNode.getValue(CURRENTTHERMOSTATBARRIERVALUEID);
+    if(oldBatteryLevel != batteryLevel){
+        client.publish(`home/app/thermostat/battery`, `${batteryLevel}%`);
+    }
+}
+
+async function turnThermostatOff(mode){
+    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, mode);
+    if(mode == 0){
+        client.publish(`home/app/thermostat/current`, `Thermostat turned off`);
+    }else{
+        client.publish(`home/app/thermostat/current`, `Thermostat turned on`);
+    }
+}
+
 // reasoning for currentTime limits is to avoid heating running at night and the morining hours
 // 23 = 11pm, 11 = 11am
 // Jean keeps balcony door open at night
@@ -193,11 +221,11 @@ async function betterThermostat(setpoint, shouldHeat){
             if(shouldHeat && oldTimeSetTemp != setpoint){
                 await thermostatNode.setValue(HEATINGVALUEID, setpoint);
                 oldTimeSetTemp = setpoint;
-                client.publish(`home/zwave/thermostat/current`, `Heating set to ${setpoint}`);
+                client.publish(`home/app/thermostat/current`, `Heating set to ${setpoint}`);
             }else if(!shouldHeat && oldTimeSetTemp != setpoint){
                 await thermostatNode.setValue(COOLINGVALUEID, setpoint);
                 oldTimeSetTemp = setpoint;
-                client.publish(`home/zwave/thermostat/current`, `Cooling set to ${setpoint}`);
+                client.publish(`home/app/thermostat/current`, `Cooling set to ${setpoint}`);
             }
         }else{
             // normal temperature control
