@@ -222,7 +222,10 @@ async function changeLight(settingLightLevel){
     console.log(`Changing light ${lightNode1.id} level to ${settingLightLevel}`); 
     await lightNode1.setValue(LIGHTTARGETVALUEID, settingLightLevel);
     let currentValue = await lightNode1.getValue(LIGHTLEVELVALUEID);
-    client.publish(`home/app/light/current`, `${currentValue}`);
+    // Added this so when it's changing it wont pick the first number when its going down or up (ie 99 -> 98 -> publish 98 -> going to 0) 
+    if(currentValue == settingLightLevel){
+        client.publish(`home/app/light/current`, `${currentValue}`);
+    }
 }
 
 async function pingingNode(nodeToPing){
