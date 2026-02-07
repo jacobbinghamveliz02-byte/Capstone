@@ -1,6 +1,10 @@
 import { Text, FlatList, View, TouchableOpacity, Button, StyleSheet } from 'react-native'
 import mqtt from 'mqtt';
 
+let lightLevel;
+let thermostatMode;
+let currentTemp;
+
 var options = {
     host: "57cb3b2fa5314c20af5ed5e2001f4a4c.s1.eu.hivemq.cloud",
     port: 8884,
@@ -23,18 +27,20 @@ client.on('error', function (error) {
 client.subscribe('home/zwave/#');
 
 client.on('message', function (topic, message) {
+  let stringTopic = string(topic);
+  let stringMessage = string(message);
   stringMessage = message.toString()
-    if(stringMessage.includes("Light")){
-    // 
+  if(stringTopic == "home/app/light/current"){
+    if(stringMessage == "99"){
+      lightLevel = on;
+    }else{
+      lightLevel = off;
     }
-    else if(stringMessage.includes("Thermostat")){
-      let thermostatArray = stringMessage.split(": ");
-      if(thermostatArray[1] == "heating"){
-          //  
-      }else{
-        //  
-      }
-    }
+  }else if(stringTopic == "home/app/thermostat/current"){
+    let messageArray = stringMessage.split(" set to ");
+    thermostatMode = messageArray[0];
+    currentTemp = messageArray[1];
+  }
 });
 
 // Note to self constantly check messages but only publish message when a state changes
@@ -56,9 +62,20 @@ client.on('message', function (topic, message) {
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text >
-        testing.
-      </Text>
+      <Header>
+        <nav>
+            <ul>
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#light">Light Control</a></li>
+                <li><a href="#therm">Thermostat Control</a></li>
+            </ul>
+        </nav>
+    </Header>
+    <Text>
+    Thermostat:
+    ${currentTemp}
+
+    </Text>
       <Button title="Click me" onPress={() => alert("button pressed")}/>
       <Button title="Click me1" onPress={() => alert("button pressed")}/>
     </View>
@@ -71,8 +88,5 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     padding: 8,
-  }
+  },
 };
-
-
-
