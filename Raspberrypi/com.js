@@ -115,6 +115,7 @@ async function main() {
         let topicString = String(topic);
         let messageString = String(message);
         console.log("(String) Topic: " + topicString + "Message: " + messageString)
+        // light control
         if(topicString == 'home/zwave/light/set'){
             console.log("Received light control message: " + messageString);
             let pingLight = await pingingNode(lightNode1);
@@ -127,11 +128,13 @@ async function main() {
             }else{
                 client.publish(`home/app/light/current`, `Light node not found`);
             }
+            // Thermostat control
         }else if(topicString.startsWith('home/zwave/thermostat')){
             console.log("Received thermostat control message: " + messageString);
             let pingThermostat = await pingingNode(thermostatNode);
             if(pingThermostat){
                 let messageArray = messageString.split(": ");
+                // normal temperature control
                 if(topicString == 'home/zwave/thermostat/set'){
                     console.log("home/zwave/thermostat/set received with message: " + messageString);
                     if(messageString.startsWith('heating')){
@@ -143,6 +146,7 @@ async function main() {
                         let coolingSetpoint = parseInt(messageArray[1]);
                         await betterThermostat(coolingSetpoint, false);
                     }
+                    // Time control
                 }else if(topicString == 'home/zwave/thermostat/time/set'){
                     timedInfo = messageArray[0];
                     timeSetTemp = parseInt(messageArray[1]);
