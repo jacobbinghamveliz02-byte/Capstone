@@ -213,8 +213,10 @@ async function getBatteryLevel(){
 async function turnThermostatOff(mode){
     await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, mode);
     if(mode == 0){
+        console.log("Turning thermostat off");
         client.publish(`home/app/thermostat/current`, `Thermostat turned off`);
     }else{
+        console.log("Turning thermostat on");
         client.publish(`home/app/thermostat/current`, `Thermostat turned on`);
     }
 }
