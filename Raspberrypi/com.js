@@ -110,56 +110,64 @@ async function main() {
 
     client.subscribe('home/zwave/#');
 
-    client.on('message', async function (topic, message) {    
-    let topicString = String(topic);
-    let messageString = String(message);
-    if(topicString == 'home/zwave/light/set'){
-        let pingLight = await pingingNode(lightNode1);
-        if(pingLight){
-            if(messageString == 'on'){
-                await changeLight(LIGHTON);
-            }else if(messageString == 'off'){
-                await changeLight(LIGHTOFF);
-            }
-        }else{
-            client.publish(`home/app/light/current`, `Light node not found`);
-        }
-    }else if(topicString.startsWith('home/zwave/thermostat')){
-        let pingThermostat = await pingingNode(thermostatNode);
-        if(pingThermostat){
-            let messageArray = messageString.split(": ");
-            if(topicString == 'home/zwave/thermostat/set'){
-                if(messageString.startsWith('heating')){
-                    let heatingSetpoint = parseInt(messageArray[1]);
-                    await betterThermostat(heatingSetpoint, true);
-                }else if(messageString.startsWith('cooling')){
-                    let coolingSetpoint = parseInt(messageArray[1]);
-                    await betterThermostat(coolingSetpoint, false);
-                }
-            }else if(topicString == 'home/zwave/thermostat/time/set'){
-                timedInfo = messageArray[0];
-                timeSetTemp = parseInt(messageArray[1]);
-                startHour = parseInt(messageArray[2]);
-                endHour = parseInt(messageArray[3]);
-            }else if(topicString == 'home/zwave/thermostat/time/remove'){
-                startHour = null;
-                endHour = null;
-                timeSetTemp = null;
-                timedInfo = null;
-                oldTimeSetTemp = null;
-                client.publish(`home/app/thermostat/current`, `Timed temperature control removed`);
-            }else if(topicString == 'home/zwave/thermostat/power/set'){
+    client.on('message', async function (topic, message) {
+        console.log("Topic: " + topic + "Message: " + message)
+        let topicString = String(topic);
+        let messageString = String(message);
+        console.log("(String) Topic: " + topicString + "Message: " + messageString)
+        if(topicString == 'home/zwave/light/set'){
+            console.log("Received light control message: " + messageString);
+            let pingLight = await pingingNode(lightNode1);
+            if(pingLight){
                 if(messageString == 'on'){
-                    await turnThermostatOff(1);
+                    await changeLight(LIGHTON);
                 }else if(messageString == 'off'){
-                    await turnThermostatOff(0);
+                    await changeLight(LIGHTOFF);
                 }
-        }else{
-            client.publish(`home/app/thermostat/current`, `Thermostat node not found`);
-        }
+            }else{
+                client.publish(`home/app/light/current`, `Light node not found`);
+            }
+        }else if(topicString.startsWith('home/zwave/thermostat')){
+            console.log("Received thermostat control message: " + messageString);
+            let pingThermostat = await pingingNode(thermostatNode);
+            if(pingThermostat){
+                let messageArray = messageString.split(": ");
+                if(topicString == 'home/zwave/thermostat/set'){
+                    console.log("home/zwave/thermostat/set received with message: " + messageString);
+                    if(messageString.startsWith('heating')){
+                        console.log("Setting heating setpoint");
+                        let heatingSetpoint = parseInt(messageArray[1]);
+                        await betterThermostat(heatingSetpoint, true);
+                    }else if(messageString.startsWith('cooling')){
+                        console.log("Setting cooling setpoint");
+                        let coolingSetpoint = parseInt(messageArray[1]);
+                        await betterThermostat(coolingSetpoint, false);
+                    }
+                }else if(topicString == 'home/zwave/thermostat/time/set'){
+                    timedInfo = messageArray[0];
+                    timeSetTemp = parseInt(messageArray[1]);
+                    startHour = parseInt(messageArray[2]);
+                    endHour = parseInt(messageArray[3]);
+                }else if(topicString == 'home/zwave/thermostat/time/remove'){
+                    startHour = null;
+                    endHour = null;
+                    timeSetTemp = null;
+                    timedInfo = null;
+                    oldTimeSetTemp = null;
+                    client.publish(`home/app/thermostat/current`, `Timed temperature control removed`);
+                }else if(topicString == 'home/zwave/thermostat/power/set'){
+                    if(messageString == 'on'){
+                        await turnThermostatOff(1);
+                    }else if(messageString == 'off'){
+                        await turnThermostatOff(0);
+                    }
+            }else{
+                client.publish(`home/app/thermostat/current`, `Thermostat node not found`);
+            }
+            }
         }
     }
-});
+);
     setInterval(scheduleCheck, 60000); // Check every minute
     setInterval(getBatteryLevel, 60000);
 }
@@ -197,6 +205,7 @@ async function getBatteryLevel(){
     oldBatteryLevel = batteryLevel; 
     batteryLevel = await thermostatNode.getValue(CURRENTTHERMOSTATBARRIERVALUEID);
     if(oldBatteryLevel != batteryLevel){
+        console
         client.publish(`home/app/thermostat/battery`, `${batteryLevel}%`);
     }
 }
@@ -215,26 +224,31 @@ async function turnThermostatOff(mode){
 // Jean keeps balcony door open at night
 async function betterThermostat(setpoint, shouldHeat){
     currentTime = new Date().getHours();
+    console.log(`Current time: ${currentTime}, Start hour: ${startHour}, End hour: ${endHour}, Timed info: ${timedInfo}, Setpoint: ${setpoint}, Should heat: ${shouldHeat}`);
     if(currentTime >= 11 && currentTime <= 23){
         // timed temperature control
-        if(currentTime >= startHour && currentTime <= endHour && timedInfo != null){
-            if(shouldHeat && oldTimeSetTemp != setpoint){
-                await thermostatNode.setValue(HEATINGVALUEID, setpoint);
-                oldTimeSetTemp = setpoint;
-                client.publish(`home/app/thermostat/current`, `Heating set to ${setpoint}`);
-            }else if(!shouldHeat && oldTimeSetTemp != setpoint){
-                await thermostatNode.setValue(COOLINGVALUEID, setpoint);
-                oldTimeSetTemp = setpoint;
-                client.publish(`home/app/thermostat/current`, `Cooling set to ${setpoint}`);
-            }
-        }else{
-            // normal temperature control
-            if(setpoint != null){
+        if(setpoint != null){
+            if(currentTime >= startHour && currentTime <= endHour && timedInfo != null){
+                if(shouldHeat && oldTimeSetTemp != setpoint){
+                    console.log("Setting timed heating setpoint");
+                    await thermostatNode.setValue(HEATINGVALUEID, setpoint);
+                    oldTimeSetTemp = setpoint;
+                    client.publish(`home/app/thermostat/current`, `Heating set to ${setpoint}`);
+                }else if(!shouldHeat && oldTimeSetTemp != setpoint){
+                    console.log("Setting timed cooling setpoint");
+                    await thermostatNode.setValue(COOLINGVALUEID, setpoint);
+                    oldTimeSetTemp = setpoint;
+                    client.publish(`home/app/thermostat/current`, `Cooling set to ${setpoint}`);
+                }
+            }else{
+                // normal temperature control
                 if(shouldHeat && oldHeatingSetpoint != setpoint){
+                    console.log("Setting normal heating setpoint");
                     await thermostatNode.setValue(HEATINGVALUEID, setpoint);
                     oldHeatingSetpoint = setpoint;
                     client.publish(`home/app/thermostat/current`, `Heating set to ${setpoint}`);
                 }else if(!shouldHeat && oldCoolingSetpoint != setpoint){
+                    console.log("Setting normal cooling setpoint");
                     await thermostatNode.setValue(COOLINGVALUEID, setpoint);
                     oldCoolingSetpoint = setpoint;
                     client.publish(`home/app/thermostat/current`, `Cooling set to ${setpoint}`);
@@ -256,6 +270,7 @@ async function changeLight(settingLightLevel){
 async function pingingNode(nodeToPing){
     try{
         await nodeToPing.ping();
+        console.log(`Node ${nodeToPing.id} is responding`);
         return true;
     }catch(error){
         console.log(`Node ${nodeToPing.id} not responding: ${error}`);
