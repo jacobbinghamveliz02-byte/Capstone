@@ -59,9 +59,10 @@ let timedInfo;
 let timeSetTemp;
 let oldTimeSetTemp;
 let previouslyThermostatMode;
-
 let thermostatNode;
 let lightNode1;
+let oldBatteryLevel;
+let oldCurrentTemp;
 
 for (const signal of ["SIGINT", "SIGTERM"]) {
     process.on(signal, async () => {
@@ -218,9 +219,10 @@ async function getCurrentTemperature(){
 async function getBatteryLevel(){
     let batteryLevel = await thermostatNode.getValue(CURRENTTHERMOSTATBARRIERVALUEID);
     if(oldBatteryLevel != batteryLevel){
-        let oldBatteryLevel = batteryLevel; // initialize oldBatteryLevel to current battery level to avoid publishing on startup
         console.log(`Battery level changed from ${oldBatteryLevel}% to ${batteryLevel}%`);
         client.publish(`home/app/thermostat/battery`, `${batteryLevel}%`);
+        oldBatteryLevel = batteryLevel; // update oldBatteryLevel to current battery level
+
     }
 }
 
