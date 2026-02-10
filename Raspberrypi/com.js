@@ -206,6 +206,7 @@ async function scheduleCheck(){
 
 async function getCurrentTemperature(){
     let currentTemp = await thermostatNode.getValue(TEMPATURE);
+    console.log("Current temperature: " + currentTemp);
     if(oldCurrentTemp != currentTemp && currentTemp != null){
         console.log(`Current temperature: ${currentTemp}°C`);
         console.log(`Current temperature changed from ${oldCurrentTemp}°C to ${currentTemp}°C`);
