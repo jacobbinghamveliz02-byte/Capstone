@@ -34,33 +34,39 @@ client.on('error', function (error) {
 client.subscribe('home/zwave/#');
 
 client.on('message', function (topic, message) {
+  console.log("Topic: " + topic + "Message: " + message)
   let stringTopic = string(topic);
   let stringMessage = string(message);
+  console.log("(String) Topic: " + stringTopic + "Message: " + stringMessage)
   stringMessage = message.toString()
   if(stringTopic == "home/app/light/current"){
+    console.log("home/app/light/current was called")
     if(stringMessage == "99"){
       lightLevel = on;
     }else{
       lightLevel = off;
     }
   }else if(stringTopic == "home/app/thermostat/current"){
+    console.log("home/app/thermostat/current")
     let messageArray = stringMessage.split(" set to ");
     thermostatMode = messageArray[0];
     currentTemp = messageArray[1];
   }else if(stringTopic == "home/app/thermostat/battery"){
+    console.log("home/app/thermostat/battery")
     currentBattery == stringMessage
   }else if(stringTopic == "home/app/thermostat/power"){
+    console.log("home/app/thermostat/power")
     if(stringMessage == "Thermostat turned off"){
+      console.log("Thermostat turned off")
       powerStatus == stringMessage;
     }else{
+      console.log("Thermostat turned on")
       powerStatus == stringMessage
     }
   }
 });
 
 // Note to self constantly check messages but only publish message when a state changes
-  // Menu: Create a menu to access Lights and Thermostat
-    // Note to self menu links will be easier to access for user stand point
   // Menu: On home page show status of thermostat and Light
   // Menu: Create text boxes to show current status of the thermostat
   // Menu: Create either number or text boxes to show current status of the tempature
@@ -73,11 +79,6 @@ client.on('message', function (topic, message) {
                               //Submit
     // Light: Add either yellow and black square to resemble off/on or add text box that says on or off 
     // Light: Create button when pressed turns on or off light and takes you back to the home page
-
-
-
-
-let deleteme;
 
 export default function App() {
   return (
@@ -143,15 +144,41 @@ function HomeScreen({ navigation }){
 function lightControl({ navigation }){
   return (
     <View>
-    light
+    
     </View>
   )
 }
 
 function thermostatControl({ navigation }){
+  let temperatureInput = ""
+  
+  function thermostatControl(thermostatType){
+    if(tempatureInput !== ""){
+      console.log("Temperature: " + tempatureInput + "type: " + thermostatType)
+      //client.publish("home/zwave/thermostat/set",  thermostatType + ": " + tempatureInput)
+    }
+  }
+
+  const Options = ({ thermostatType }) =>(
+    <TouchableOpacity onPress={() => checkingType(thermostatType)}>
+      <Text>{thermostatType}</Text>
+    </TouchableOpacity>
+  )
+
+
+  const options = [
+    { btn: <Options thermostatType={"Heating"} /> },
+    { btn: <Options thermostatType={"Cooling"} /> }
+  ]
+
+  const Item = ({ item }) => {
+    return <View style={styles.container}>{item.btn}</View>;
+  };
+
   return (
     <View>
-    thermostat
+    <FlatList data={options} renderItem={Item} numColumns={2} />
+      <input type="number" id="tempatureSetpoint" value={temperatureInput} name="quantity" min="68" max="75" require/> 
     </View>
   )
 }
