@@ -50,19 +50,19 @@ var client = mqtt.connect(options);
 
 const CHANGEMEWHENFINISHED = false; // Set to true to enable change detection and MQTT publishing. currently turned off to limit messages
 
-let oldHeatingSetpoint;
-let oldCoolingSetpoint;
-let startHour;
-let endHour;
-let currentTime;
-let timedInfo;
-let timeSetTemp;
-let oldTimeSetTemp;
-let previouslyThermostatMode;
-let thermostatNode;
-let lightNode1;
-let oldBatteryLevel;
-let oldCurrentTemp;
+let oldHeatingSetpoint = null;
+let oldCoolingSetpoint = null;
+let startHour = null;
+let endHour = null;
+let currentTime = null;
+let timedInfo = null;
+let timeSetTemp = null;
+let oldTimeSetTemp = null;
+let previouslyThermostatMode = null;
+let thermostatNode = null;
+let lightNode1 = null;
+let oldBatteryLevel = null;
+let oldCurrentTemp = null;
 
 for (const signal of ["SIGINT", "SIGTERM"]) {
     process.on(signal, async () => {
@@ -206,8 +206,8 @@ async function scheduleCheck(){
 
 async function getCurrentTemperature(){
     let currentTemp = await thermostatNode.getValue(TEMPATURE);
-    console.log(`Current temperature: ${currentTemp}°C`);
     if(oldCurrentTemp != currentTemp){
+        console.log(`Current temperature: ${currentTemp}°C`);
         console.log(`Current temperature changed from ${oldCurrentTemp}°C to ${currentTemp}°C`);
         oldCurrentTemp = currentTemp;
         client.publish(`home/app/thermostat/current/temperature`, `${currentTemp}`);
@@ -225,9 +225,9 @@ async function getBatteryLevel(){
 }
 
 async function basicChecking(){
-    getCurrentTemperature();
-    getBatteryLevel();
-    scheduleCheck();
+    await getCurrentTemperature();
+    await getBatteryLevel();
+    await scheduleCheck();
 }
 
 async function turnThermostatOff(mode){
