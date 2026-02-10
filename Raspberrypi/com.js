@@ -172,9 +172,7 @@ async function main() {
         }
     }
 );
-    setInterval(scheduleCheck, 60000); // Check every minute
-    setInterval(getBatteryLevel, 60000);
-    setInterval(getCurrentTemperature, 60000);
+    setInterval(basicChecking, 60000); // Check every minute
 }
 
 async function scheduleCheck(){
@@ -224,6 +222,12 @@ async function getBatteryLevel(){
         oldBatteryLevel = batteryLevel; // update oldBatteryLevel to current battery level
 
     }
+}
+
+async function basicChecking(){
+    getCurrentTemperature();
+    getBatteryLevel();
+    scheduleCheck();
 }
 
 async function turnThermostatOff(mode){
