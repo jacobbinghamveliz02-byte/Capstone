@@ -60,6 +60,8 @@ let timeSetTemp;
 let oldTimeSetTemp;
 let previouslyThermostatMode;
 let batteryLevel;
+let curentTemp;
+let oldCurrentTemp
 
 let thermostatNode;
 let lightNode1;
@@ -137,11 +139,11 @@ async function main() {
                 // normal temperature control
                 if(topicString == 'home/zwave/thermostat/set'){
                     console.log("home/zwave/thermostat/set received with message: " + messageString);
-                    if(messageString.startsWith('heating')){
+                    if(messageString.toLowerCase().startsWith('heating')){
                         console.log("Setting heating setpoint");
                         let heatingSetpoint = parseInt(messageArray[1]);
                         await betterThermostat(heatingSetpoint, true);
-                    }else if(messageString.startsWith('cooling')){
+                    }else if(messageString.toLowerCase().startsWith('cooling')){
                         console.log("Setting cooling setpoint");
                         let coolingSetpoint = parseInt(messageArray[1]);
                         await betterThermostat(coolingSetpoint, false);
@@ -174,6 +176,7 @@ async function main() {
 );
     setInterval(scheduleCheck, 60000); // Check every minute
     setInterval(getBatteryLevel, 60000);
+    setInterval(getCurrentTemperature, 60000);
 }
 
 async function scheduleCheck(){
@@ -205,11 +208,21 @@ async function scheduleCheck(){
     }
 }
 
+async function getCurrentTemperature(){
+    currentTemp = await thermostatNode.getValue(TEMPATURE);
+    console.log(`Current temperature: ${currentTemp}°C`);
+    if(oldCurrentTemp != currentTemp){
+        console.log(`Current temperature changed from ${oldCurrentTemp}°C to ${currentTemp}°C`);
+        oldCurrentTemp = currentTemp;
+        client.publish(`home/app/thermostat/current/temperature`, `${currentTemp}`);
+    }
+}
+
 async function getBatteryLevel(){
     oldBatteryLevel = batteryLevel; 
     batteryLevel = await thermostatNode.getValue(CURRENTTHERMOSTATBARRIERVALUEID);
     if(oldBatteryLevel != batteryLevel){
-        console
+        console.log(`Battery level changed from ${oldBatteryLevel}% to ${batteryLevel}%`);
         client.publish(`home/app/thermostat/battery`, `${batteryLevel}%`);
     }
 }
@@ -218,10 +231,10 @@ async function turnThermostatOff(mode){
     await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, mode);
     if(mode == 0){
         console.log("Turning thermostat off");
-        client.publish(`home/app/thermostat/current`, `Thermostat turned off`);
+        client.publish(`home/app/thermostat/current/power`, `Thermostat turned off`);
     }else{
         console.log("Turning thermostat on");
-        client.publish(`home/app/thermostat/current`, `Thermostat turned on`);
+        client.publish(`home/app/thermostat/current/power`, `Thermostat turned on`);
     }
 }
 
