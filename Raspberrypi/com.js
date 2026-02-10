@@ -219,7 +219,7 @@ async function getCurrentTemperature(){
 }
 
 async function getBatteryLevel(){
-    oldBatteryLevel = batteryLevel; 
+    let oldBatteryLevel = batteryLevel; 
     batteryLevel = await thermostatNode.getValue(CURRENTTHERMOSTATBARRIERVALUEID);
     if(oldBatteryLevel != batteryLevel){
         console.log(`Battery level changed from ${oldBatteryLevel}% to ${batteryLevel}%`);
