@@ -206,7 +206,7 @@ async function scheduleCheck(){
 
 async function getCurrentTemperature(){
     let currentTemp = await thermostatNode.getValue(TEMPATURE);
-    if(oldCurrentTemp != currentTemp){
+    if(oldCurrentTemp != currentTemp && currentTemp != null){
         console.log(`Current temperature: ${currentTemp}°C`);
         console.log(`Current temperature changed from ${oldCurrentTemp}°C to ${currentTemp}°C`);
         oldCurrentTemp = currentTemp;
@@ -216,7 +216,7 @@ async function getCurrentTemperature(){
 
 async function getBatteryLevel(){
     let batteryLevel = await thermostatNode.getValue(CURRENTTHERMOSTATBARRIERVALUEID);
-    if(oldBatteryLevel != batteryLevel){
+    if(oldBatteryLevel != batteryLevel && batteryLevel != null){
         console.log(`Battery level changed from ${oldBatteryLevel}% to ${batteryLevel}%`);
         client.publish(`home/app/thermostat/battery`, `${batteryLevel}%`);
         oldBatteryLevel = batteryLevel; // update oldBatteryLevel to current battery level
