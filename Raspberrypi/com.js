@@ -1,8 +1,6 @@
 // @ts-nocheck
 // import fs from "fs";
 import { Driver } from "zwave-js";
-import tempetureValueId from './ThermostatValueId.json' assert { type: 'json' };
-import lightValueId from './light1.json' assert { type: 'json' };
 import mqtt from "mqtt";
 
 const PATHTOCONTROLLER = "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5A49039988-if00"
@@ -50,12 +48,14 @@ const HEATINGVALUEID = {
   property: "setpoint",
   propertyKey: 1 // Heating
 };
+
 const COOLINGVALUEID = {
   commandClass: 67, // Thermostat Setpoint
   endpoint: 0,
   property: "setpoint",
   propertyKey: 2 // Cooling
 };
+
 const CURRENTTHERMOSTATMODEID =  {
     commandClassName: "Thermostat Mode",
     commandClass: 64,
@@ -64,6 +64,7 @@ const CURRENTTHERMOSTATMODEID =  {
     propertyKey: "undefined",
     propertyName: "manufacturerData"
   };
+
 const CURRENTTHERMOSTATBATTERYVALUEID = {
   commandClass: 128, // Battery command class
   endpoint: 0,
@@ -71,9 +72,21 @@ const CURRENTTHERMOSTATBATTERYVALUEID = {
   propertyKey: undefined
 };
 
+const LIGHTLEVELVALUEID =  {
+    commandClassName: "Multilevel Switch",
+    commandClass: 38,
+    endpoint: 0,
+    property: "currentValue",
+    propertyName: "currentValue"
+  }
+const LIGHTTARGETVALUEID = {
+    commandClassName: "Multilevel Switch",
+    commandClass: 38,
+    endpoint: 0,
+    property: "targetValue",
+    propertyName: "targetValue"
+  }
 
-const LIGHTLEVELVALUEID = lightValueId[1];
-const LIGHTTARGETVALUEID = lightValueId[3];
 const THERMID = 5; // Node ID of the thermostat
 const LIGHTID = [6]; // Node IDs of the lights          NEED TO CHANGE IF ADDING MORE LIGHTS
 var client = mqtt.connect(options);
