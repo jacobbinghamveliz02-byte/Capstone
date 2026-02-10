@@ -37,11 +37,41 @@ var options = {
 
 // [5-67-0-setpoint-1] Setpoint (Heating) 
 
-const TEMPATURE = tempetureValueId[0];
-const HEATINGVALUEID = tempetureValueId[6];
-const COOLINGVALUEID = tempetureValueId[7];
-const CURRENTTHERMOSTATMODEID = tempetureValueId[3];
-const CURRENTTHERMOSTATBARRIERVALUEID = tempetureValueId[30];
+const TEMPATURE = {
+  commandClass: 49, // Multilevel Sensor command class
+  endpoint: 0,
+  property: "Air temperature",
+  propertyKey: undefined // Not the string "undefined", but actual undefined
+};
+
+const HEATINGVALUEID = {
+  commandClass: 67, // Thermostat Setpoint
+  endpoint: 0,
+  property: "setpoint",
+  propertyKey: 1 // Heating
+};
+const COOLINGVALUEID = {
+  commandClass: 67, // Thermostat Setpoint
+  endpoint: 0,
+  property: "setpoint",
+  propertyKey: 2 // Cooling
+};
+const CURRENTTHERMOSTATMODEID =  {
+    commandClassName: "Thermostat Mode",
+    commandClass: 64,
+    endpoint: 0,
+    property: "manufacturerData",
+    propertyKey: "undefined",
+    propertyName: "manufacturerData"
+  };
+const CURRENTTHERMOSTATBATTERYVALUEID = {
+  commandClass: 128, // Battery command class
+  endpoint: 0,
+  property: "level",
+  propertyKey: undefined
+};
+
+
 const LIGHTLEVELVALUEID = lightValueId[1];
 const LIGHTTARGETVALUEID = lightValueId[3];
 const THERMID = 5; // Node ID of the thermostat
@@ -216,7 +246,7 @@ async function getCurrentTemperature(){
 }
 
 async function getBatteryLevel(){
-    let batteryLevel = await thermostatNode.getValue(CURRENTTHERMOSTATBARRIERVALUEID);
+    let batteryLevel = await thermostatNode.getValue(CURRENTTHERMOSTATBATTERYVALUEID);
     if(oldBatteryLevel != batteryLevel && batteryLevel != null){
         console.log(`Battery level changed from ${oldBatteryLevel}% to ${batteryLevel}%`);
         client.publish(`home/app/thermostat/battery`, `${batteryLevel}%`);
