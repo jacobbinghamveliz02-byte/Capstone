@@ -216,6 +216,7 @@ async function main() {
     }
 );
     setInterval(basicChecking, 60000); // Check every minute
+    basicChecking(); // Initial check on startup
 }
 
 async function scheduleCheck(){
