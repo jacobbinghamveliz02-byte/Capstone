@@ -121,7 +121,7 @@ for (const signal of ["SIGINT", "SIGTERM"]) {
 driver.once("driver ready", () => {
     console.log("Driver is ready");
     driverReady = true;
-    driver.on("all nodes ready", main);
+    driver.on("all nodes ready", main());
 });
 
 
