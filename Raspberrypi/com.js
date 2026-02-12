@@ -298,6 +298,8 @@ async function basicChecking(){
     console.log("Batter: " + await thermostatNode.getValue(CURRENTTHERMOSTATBATTERYVALUEID));
     console.log("Current temp: " + await thermostatNode.getValue(TEMPATURE));
     console.log("Power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
+    let mode = await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 0);
+    console.log("current power value: " + mode);
     console.log("Heating setpoint: " + await thermostatNode.getValue(HEATINGVALUEID));
     console.log("Cooling setpoint: " + await thermostatNode.getValue(COOLINGVALUEID));
 }
@@ -326,11 +328,13 @@ async function betterThermostat(setpoint, shouldHeat){
                 if(shouldHeat && oldTimeSetTemp != setpoint){
                     console.log("Setting timed heating setpoint");
                     await thermostatNode.setValue(HEATINGVALUEID, setpoint);
+                    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1); // set to heating mode
                     oldTimeSetTemp = setpoint;
                     client.publish(`home/app/thermostat/current`, `Heating set to ${setpoint}`);
                 }else if(!shouldHeat && oldTimeSetTemp != setpoint){
                     console.log("Setting timed cooling setpoint");
                     await thermostatNode.setValue(COOLINGVALUEID, setpoint);
+                    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 2); // set to cooling mode
                     oldTimeSetTemp = setpoint;
                     client.publish(`home/app/thermostat/current`, `Cooling set to ${setpoint}`);
                 }
