@@ -32,7 +32,6 @@ var options = {
     username: "Raspberry",
     password: "RaspberrypiPassword1"
     };
-client = mqtt.connect(options);
 
 // [5-67-0-setpoint-1] Setpoint (Heating) 
 
@@ -146,7 +145,8 @@ driver.once("driver ready", () => {
 
 
 async function main() {
-    
+    client = mqtt.connect(options);
+
     thermostatNode = driver.controller.nodes.get(THERMID);
     lightNode1 = driver.controller.nodes.get(LIGHTID[0]);
 
