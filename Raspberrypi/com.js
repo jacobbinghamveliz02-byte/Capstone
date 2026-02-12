@@ -207,13 +207,16 @@ async function main() {
                     client.publish(`home/app/thermostat/current`, `Timed temperature control removed`);
                 }else if(topicString == 'home/zwave/thermostat/power/set'){
                     if(messageString == 'on'){
-                        await turnThermostatOff(1);
+                        await turnThermostatOffOn(1);
                     }else if(messageString == 'off'){
-                        await turnThermostatOff(0);
+                        await turnThermostatOffOn(0);
                     }
-            }else{
-                client.publish(`home/app/thermostat/current/power`, `"Lost connection to thermostat"`);
-            }
+                }else if(topicString == 'home/zwave/thermostat/power/get' ){
+                    let powerValue = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
+                    client.publish(`home/app/thermostat/current/power`, `${powerValue}`);
+                }else{
+                    client.publish(`home/app/thermostat/current/power`, `Lost connection to thermostat`);
+                }
             }
         }
     });
