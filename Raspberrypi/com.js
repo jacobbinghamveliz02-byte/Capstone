@@ -91,7 +91,7 @@ const LIGHTTARGETVALUEID = {
 
 const THERMID = 5; // Node ID of the thermostat
 const LIGHTID = [6]; // Node IDs of the lights          NEED TO CHANGE IF ADDING MORE LIGHTS
-var client = mqtt.connect(options);
+
 
 let connectedToMQTT = false;
 
@@ -143,6 +143,7 @@ driver.once("driver ready", () => {
 // home/app/thermostat/power
 
 async function main() {
+    
     thermostatNode = driver.controller.nodes.get(THERMID);
     lightNode1 = driver.controller.nodes.get(LIGHTID[0]);
 
@@ -221,6 +222,82 @@ async function main() {
     });
     setInterval(basicChecking, 60000); // Check every minute
     basicChecking(); // Initial check on startup
+}
+
+async function initializeMQTT() {
+    return new Promise((resolve, reject) => {
+        console.log("🔄 Connecting to MQTT broker...");
+        
+        client = mqtt.connect(options);
+        
+        const timeout = setTimeout(() => {
+            reject(new Error("MQTT connection timeout"));
+        }, 30000);
+        
+        client.once("connect", () => {
+            clearTimeout(timeout);
+            console.log("✅ MQTT connected");
+            connectedToMQTT = true;
+            
+            // Set up permanent handlers now
+            client.on("error", (error) => {
+                console.log("MQTT error:", error);
+            });
+            
+            client.on("message", async (topic, message) => {
+                // Your message handling logic
+            });
+            
+            client.subscribe('home/zwave/+', (err) => {
+                if (err) console.error("Subscription error:", err);
+                else console.log("✅ Subscribed to topics");
+            });
+            
+            resolve(client);
+        });
+        
+        client.once("error", (error) => {
+            clearTimeout(timeout);
+            reject(error);
+        });
+    });
+}
+
+async function initializeZWave() {
+    console.log("🔄 Starting Z-Wave driver...");
+    
+    return new Promise((resolve) => {
+        driver.once("driver ready", () => {
+            console.log("✅ Z-Wave driver ready");
+            driver.once("all nodes ready", () => {
+                console.log("✅ All Z-Wave nodes ready");
+                resolve();
+            });
+        });
+        
+        driver.start().catch((error) => {
+            console.error("Z-Wave driver failed:", error);
+            process.exit(1);
+        });
+    });
+}
+
+// Sequential initialization
+async function start() {
+    try {
+        // 1. MQTT first
+        await initializeMQTT();
+        
+        // 2. Then Z-Wave
+        await initializeZWave();
+        
+        // 3. Then main application
+        await main();
+        
+    } catch (error) {
+        console.error("Initialization failed:", error);
+        process.exit(1);
+    }
 }
 
 async function scheduleCheck(){
@@ -382,4 +459,4 @@ async function pingingNode(nodeToPing){
     }
 }
 
-await driver.start();
+start();
