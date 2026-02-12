@@ -298,8 +298,8 @@ async function basicChecking(){
     console.log("Batter: " + await thermostatNode.getValue(CURRENTTHERMOSTATBATTERYVALUEID));
     console.log("Current temp: " + await thermostatNode.getValue(TEMPATURE));
     console.log("Power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
-    let mode = await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 0);
-    console.log("current power value: " + mode);
+    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 0);
+    console.log("current power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
     console.log("Heating setpoint: " + await thermostatNode.getValue(HEATINGVALUEID));
     console.log("Cooling setpoint: " + await thermostatNode.getValue(COOLINGVALUEID));
 }
