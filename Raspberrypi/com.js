@@ -121,7 +121,7 @@ for (const signal of ["SIGINT", "SIGTERM"]) {
 driver.once("driver ready", () => {
     console.log("Driver is ready");
     driverReady = true;
-    driver.on("all nodes ready");
+    driver.on("all nodes ready", main);
 });
 
 
@@ -143,11 +143,6 @@ driver.once("driver ready", () => {
 // home/app/thermostat/battery
 // home/app/thermostat/power
 
-function startWhenReady() {
-    if (connectedToMQTT && driverReady) {
-        main();
-    }
-}
 
 async function main() {
     
@@ -157,7 +152,7 @@ async function main() {
     client.on("connect", function () {
         console.log("Connected to MQTT broker");
         connectedToMQTT = true;
-        await driver.start();
+        
     })
 
     client.on("error", function (error) {
@@ -231,82 +226,6 @@ async function main() {
     
     setInterval(basicChecking, 60000); // Check every minute
     basicChecking(); // Initial check on startup
-}
-
-async function initializeMQTT() {
-    return new Promise((resolve, reject) => {
-        console.log("🔄 Connecting to MQTT broker...");
-        
-        client = mqtt.connect(options);
-        
-        const timeout = setTimeout(() => {
-            reject(new Error("MQTT connection timeout"));
-        }, 30000);
-        
-        client.once("connect", () => {
-            clearTimeout(timeout);
-            console.log("✅ MQTT connected");
-            connectedToMQTT = true;
-            
-            // Set up permanent handlers now
-            client.on("error", (error) => {
-                console.log("MQTT error:", error);
-            });
-            
-            client.on("message", async (topic, message) => {
-                // Your message handling logic
-            });
-            
-            client.subscribe('home/zwave/+', (err) => {
-                if (err) console.error("Subscription error:", err);
-                else console.log("✅ Subscribed to topics");
-            });
-            
-            resolve(client);
-        });
-        
-        client.once("error", (error) => {
-            clearTimeout(timeout);
-            reject(error);
-        });
-    });
-}
-
-async function initializeZWave() {
-    console.log("🔄 Starting Z-Wave driver...");
-    
-    return new Promise((resolve) => {
-        driver.once("driver ready", () => {
-            console.log("✅ Z-Wave driver ready");
-            driver.once("all nodes ready", () => {
-                console.log("✅ All Z-Wave nodes ready");
-                resolve();
-            });
-        });
-        
-        driver.start().catch((error) => {
-            console.error("Z-Wave driver failed:", error);
-            process.exit(1);
-        });
-    });
-}
-
-// Sequential initialization
-async function start() {
-    try {
-        // 1. MQTT first
-        await initializeMQTT();
-        
-        // 2. Then Z-Wave
-        await initializeZWave();
-        
-        // 3. Then main application
-        await main();
-        
-    } catch (error) {
-        console.error("Initialization failed:", error);
-        process.exit(1);
-    }
 }
 
 async function scheduleCheck(){
@@ -468,8 +387,6 @@ async function pingingNode(nodeToPing){
     }
 }
 
-<<<<<<< HEAD
-startWhenReady()
-=======
-start();
->>>>>>> 07a79d21b31de1c5429d78d711197ceb168640cb
+if(connectedToMQTT){
+    await driver.start()
+}
