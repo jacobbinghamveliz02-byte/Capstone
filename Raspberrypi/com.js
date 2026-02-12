@@ -63,7 +63,7 @@ const CURRENTTHERMOSTATMODEID =  {
     property: "manufacturerData",
     propertyKey: "undefined",
     propertyName: "manufacturerData"
-  };
+};
 
 const CURRENTTHERMOSTATBATTERYVALUEID = {
   commandClass: 128, // Battery command class
@@ -72,20 +72,31 @@ const CURRENTTHERMOSTATBATTERYVALUEID = {
   propertyKey: undefined
 };
 
+const CURRENTTHERMOSTATPOWERID = {
+    commandClassName: "Thermostat Mode",
+    commandClass: 64,
+    endpoint: 0,
+    property: "currentMode",
+    propertyKey: "undefined",
+    propertyName: "currentMode"
+};
+
 const LIGHTLEVELVALUEID =  {
     commandClassName: "Multilevel Switch",
     commandClass: 38,
     endpoint: 0,
     property: "currentValue",
     propertyName: "currentValue"
-  }
+};
+
+
 const LIGHTTARGETVALUEID = {
     commandClassName: "Multilevel Switch",
     commandClass: 38,
     endpoint: 0,
     property: "targetValue",
     propertyName: "targetValue"
-  }
+};
 
 const THERMID = 5; // Node ID of the thermostat
 const LIGHTID = [6]; // Node IDs of the lights          NEED TO CHANGE IF ADDING MORE LIGHTS
@@ -106,8 +117,7 @@ let thermostatNode = null;
 let lightNode1 = null;
 let oldBatteryLevel = null;
 let oldCurrentTemp = null;
-let thermostatOn;
-let lightOn;
+let oldPowerValue;
 
 for (const signal of ["SIGINT", "SIGTERM"]) {
     process.on(signal, async () => {
@@ -165,20 +175,13 @@ async function main() {
             console.log("Received light control message: " + messageString);
             let pingLight = await pingingNode(lightNode1);
             if(pingLight){
-                if(!lightOn){
-                    client.publish(`home/app/light/current/power`, `on`);
-                    lightOn = true;
-                }
                 if(messageString == 'on'){
                     await changeLight(LIGHTON);
                 }else if(messageString == 'off'){
                     await changeLight(LIGHTOFF);
                 }
             }else{
-                if(lightOn){
-                client.publish(`home/app/light/current/power`, `off`);
-                lightOn = false;
-                }
+                client.publish(`home/app/light/current/power`, `Lost connection to light`);
             }
             // Thermostat control
         }else if(topicString.startsWith('home/zwave/thermostat')){
@@ -186,10 +189,6 @@ async function main() {
             let pingThermostat = await pingingNode(thermostatNode);
             
             if(pingThermostat){
-                if(!thermostatOn){
-                    thermostatOn = true;
-                    client.publish(`home/app/thermostat/current/power`, `on`);
-                }
                 let messageArray = messageString.split(": ");
                 // normal temperature control
                 if(topicString == 'home/zwave/thermostat/set'){
@@ -223,14 +222,11 @@ async function main() {
                         await turnThermostatOff(0);
                     }
             }else{
-                if(thermostatOn){
-                client.publish(`home/app/thermostat/current/power`, `off`);
-                thermostatOn = false;
-                }
+                client.publish(`home/app/thermostat/current/power`, `"Lost connection to thermostat"`);
+            }
             }
         }
-    }
-);
+    });
     setInterval(basicChecking, 60000); // Check every minute
     basicChecking(); // Initial check on startup
 }
@@ -285,10 +281,30 @@ async function getBatteryLevel(){
     }
 }
 
+async function checkThermostatPower(){
+    let powerValue = await thermostatNode.getValue(CURRENTTHERMOSTATPOWERID);
+    if(powerValue != null){
+        if(powerValue != oldPowerValue){
+            if(powerValue == 0 || powerValue == "[0] Off"){
+                oldPowerValue = powerValue;
+                console.log("Thermostat is off");
+                client.publish(`home/app/thermostat/current/power`, `off`);
+            }else{
+                oldPowerValue = powerValue;
+                console.log("Thermostat is on");
+                client.publish(`home/app/thermostat/current/power`, `on`);
+            }
+        }
+    }else{
+        client.publish(`home/app/thermostat/current/power`, `"Lost connection to thermostat"`);
+    }
+}
+
 async function basicChecking(){
     await getCurrentTemperature();
     await getBatteryLevel();
     await scheduleCheck();
+    await checkThermostatPower();
 }
 
 async function turnThermostatOff(mode){
