@@ -119,9 +119,9 @@ for (const signal of ["SIGINT", "SIGTERM"]) {
 
 // Listen for the driver ready event before doing anything with the driver
 driver.once("driver ready", () => {
-    console.log("Driver is ready");
     driverReady = true;
-    driver.on("all nodes ready", main());
+    console.log("Driver is ready");
+    driver.on("all nodes ready", main);
 });
 
 
@@ -387,6 +387,4 @@ async function pingingNode(nodeToPing){
     }
 }
 
-if(connectedToMQTT){
-    await driver.start()
-}
+await driver.start()
