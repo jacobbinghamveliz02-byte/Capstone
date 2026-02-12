@@ -91,9 +91,7 @@ const LIGHTTARGETVALUEID = {
 
 const THERMID = 5; // Node ID of the thermostat
 const LIGHTID = [6]; // Node IDs of the lights          NEED TO CHANGE IF ADDING MORE LIGHTS
-
-
-let connectedToMQTT = false;
+var client = mqtt.connect(options);
 
 let oldHeatingSetpoint;
 let oldCoolingSetpoint;
@@ -148,7 +146,6 @@ async function main() {
 
     client.on("connect", function () {
         console.log("Connected to MQTT broker");
-        connectedToMQTT = true;
     })
 
     client.on("error", function (error) {
@@ -294,20 +291,15 @@ async function checkThermostatPower(){
 }
 
 async function basicChecking(){
-    if(connectedToMQTT){
-        console.log("Batter: " + await thermostatNode.getValue(CURRENTTHERMOSTATBATTERYVALUEID));
-        console.log("Current temp: " + await thermostatNode.getValue(TEMPATURE));
-        await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1);
-        console.log("Power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
-        await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 0);
-        console.log("current power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
-        console.log("Heating setpoint: " + await thermostatNode.getValue(HEATINGVALUEID));
-        console.log("Cooling setpoint: " + await thermostatNode.getValue(COOLINGVALUEID));
-        await getCurrentTemperature();
-        await getBatteryLevel();
-        await scheduleCheck();
-        await checkThermostatPower();
-    }
+    // await getCurrentTemperature();
+    // await getBatteryLevel();
+    // await scheduleCheck();
+    // await checkThermostatPower();
+    console.log("Battery: " + await thermostatNode.getValue(CURRENTTHERMOSTATBATTERYVALUEID));
+    console.log("Current temp: " + await thermostatNode.getValue(TEMPATURE));
+    console.log("Power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
+    console.log("Heating setpoint: " + await thermostatNode.getValue(HEATINGVALUEID));
+    console.log("Cooling setpoint: " + await thermostatNode.getValue(COOLINGVALUEID));
 }
 
 async function turnThermostatOff(mode){
@@ -334,13 +326,11 @@ async function betterThermostat(setpoint, shouldHeat){
                 if(shouldHeat && oldTimeSetTemp != setpoint){
                     console.log("Setting timed heating setpoint");
                     await thermostatNode.setValue(HEATINGVALUEID, setpoint);
-                    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1); // set to heating mode
                     oldTimeSetTemp = setpoint;
                     client.publish(`home/app/thermostat/current`, `Heating set to ${setpoint}`);
                 }else if(!shouldHeat && oldTimeSetTemp != setpoint){
                     console.log("Setting timed cooling setpoint");
                     await thermostatNode.setValue(COOLINGVALUEID, setpoint);
-                    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 2); // set to cooling mode
                     oldTimeSetTemp = setpoint;
                     client.publish(`home/app/thermostat/current`, `Cooling set to ${setpoint}`);
                 }
