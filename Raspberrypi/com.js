@@ -91,10 +91,10 @@ const LIGHTTARGETVALUEID = {
 
 const THERMID = 5; // Node ID of the thermostat
 const LIGHTID = [6]; // Node IDs of the lights          NEED TO CHANGE IF ADDING MORE LIGHTS
-
+var client = mqtt.connect(options);
 
 let connectedToMQTT = false;
-
+let driverReady = false;
 let oldHeatingSetpoint;
 let oldCoolingSetpoint;
 let startHour;
@@ -120,7 +120,8 @@ for (const signal of ["SIGINT", "SIGTERM"]) {
 // Listen for the driver ready event before doing anything with the driver
 driver.once("driver ready", () => {
     console.log("Driver is ready");
-    driver.on("all nodes ready", main);
+    driverReady = true;
+    driver.on("all nodes ready");
 });
 
 
@@ -142,6 +143,12 @@ driver.once("driver ready", () => {
 // home/app/thermostat/battery
 // home/app/thermostat/power
 
+function startWhenReady() {
+    if (connectedToMQTT && driverReady) {
+        main();
+    }
+}
+
 async function main() {
     thermostatNode = driver.controller.nodes.get(THERMID);
     lightNode1 = driver.controller.nodes.get(LIGHTID[0]);
@@ -149,6 +156,7 @@ async function main() {
     client.on("connect", function () {
         console.log("Connected to MQTT broker");
         connectedToMQTT = true;
+        await driver.start();
     })
 
     client.on("error", function (error) {
@@ -219,6 +227,7 @@ async function main() {
             }
         }
     });
+    
     setInterval(basicChecking, 60000); // Check every minute
     basicChecking(); // Initial check on startup
 }
@@ -382,4 +391,4 @@ async function pingingNode(nodeToPing){
     }
 }
 
-await driver.start();
+startWhenReady()
