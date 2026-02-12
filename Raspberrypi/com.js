@@ -60,9 +60,9 @@ const CURRENTTHERMOSTATMODEID =  {
     commandClassName: "Thermostat Mode",
     commandClass: 64,
     endpoint: 0,
-    property: "manufacturerData",
-    propertyKey: "undefined",
-    propertyName: "manufacturerData"
+    property: "mode",
+    propertyKey: undefined,
+    propertyName: "mode"
 };
 
 const CURRENTTHERMOSTATBATTERYVALUEID = {
@@ -70,15 +70,6 @@ const CURRENTTHERMOSTATBATTERYVALUEID = {
   endpoint: 0,
   property: "level",
   propertyKey: undefined
-};
-
-const CURRENTTHERMOSTATPOWERID = {
-    commandClassName: "Thermostat Mode",
-    commandClass: 64,
-    endpoint: 0,
-    property: "currentMode",
-    propertyKey: "undefined",
-    propertyName: "currentMode"
 };
 
 const LIGHTLEVELVALUEID =  {
@@ -282,7 +273,7 @@ async function getBatteryLevel(){
 }
 
 async function checkThermostatPower(){
-    let powerValue = await thermostatNode.getValue(CURRENTTHERMOSTATPOWERID);
+    let powerValue = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
     console.log("Current thermostat power value: " + powerValue);
     if(powerValue != null){
         if(powerValue != oldPowerValue){
