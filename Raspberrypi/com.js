@@ -283,6 +283,7 @@ async function getBatteryLevel(){
 
 async function checkThermostatPower(){
     let powerValue = await thermostatNode.getValue(CURRENTTHERMOSTATPOWERID);
+    console.log("Current thermostat power value: " + powerValue);
     if(powerValue != null){
         if(powerValue != oldPowerValue){
             if(powerValue == 0 || powerValue == "[0] Off"){
