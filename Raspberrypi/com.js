@@ -93,21 +93,19 @@ const THERMID = 5; // Node ID of the thermostat
 const LIGHTID = [6]; // Node IDs of the lights          NEED TO CHANGE IF ADDING MORE LIGHTS
 var client = mqtt.connect(options);
 
-const CHANGEMEWHENFINISHED = false; // Set to true to enable change detection and MQTT publishing. currently turned off to limit messages
-
-let oldHeatingSetpoint = null;
-let oldCoolingSetpoint = null;
-let startHour = null;
-let endHour = null;
-let currentTime = null;
-let timedInfo = null;
-let timeSetTemp = null;
-let oldTimeSetTemp = null;
-let previouslyThermostatMode = null;
-let thermostatNode = null;
-let lightNode1 = null;
-let oldBatteryLevel = null;
-let oldCurrentTemp = null;
+let oldHeatingSetpoint;
+let oldCoolingSetpoint;
+let startHour;
+let endHour;
+let currentTime;
+let timedInfo;
+let timeSetTemp;
+let oldTimeSetTemp;
+let previouslyThermostatMode;
+let thermostatNode;
+let lightNode1;
+let oldBatteryLevel;
+let oldCurrentTemp;
 let oldPowerValue;
 
 for (const signal of ["SIGINT", "SIGTERM"]) {
@@ -154,7 +152,7 @@ async function main() {
         console.log("MQTT Connection Error: ", error);
     });
 
-    client.subscribe('home/zwave/#');
+    client.subscribe('#');
 
     client.on('message', async function (topic, message) {
         console.log("Topic: " + topic + "Message: " + message)
