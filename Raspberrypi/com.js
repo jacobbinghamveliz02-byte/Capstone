@@ -307,9 +307,11 @@ async function turnThermostatOff(mode){
     if(mode == 0){
         console.log("Turning thermostat off");
         client.publish(`home/app/thermostat/current/power`, `Thermostat turned off`);
+        
     }else{
         console.log("Turning thermostat on");
         client.publish(`home/app/thermostat/current/power`, `Thermostat turned on`);
+        
     }
 }
 
@@ -326,11 +328,13 @@ async function betterThermostat(setpoint, shouldHeat){
                 if(shouldHeat && oldTimeSetTemp != setpoint){
                     console.log("Setting timed heating setpoint");
                     await thermostatNode.setValue(HEATINGVALUEID, setpoint);
+                    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1);
                     oldTimeSetTemp = setpoint;
                     client.publish(`home/app/thermostat/current`, `Heating set to ${setpoint}`);
                 }else if(!shouldHeat && oldTimeSetTemp != setpoint){
                     console.log("Setting timed cooling setpoint");
                     await thermostatNode.setValue(COOLINGVALUEID, setpoint);
+                    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 2);
                     oldTimeSetTemp = setpoint;
                     client.publish(`home/app/thermostat/current`, `Cooling set to ${setpoint}`);
                 }
