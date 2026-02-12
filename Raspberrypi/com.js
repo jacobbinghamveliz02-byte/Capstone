@@ -275,7 +275,7 @@ async function checkThermostatPower(){
     console.log("Current thermostat power value: " + powerValue);
     if(powerValue != null){
         if(powerValue != oldPowerValue){
-            if(powerValue == 0 || powerValue == "[0] Off"){
+            if(powerValue == 0){
                 oldPowerValue = powerValue;
                 console.log("Thermostat is off");
                 client.publish(`home/app/thermostat/current/power`, `off`);
