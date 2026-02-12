@@ -291,15 +291,15 @@ async function checkThermostatPower(){
 }
 
 async function basicChecking(){
-    // await getCurrentTemperature();
-    // await getBatteryLevel();
-    // await scheduleCheck();
-    // await checkThermostatPower();
-    console.log("Battery: " + await thermostatNode.getValue(CURRENTTHERMOSTATBATTERYVALUEID));
-    console.log("Current temp: " + await thermostatNode.getValue(TEMPATURE));
-    console.log("Power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
-    console.log("Heating setpoint: " + await thermostatNode.getValue(HEATINGVALUEID));
-    console.log("Cooling setpoint: " + await thermostatNode.getValue(COOLINGVALUEID));
+    await getCurrentTemperature();
+    await getBatteryLevel();
+    await scheduleCheck();
+    await checkThermostatPower();
+    // console.log("Battery: " + await thermostatNode.getValue(CURRENTTHERMOSTATBATTERYVALUEID));
+    // console.log("Current temp: " + await thermostatNode.getValue(TEMPATURE));
+    // console.log("Power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
+    // console.log("Heating setpoint: " + await thermostatNode.getValue(HEATINGVALUEID));
+    // console.log("Cooling setpoint: " + await thermostatNode.getValue(COOLINGVALUEID));
 }
 
 async function turnThermostatOff(mode){
