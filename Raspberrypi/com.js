@@ -93,6 +93,8 @@ const THERMID = 5; // Node ID of the thermostat
 const LIGHTID = [6]; // Node IDs of the lights          NEED TO CHANGE IF ADDING MORE LIGHTS
 var client = mqtt.connect(options);
 
+let connectedToMQTT = false;
+
 let oldHeatingSetpoint;
 let oldCoolingSetpoint;
 let startHour;
@@ -146,6 +148,7 @@ async function main() {
 
     client.on("connect", function () {
         console.log("Connected to MQTT broker");
+        connectedToMQTT = true;
     })
 
     client.on("error", function (error) {
@@ -291,18 +294,20 @@ async function checkThermostatPower(){
 }
 
 async function basicChecking(){
-    console.log("Batter: " + await thermostatNode.getValue(CURRENTTHERMOSTATBATTERYVALUEID));
-    console.log("Current temp: " + await thermostatNode.getValue(TEMPATURE));
-    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1);
-    console.log("Power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
-    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 0);
-    console.log("current power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
-    console.log("Heating setpoint: " + await thermostatNode.getValue(HEATINGVALUEID));
-    console.log("Cooling setpoint: " + await thermostatNode.getValue(COOLINGVALUEID));
-    await getCurrentTemperature();
-    await getBatteryLevel();
-    await scheduleCheck();
-    await checkThermostatPower();
+    if(connectedToMQTT){
+        console.log("Batter: " + await thermostatNode.getValue(CURRENTTHERMOSTATBATTERYVALUEID));
+        console.log("Current temp: " + await thermostatNode.getValue(TEMPATURE));
+        await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1);
+        console.log("Power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
+        await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 0);
+        console.log("current power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
+        console.log("Heating setpoint: " + await thermostatNode.getValue(HEATINGVALUEID));
+        console.log("Cooling setpoint: " + await thermostatNode.getValue(COOLINGVALUEID));
+        await getCurrentTemperature();
+        await getBatteryLevel();
+        await scheduleCheck();
+        await checkThermostatPower();
+    }
 }
 
 async function turnThermostatOff(mode){
