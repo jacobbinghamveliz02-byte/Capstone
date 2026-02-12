@@ -146,13 +146,14 @@ async function main() {
 
     client.on("connect", function () {
         console.log("Connected to MQTT broker");
+        client.subscribe('home/zwave');
     })
 
     client.on("error", function (error) {
         console.log("MQTT Connection Error: ", error);
     });
 
-    client.subscribe('home/zwave');
+    
 
     client.on('message', async function (topic, message) {
         console.log("Topic: " + topic + "Message: " + message)
@@ -302,15 +303,15 @@ async function basicChecking(){
     // console.log("Cooling setpoint: " + await thermostatNode.getValue(COOLINGVALUEID));
 }
 
-async function turnThermostatOff(mode){
+async function turnThermostatOffOn(mode){
     await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, mode);
     if(mode == 0){
         console.log("Turning thermostat off");
-        client.publish(`home/app/thermostat/current/power`, `Thermostat turned off`);
+        client.publish(`home/app/thermostat/current/power`, `off`);
         
     }else{
         console.log("Turning thermostat on");
-        client.publish(`home/app/thermostat/current/power`, `Thermostat turned on`);
+        client.publish(`home/app/thermostat/current/power`, `on`);
         
     }
 }
