@@ -25,14 +25,6 @@ const driver = new Driver(
     },
 );
 
-var options = {
-    host: "57cb3b2fa5314c20af5ed5e2001f4a4c.s1.eu.hivemq.cloud",
-    port: 8883,
-    protocol: "mqtts",
-    username: "Raspberry",
-    password: "RaspberrypiPassword1"
-    };
-
 // [5-67-0-setpoint-1] Setpoint (Heating) 
 
 const TEMPATURE = {
@@ -145,7 +137,13 @@ driver.once("driver ready", () => {
 
 
 async function main() {
-    
+    var options = {
+        host: "57cb3b2fa5314c20af5ed5e2001f4a4c.s1.eu.hivemq.cloud",
+        port: 8883,
+        protocol: "mqtts",
+        username: "Raspberry",
+        password: "RaspberrypiPassword1"
+    };
     thermostatNode = driver.controller.nodes.get(THERMID);
     lightNode1 = driver.controller.nodes.get(LIGHTID[0]);
 
