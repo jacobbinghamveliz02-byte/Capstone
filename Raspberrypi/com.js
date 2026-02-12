@@ -297,6 +297,7 @@ async function basicChecking(){
     // await checkThermostatPower();
     console.log("Batter: " + await thermostatNode.getValue(CURRENTTHERMOSTATBATTERYVALUEID));
     console.log("Current temp: " + await thermostatNode.getValue(TEMPATURE));
+    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1);
     console.log("Power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
     await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 0);
     console.log("current power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
