@@ -106,6 +106,8 @@ let thermostatNode = null;
 let lightNode1 = null;
 let oldBatteryLevel = null;
 let oldCurrentTemp = null;
+let thermostatOn;
+let lightOn;
 
 for (const signal of ["SIGINT", "SIGTERM"]) {
     process.on(signal, async () => {
@@ -163,19 +165,31 @@ async function main() {
             console.log("Received light control message: " + messageString);
             let pingLight = await pingingNode(lightNode1);
             if(pingLight){
+                if(!lightOn){
+                    client.publish(`home/app/light/current/power`, `on`);
+                    lightOn = true;
+                }
                 if(messageString == 'on'){
                     await changeLight(LIGHTON);
                 }else if(messageString == 'off'){
                     await changeLight(LIGHTOFF);
                 }
             }else{
-                client.publish(`home/app/light/current`, `Light node not found`);
+                if(lightOn){
+                client.publish(`home/app/light/current/power`, `off`);
+                lightOn = false;
+                }
             }
             // Thermostat control
         }else if(topicString.startsWith('home/zwave/thermostat')){
             console.log("Received thermostat control message: " + messageString);
             let pingThermostat = await pingingNode(thermostatNode);
+            
             if(pingThermostat){
+                if(!thermostatOn){
+                    thermostatOn = true;
+                    client.publish(`home/app/thermostat/current/power`, `on`);
+                }
                 let messageArray = messageString.split(": ");
                 // normal temperature control
                 if(topicString == 'home/zwave/thermostat/set'){
@@ -209,8 +223,10 @@ async function main() {
                         await turnThermostatOff(0);
                     }
             }else{
-                client.publish(`home/app/thermostat/current`, `Thermostat node not found`);
-            }
+                if(thermostatOn){
+                client.publish(`home/app/thermostat/current/power`, `off`);
+                thermostatOn = false;
+                }
             }
         }
     }
