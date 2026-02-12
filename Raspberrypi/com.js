@@ -152,7 +152,7 @@ async function main() {
         console.log("MQTT Connection Error: ", error);
     });
 
-    client.subscribe('#');
+    client.subscribe('home/zwave');
 
     client.on('message', async function (topic, message) {
         console.log("Topic: " + topic + "Message: " + message)
