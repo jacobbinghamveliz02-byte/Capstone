@@ -107,6 +107,7 @@ let lightNode1;
 let oldBatteryLevel;
 let oldCurrentTemp;
 let oldPowerValue;
+let oldLightLevel;
 
 for (const signal of ["SIGINT", "SIGTERM"]) {
     process.on(signal, async () => {
@@ -301,8 +302,12 @@ async function checkingLight(){
         return;
     }else{
         let lightLevel = await lightNode1.getValue(LIGHTLEVELVALUEID);
-        console.log("Current light level: " + lightLevel);
-        client.publish(`home/app/light/current/level`, `${lightLevel}`);
+        if(oldLightLevel != lightLevel && lightLevel != null){
+            console.log(`Current light level: ${lightLevel}`);
+            console.log(`Current light level changed from ${oldLightLevel} to ${lightLevel}`);
+            client.publish(`home/app/light/current/level`, `${lightLevel}`);
+            oldLightLevel = lightLevel;
+        }
     }
 
 }
