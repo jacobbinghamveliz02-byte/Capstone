@@ -108,6 +108,7 @@ let oldBatteryLevel;
 let oldCurrentTemp;
 let oldPowerValue;
 let oldLightLevel;
+let oldModeValue;
 
 for (const signal of ["SIGINT", "SIGTERM"]) {
     process.on(signal, async () => {
@@ -215,13 +216,14 @@ async function main() {
                 }else if(topicString == 'home/zwave/thermostat/power/get' ){
                     let powerValue = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
                     client.publish(`home/app/thermostat/current/power`, `${powerValue}`);
+                    console.log("Received power get request, current power value: " + powerValue);
                 }else{
                     client.publish(`home/app/thermostat/current/power`, `Lost connection to thermostat`);
                 }
             }
         }
     });
-    setInterval(basicChecking, 1000); // Check every second
+    setInterval(basicChecking, 10000); // Check every second
     basicChecking(); // Initial check on startup
 }
 
@@ -324,14 +326,16 @@ async function basicChecking(){
 }
 
 async function turnThermostatOffOn(mode){
-    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, mode);
+    let currentMode = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
+    oldModeValue = currentMode;
     if(mode == 0){
         console.log("Turning thermostat off");
         client.publish(`home/app/thermostat/current/power`, `off`);
-        
+        await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, mode);
     }else{
         console.log("Turning thermostat on");
         client.publish(`home/app/thermostat/current/power`, `on`);
+        await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, oldModeValue);
         
     }
 }
