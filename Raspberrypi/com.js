@@ -294,11 +294,25 @@ async function checkThermostatPower(){
     }
 }
 
+async function checkingLight(){
+    let lightPing = await pingingNode(lightNode1);
+    if(!lightPing){
+        client.publish(`home/app/light/current/power`, `Lost connection to light`);
+        return;
+    }else{
+        let lightLevel = await lightNode1.getValue(LIGHTLEVELVALUEID);
+        console.log("Current light level: " + lightLevel);
+        client.publish(`home/app/light/current/level`, `${lightLevel}`);
+    }
+
+}
+
 async function basicChecking(){
     await getCurrentTemperature();
     await getBatteryLevel();
     await scheduleCheck();
     await checkThermostatPower();
+    await checkingLight();
     // console.log("Battery: " + await thermostatNode.getValue(CURRENTTHERMOSTATBATTERYVALUEID));
     // console.log("Current temp: " + await thermostatNode.getValue(TEMPATURE));
     // console.log("Power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
