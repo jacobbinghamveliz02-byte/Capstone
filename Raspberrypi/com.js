@@ -221,7 +221,7 @@ async function main() {
             }
         }
     });
-    setInterval(basicChecking, 1); // Check every minute
+    setInterval(basicChecking, 1000); // Check every second
     basicChecking(); // Initial check on startup
 }
 
@@ -256,7 +256,6 @@ async function scheduleCheck(){
 
 async function getCurrentTemperature(){
     let currentTemp = await thermostatNode.getValue(TEMPATURE);
-    console.log("Current temperature: " + currentTemp);
     if(oldCurrentTemp != currentTemp && currentTemp != null){
         console.log(`Current temperature: ${currentTemp}°C`);
         console.log(`Current temperature changed from ${oldCurrentTemp}°C to ${currentTemp}°C`);
@@ -277,7 +276,6 @@ async function getBatteryLevel(){
 
 async function checkThermostatPower(){
     let powerValue = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
-    console.log("Current thermostat power value: " + powerValue);
     if(powerValue != null){
         if(powerValue != oldPowerValue){
             if(powerValue == 0){
