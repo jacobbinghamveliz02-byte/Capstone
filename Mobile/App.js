@@ -50,7 +50,6 @@ export default function App() {
       mqttClient.on("connect", function () {
         console.log("Connected to HiveMQ Cloud via WebSockets!");
         setConnectionStatus("connected");
-        alert("SUCCESS! Connected to HiveMQ Cloud!");
         mqttClient.subscribe('home/app/#');
       });
 
@@ -87,7 +86,7 @@ export default function App() {
           const batteryValue = messageString.replace('%', '');
           setCurrentBattery(batteryValue);
         }
-        else if (topic === 'home/app/light/current') {
+        else if (topic === 'home/app/light/current/level') {
           setLightLevel(messageString === '99' ? 'On' : 'Off');
         }
       });
@@ -115,8 +114,8 @@ export default function App() {
         }}>
           <Text style={{color: 'white', fontWeight: 'bold'}}>
             {connectionStatus === 'connected' ? '● Connected' : 
-             connectionStatus === 'reconnecting' ? '⟳ Reconnecting' : 
-             connectionStatus === 'error' ? '✗ Error' : '○ Disconnected'}
+             connectionStatus === 'reconnecting' ? 'Reconnecting' : 
+             connectionStatus === 'error' ? 'Error' : 'Disconnected'}
           </Text>
         </View>
       </View>
@@ -147,17 +146,6 @@ export default function App() {
 }
 
 function HomeScreen({ navigation, client, thermostatMode, currentTemp, currentBattery, lightLevel, thermostatPowerStatus }){
-
-  function testConnection() {
-    if (client && client.connected) {
-      const testTopic = "home/app/test";
-      const testMessage = "ping_" + Date.now();
-      client.publish(testTopic, testMessage);
-      alert(`✅ Test message sent!\nTopic: ${testTopic}\nMessage: ${testMessage}\n\nCheck HiveMQ WebSocket client to verify receipt.`);
-    } else {
-      alert("❌ Client not connected!");
-    }
-  }
 
   function checkingWhichScreen(differentOption) {
     if (differentOption == 'Lights') {
@@ -196,33 +184,28 @@ function HomeScreen({ navigation, client, thermostatMode, currentTemp, currentBa
     <View>
       <FlatList data={options} renderItem={Item} numColumns={2} />
       <FlatList data={currentData} renderItem={textItem} numColumns={3} />
-      <TouchableOpacity 
-        onPress={testConnection}
-        style={{
-          backgroundColor: client?.connected ? '#4CAF50' : '#9E9E9E',
-          padding: 15,
-          margin: 20,
-          borderRadius: 10,
-          alignItems: 'center'
-        }}
-      >
-        <Text style={{color: 'white', fontWeight: 'bold'}}>
-          {client?.connected ? '📤 Test MQTT Publish' : '🔌 Not Connected'}
-        </Text>
-      </TouchableOpacity>
     </View>
   );
 }
 
-function LightControl({ navigation }){
+function LightControl({ navigation, client, lightLevel, setLightLevel }){
+
+  function poweringOffFuncLight(){
+    const newPowerState = thermostatPowerStatus === "on" ? "off" : "on";
+    alert(`Turning thermostat ${newPowerState}`);
+    client.publish("home/zwave/light/set", newPowerState);
+    navigation.navigate("Home")
+  }
+
   return (
     <View>
-      <Text>Light</Text>
+      <Button title={lightLevel === "on" ? "Power off" : "Power on"}  onPress={() => poweringOffFuncLight()} />
     </View>
   )
 }
 
 function ThermostatControl({ navigation, client, thermostatPowerStatus, setThermostatPowerStatus }){
+
   const [temperatureInput, setTemperatureInput] = useState("");
   
   useEffect(() => {
@@ -248,8 +231,8 @@ function ThermostatControl({ navigation, client, thermostatPowerStatus, setTherm
     const newPowerState = thermostatPowerStatus === "on" ? "off" : "on";
     alert(`Turning thermostat ${newPowerState}`);
     client.publish("home/zwave/thermostat/power/set", newPowerState);
+    navigation.navigate("Home");
   }
-
   const Options = ({ thermostatType }) => (
     <TouchableOpacity onPress={() => handleThermostatControl(thermostatType)}>
       <Text>{thermostatType}</Text>
@@ -268,21 +251,10 @@ function ThermostatControl({ navigation, client, thermostatPowerStatus, setTherm
   return (
     <View>
       <Text>Current Power Status: {thermostatPowerStatus}</Text>
-      <TextInput 
-        keyboardType="numeric" 
-        onChangeText={setTemperatureInput} 
-        value={temperatureInput} 
-        placeholder="Enter temperature (68-75)"
-      />
+      <TextInput keyboardType="numeric" onChangeText={setTemperatureInput} value={temperatureInput} placeholder="Enter temperature (68-75)"/>
       <FlatList data={options} renderItem={Item} numColumns={2} />
-      <Button 
-        title={thermostatPowerStatus === "on" ? "Power off" : "Power on"}  
-        onPress={() => poweringOffFunc()}
-      />
-      <Button 
-        title={"Timed Settings"} 
-        onPress={() => navigation.navigate('TimedControl')}
-      />
+      <Button title={thermostatPowerStatus === "on" ? "Power off" : "Power on"} onPress={() => poweringOffFunc()}/>
+      <Button title={"Timed Settings"} onPress={() => navigation.navigate('TimedControl')}/>
     </View>
   );
 }
