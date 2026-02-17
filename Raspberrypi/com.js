@@ -160,11 +160,22 @@ async function main() {
 
     client.on("connect", function () {
         console.log("Connected to MQTT broker");
-        client.subscribe('home/zwave/#');
     })
 
+    client.subscribe('home/zwave/#', function(err) {
+        if (!err) {
+            console.log("✅ Successfully subscribed to home/zwave/#");
+        } else {
+            console.error("❌ Subscription to home/zwave/# failed:", err);
+        }
+    });
+
     client.on("error", function (error) {
-        console.log("MQTT Connection Error: ", error);
+         if (!err) {
+            console.log("✅ Successfully subscribed to ALL topics (#)");
+        } else {
+            console.error("❌ Subscription to # failed:", err);
+        }
     });
 
     client.on('message', async function (topic, message) {
