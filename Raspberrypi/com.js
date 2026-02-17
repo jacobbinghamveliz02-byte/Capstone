@@ -338,17 +338,42 @@ async function checkingLight(){
 
 }
 
-async function basicChecking(){
-    await getCurrentTemperature();
-    await getBatteryLevel();
-    await scheduleCheck();
-    await checkThermostatPower();
-    await checkingLight();
-    // console.log("Battery: " + await thermostatNode.getValue(CURRENTTHERMOSTATBATTERYVALUEID));
-    // console.log("Current temp: " + await thermostatNode.getValue(TEMPATURE));
-    // console.log("Power value: " + await thermostatNode.getValue(CURRENTTHERMOSTATMODEID));
-    // console.log("Heating setpoint: " + await thermostatNode.getValue(HEATINGVALUEID));
-    // console.log("Cooling setpoint: " + await thermostatNode.getValue(COOLINGVALUEID));
+async function basicChecking() {
+    
+    const [thermostatPing, lightPing] = await Promise.allSettled([
+            pingingNode(thermostatNode).catch(() => false),
+            pingingNode(lightNode1).catch(() => false)
+        ]);
+        
+        const isThermostatOnline = thermostatPing.value === true;
+        const isLightOnline = lightPing.value === true;
+        
+        const checks = [];
+        
+        if (isThermostatOnline) {
+            checks.push(
+                getCurrentTemperature().catch(e => console.error("Temp check failed:", e)),
+                getBatteryLevel().catch(e => console.error("Battery check failed:", e)),
+                checkThermostatPower().catch(e => console.error("Power check failed:", e))
+            );
+        } else {
+            client.publish(`home/app/thermostat/current/power`, `Lost connection to thermostat`);
+        }
+        
+        if (isLightOnline) {
+            checks.push(
+                checkingLight().catch(e => console.error("Light check failed:", e))
+            );
+        } else {
+            client.publish(`home/app/light/current/power`, `Lost connection to light`);
+        }
+        
+        // Run schedule check separately (it's fast and doesn't need Z-Wave)
+        checks.push(scheduleCheck().catch(e => console.error("Schedule check failed:", e)));
+        
+        // Run all checks in parallel
+        await Promise.all(checks);
+
 }
 
 async function turnThermostatOffOn(mode){
