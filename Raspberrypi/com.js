@@ -217,6 +217,8 @@ async function main() {
                     let powerValue = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
                     client.publish(`home/app/thermostat/current/power`, `${powerValue}`);
                     console.log("Received power get request, current power value: " + powerValue);
+                }else if(topicString == 'home/zwave/getAll'){
+                    basicChecking();
                 }else{
                     client.publish(`home/app/thermostat/current/power`, `Lost connection to thermostat`);
                 }
@@ -224,7 +226,6 @@ async function main() {
         }
     });
     setInterval(basicChecking, 10000); // Check every second
-    basicChecking(); // Initial check on startup
 }
 
 async function scheduleCheck(){
