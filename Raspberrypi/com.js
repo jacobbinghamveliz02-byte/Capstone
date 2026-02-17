@@ -218,6 +218,10 @@ async function main() {
                     client.publish(`home/app/thermostat/current/power`, `${powerValue}`);
                     console.log("Received power get request, current power value: " + powerValue);
                 }else if(topicString == 'home/zwave/getAll'){
+                    oldBatteryLevel = null;
+                    oldCurrentTemp = null;
+                    oldPowerValue = null;
+                    oldLightLevel = null;
                     basicChecking();
                 }else{
                     client.publish(`home/app/thermostat/current/power`, `Lost connection to thermostat`);
