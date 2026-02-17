@@ -222,7 +222,7 @@ async function main() {
                     oldCurrentTemp = null;
                     oldPowerValue = null;
                     oldLightLevel = null;
-                    basicChecking();
+                    await basicChecking();
                 }else{
                     client.publish(`home/app/thermostat/current/power`, `Lost connection to thermostat`);
                 }
