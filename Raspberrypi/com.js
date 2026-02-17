@@ -148,7 +148,7 @@ async function main() {
 
     client.on("connect", function () {
         console.log("Connected to MQTT broker");
-        client.subscribe('home/zwave');
+        client.subscribe('home/zwave/#');
     })
 
     client.on("error", function (error) {
