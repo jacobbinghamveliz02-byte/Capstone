@@ -30,8 +30,20 @@ var options = {
     port: 8883,
     protocol: "mqtts",
     username: "Raspberry",
-    password: "RaspberrypiPassword1"
-    };
+    password: "RaspberrypiPassword1",
+    reconnectPeriod: 1000,
+    connectTimeout: 30 * 1000,
+    keepalive: 60,
+    clean: true,
+    // Add will message to detect disconnections
+    will: {
+        topic: 'home/zwave/status',
+        payload: 'MQTT bridge disconnected',
+        qos: 1,
+        retain: false
+    }
+};
+
 
 // [5-67-0-setpoint-1] Setpoint (Heating) 
 
@@ -155,8 +167,6 @@ async function main() {
         console.log("MQTT Connection Error: ", error);
     });
 
-    
-
     client.on('message', async function (topic, message) {
         console.log("Topic: " + topic + "Message: " + message)
         let topicString = String(topic);
@@ -229,7 +239,7 @@ async function main() {
             }
         }
     });
-    setInterval(basicChecking, 10000); // Check every second
+    // setInterval(basicChecking, 10000); // Check every second
 }
 
 async function scheduleCheck(){
