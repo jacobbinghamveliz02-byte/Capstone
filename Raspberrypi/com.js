@@ -200,7 +200,6 @@ async function main() {
         }else if(topicString.startsWith('home/zwave/thermostat')){
             console.log("Received thermostat control message: " + messageString);
             let pingThermostat = await pingingNode(thermostatNode);
-            
             if(pingThermostat){
                 let messageArray = messageString.split(": ");
                 // normal temperature control
@@ -238,17 +237,17 @@ async function main() {
                     let powerValue = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
                     client.publish(`home/app/thermostat/current/power`, `${powerValue}`);
                     console.log("Received power get request, current power value: " + powerValue);
-                }else if(topicString == 'home/zwave/getAll'){
+                }else{
+                    client.publish(`home/app/thermostat/current/power`, `Lost connection to thermostat`);
+                }
+            }
+        }else if(topicString == 'home/zwave/getAll'){
                     oldBatteryLevel = null;
                     oldCurrentTemp = null;
                     oldPowerValue = null;
                     oldLightLevel = null;
                     await basicChecking();
-                }else{
-                    client.publish(`home/app/thermostat/current/power`, `Lost connection to thermostat`);
                 }
-            }
-        }
     });
     // setInterval(basicChecking, 10000); // Check every second
 }
