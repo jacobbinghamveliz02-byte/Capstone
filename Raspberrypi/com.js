@@ -249,7 +249,7 @@ async function main() {
                 }
     });
     // setInterval(basicChecking, 10000); // Check every second
-    debugThermostat();
+    // debugThermostat();
 }
 
 async function scheduleCheck(){
@@ -400,7 +400,7 @@ async function debugThermostat(){
     let currentMode = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
     console.log("Current mode:", currentMode);
     
-    // Try setting to 0 and see what happens
+    // Try setting to 0 (off)
     console.log("Attempting to set mode to 0...");
     await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 0);
     
