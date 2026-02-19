@@ -92,7 +92,6 @@ const LIGHTLEVELVALUEID =  {
     propertyName: "currentValue"
 };
 
-
 const LIGHTTARGETVALUEID = {
     commandClassName: "Multilevel Switch",
     commandClass: 38,
@@ -326,7 +325,10 @@ async function checkingLight(){
         client.publish(`home/app/light/current/power`, `Lost connection to light`);
         return;
     }else{
+        await lightNode1.refreshValues();
         let lightLevel = await lightNode1.getValue(LIGHTLEVELVALUEID);
+        let targetLevel = await lightNode1.getValue(LIGHTTARGETVALUEID);
+        console.log(`Target value is: ${targetLevel}`);
         if(oldLightLevel != lightLevel && lightLevel != null){
             console.log(`Current light level: ${lightLevel}`);
             console.log(`Current light level changed from ${oldLightLevel} to ${lightLevel}`);
