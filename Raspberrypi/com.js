@@ -163,17 +163,17 @@ async function main() {
 
     client.subscribe('home/zwave/#', function(err) {
         if (!err) {
-            console.log("✅ Successfully subscribed to home/zwave/#");
+            console.log("Successfully subscribed to home/zwave/#");
         } else {
-            console.error("❌ Subscription to home/zwave/# failed:", err);
+            console.error("Subscription to home/zwave/# failed:", err);
         }
     });
 
     client.on("error", function (error) {
          if (!err) {
-            console.log("✅ Successfully subscribed to ALL topics (#)");
+            console.log("Successfully subscribed to ALL topics (#)");
         } else {
-            console.error("❌ Subscription to # failed:", err);
+            console.error("Subscription to # failed:", err);
         }
     });
 
@@ -249,6 +249,7 @@ async function main() {
                 }
     });
     // setInterval(basicChecking, 10000); // Check every second
+    debugThermostat();
 }
 
 async function scheduleCheck(){
@@ -327,7 +328,6 @@ async function checkingLight(){
     }else{
         await lightNode1.refreshValues();
         let lightLevel = await lightNode1.getValue(LIGHTLEVELVALUEID);
-        let targetLevel = await lightNode1.getValue(LIGHTTARGETVALUEID);
         console.log(`Target value is: ${targetLevel}`);
         if(oldLightLevel != lightLevel && lightLevel != null){
             console.log(`Current light level: ${lightLevel}`);
@@ -390,6 +390,25 @@ async function turnThermostatOffOn(mode){
         await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, oldModeValue);
         
     }
+}
+
+async function debugThermostat(){
+    const metadata = thermostatNode.getValueMetadata(CURRENTTHERMOSTATMODEID);
+    console.log("Available mode values:", metadata.states);
+    
+    // Check current mode
+    let currentMode = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
+    console.log("Current mode:", currentMode);
+    
+    // Try setting to 0 and see what happens
+    console.log("Attempting to set mode to 0...");
+    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 0);
+    
+    // Wait a bit and read back
+    setTimeout(async () => {
+        let newMode = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
+        console.log("Mode after setting to 0:", newMode);
+    }, 2000);
 }
 
 // reasoning for currentTime limits is to avoid heating running at night and the morining hours
