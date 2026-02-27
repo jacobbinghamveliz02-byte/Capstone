@@ -104,8 +104,6 @@ const THERMID = 5; // Node ID of the thermostat
 const LIGHTID = [6]; // Node IDs of the lights          NEED TO CHANGE IF ADDING MORE LIGHTS
 var client = mqtt.connect(options);
 
-let oldHeatingSetpoint;
-let oldCoolingSetpoint;
 let startHour;
 let endHour;
 let currentTime;
@@ -329,7 +327,6 @@ async function checkingLight(){
     }else{
         await lightNode1.refreshValues();
         let lightLevel = await lightNode1.getValue(LIGHTLEVELVALUEID);
-        console.log(`Target value is: ${targetLevel}`);
         if(oldLightLevel != lightLevel && lightLevel != null){
             console.log(`Current light level: ${lightLevel}`);
             console.log(`Current light level changed from ${oldLightLevel} to ${lightLevel}`);
@@ -393,61 +390,48 @@ async function turnThermostatOffOn(mode){
     }
 }
 
-async function debugThermostat(){
-    const metadata = thermostatNode.getValueMetadata(CURRENTTHERMOSTATMODEID);
-    console.log("Available mode values:", metadata.states);
-    
-    // Check current mode
-    let currentMode = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
-    console.log("Current mode:", currentMode);
-    
-    // Try setting to 0 (off)
-    console.log("Attempting to set mode to 0...");
-    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 0);
-    
-    // Wait a bit and read back
-    setTimeout(async () => {
-        let newMode = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
-        console.log("Mode after setting to 0:", newMode);
-    }, 2000);
-}
-
 // reasoning for currentTime limits is to avoid heating running at night and the morining hours
 // 23 = 11pm, 11 = 11am
 // Jean keeps balcony door open at night
 async function betterThermostat(setpoint, shouldHeat){
     currentTime = new Date().getHours();
-    console.log(`Current time: ${currentTime}, Start hour: ${startHour}, End hour: ${endHour}, Timed info: ${timedInfo}, Setpoint: ${setpoint}, Should heat: ${shouldHeat}`);
+    const isTimedCommand = timedInfo != null && startHour != null && endHour != null;
     if(currentTime >= 11 && currentTime <= 23){
         // timed temperature control
-        if(setpoint != null){
-            if(currentTime >= startHour && currentTime <= endHour && timedInfo != null){
-                if(shouldHeat && oldTimeSetTemp != setpoint){
-                    console.log("Setting timed heating setpoint");
-                    await thermostatNode.setValue(HEATINGVALUEID, setpoint);
-                    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1);
-                    oldTimeSetTemp = setpoint;
-                    client.publish(`home/app/thermostat/current`, `Heating set to ${setpoint}`);
-                }else if(!shouldHeat && oldTimeSetTemp != setpoint){
-                    console.log("Setting timed cooling setpoint");
-                    await thermostatNode.setValue(COOLINGVALUEID, setpoint);
-                    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 2);
-                    oldTimeSetTemp = setpoint;
-                    client.publish(`home/app/thermostat/current`, `Cooling set to ${setpoint}`);
+        if(currentTime >= 11 && currentTime <= 23){
+            if(setpoint != null){
+                if(currentTime >= startHour && currentTime <= endHour){
+                    if(shouldHeat && oldTimeSetTemp != setpoint){
+                        console.log("Setting timed heating setpoint");
+                        await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1);
+                        await thermostatNode.setValue(HEATINGVALUEID, setpoint);
+                        oldTimeSetTemp = setpoint;
+                        client.publish(`home/app/thermostat/current`, `Timed heating set to ${setpoint}`);
+                    }else if(!shouldHeat && oldTimeSetTemp != setpoint){
+                        console.log("Setting timed cooling setpoint");
+                        await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 2);
+                        await thermostatNode.setValue(COOLINGVALUEID, setpoint);
+                        oldTimeSetTemp = setpoint;
+                        client.publish(`home/app/thermostat/current`, `Timed cooling set to ${setpoint}`);
+                    }
                 }
-            }else{
-                // normal temperature control
-                if(shouldHeat && oldHeatingSetpoint != setpoint){
-                    console.log("Setting normal heating setpoint");
-                    await thermostatNode.setValue(HEATINGVALUEID, setpoint);
-                    oldHeatingSetpoint = setpoint;
-                    client.publish(`home/app/thermostat/current`, `Heating set to ${setpoint}`);
-                }else if(!shouldHeat && oldCoolingSetpoint != setpoint){
-                    console.log("Setting normal cooling setpoint");
-                    await thermostatNode.setValue(COOLINGVALUEID, setpoint);
-                    oldCoolingSetpoint = setpoint;
-                    client.publish(`home/app/thermostat/current`, `Cooling set to ${setpoint}`);
-                }
+            }
+        }else{
+            // normal temperature control
+            if(shouldHeat){
+                console.log("Setting manual heating setpoint");
+                await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1);
+                await thermostatNode.setValue(HEATINGVALUEID, setpoint);
+                oldHeatingSetpoint = setpoint;
+                client.publish(`home/app/thermostat/current`, `Heating set to ${setpoint}`);
+                client.publish(`home/app/thermostat/current/power`, `on`);
+            }else {
+                console.log("Setting manual cooling setpoint");
+                await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 2);
+                await thermostatNode.setValue(COOLINGVALUEID, setpoint);
+                oldCoolingSetpoint = setpoint;
+                client.publish(`home/app/thermostat/current`, `Cooling set to ${setpoint}`);
+                client.publish(`home/app/thermostat/current/power`, `on`);
             }
         }
     }else{
