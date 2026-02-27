@@ -236,6 +236,12 @@ async function main() {
                     let powerStatus = (powerValue > 0) ? 'on' : 'off';
                     client.publish(`home/app/thermostat/current/power`, powerStatus);
                     console.log(`Thermostat power status: ${powerStatus}`);
+                }else if(topicString == 'home/zwave/timed/schedule'){
+                    let messageJSON = JSON.parse(messageString);
+                    let startHour = messageJSON.startHour;
+                    let endHour = messageJSON.endHour;
+                    let timeSetTemp = messageJSON.temperature;
+                    let timedMode = messageJSON.mode;
                 }else{
                     client.publish(`home/app/thermostat/current/power`, `Lost connection to thermostat`);
                 }
@@ -391,68 +397,51 @@ async function turnThermostatOffOn(mode){
     }
 }
 
-// reasoning for currentTime limits is to avoid heating running at night and the morining hours
-// 23 = 11pm, 11 = 11am
-// Jean keeps balcony door open at night
 async function betterThermostat(setpoint, shouldHeat){
-    currentTime = new Date().getHours();
-    console.log(`Current time: ${currentTime}, Start hour: ${startHour}, End hour: ${endHour}, Timed info: ${timedInfo}, Setpoint: ${setpoint}, Should heat: ${shouldHeat}`);
-    
-    // Check if this is a timed schedule command
-    const isTimedCommand = timedInfo != null && startHour != null && endHour != null;
-    
-    if (isTimedCommand) {
-        // This is a timed/scheduled command
-        console.log("Processing timed command...");
-        if(currentTime >= 10 && currentTime <= 23) {
-            if(currentTime >= startHour && currentTime <= endHour) {
-                if(shouldHeat && oldTimeSetTemp != setpoint) {
-                    console.log("Setting timed heating setpoint");
-                    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1);
-                    // Small delay to ensure mode is set
-                    await new Promise(resolve => setTimeout(resolve, 200));
-                    await thermostatNode.setValue(HEATINGVALUEID, setpoint);
-                    oldTimeSetTemp = setpoint;
-                    client.publish(`home/app/thermostat/current`, `Timed heating set to ${setpoint}`);
-                } else if(!shouldHeat && oldTimeSetTemp != setpoint) {
-                    console.log("Setting timed cooling setpoint");
-                    await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 2);
-                    // Small delay to ensure mode is set
-                    await new Promise(resolve => setTimeout(resolve, 200));
-                    await thermostatNode.setValue(COOLINGVALUEID, setpoint);
-                    oldTimeSetTemp = setpoint;
-                    client.publish(`home/app/thermostat/current`, `Timed cooling set to ${setpoint}`);
-                }
-            } else {
-                console.log(`Current time ${currentTime} is outside scheduled window (${startHour}-${endHour})`);
-                client.publish(`home/app/thermostat/current`, `Outside scheduled time window`);
-            }
-        } else {
-            console.log(`Current time ${currentTime} is outside allowed hours (10-23)`);
-            client.publish(`home/app/thermostat/current`, `Unable to adjust temperature outside of allowed hours (10 AM - 11 PM)`);
-        }
+    console.log("Processing MANUAL command - no time restrictions");
+    if(shouldHeat) {
+        console.log("Setting manual heating setpoint to:", setpoint);
+        await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1);
+        // Small delay to ensure mode is set
+        await new Promise(resolve => setTimeout(resolve, 200));
+        await thermostatNode.setValue(HEATINGVALUEID, setpoint);
+        client.publish(`home/app/thermostat/current`, `Heating set to ${setpoint}`);
+        console.log("Manual heating set successfully!");
     } else {
-        // This is a MANUAL command - NO time restrictions!
-        console.log("Processing MANUAL command - no time restrictions");
-        if(shouldHeat) {
-            console.log("Setting manual heating setpoint to:", setpoint);
+        console.log("Setting manual cooling setpoint to:", setpoint);
+        await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 2);
+        // Small delay to ensure mode is set
+        await new Promise(resolve => setTimeout(resolve, 200));
+        await thermostatNode.setValue(COOLINGVALUEID, setpoint);
+        client.publish(`home/app/thermostat/current`, `Cooling set to ${setpoint}`);
+        console.log("Manual cooling set successfully!");
+    }
+};
+
+async function timedControl(startHour, endHour, setpoint, mode){
+    currentTime = new Date().getHours();
+    console.log(`Current time: ${currentTime}, Start hour: ${startHour}, End hour: ${endHour}, Timed info: ${timedInfo}, Setpoint: ${setpoint}, Mode: ${mode}`);
+    console.log("Processing timed command...");
+    if(currentTime >= startHour && currentTime <= endHour) {
+        if(mode == 1) {
+            console.log("Setting timed heating setpoint");
             await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1);
             // Small delay to ensure mode is set
             await new Promise(resolve => setTimeout(resolve, 200));
             await thermostatNode.setValue(HEATINGVALUEID, setpoint);
-            client.publish(`home/app/thermostat/current`, `Heating set to ${setpoint}`);
-            console.log("Manual heating set successfully!");
-        } else {
-            console.log("Setting manual cooling setpoint to:", setpoint);
+            oldTimeSetTemp = setpoint;
+            client.publish(`home/app/thermostat/current`, `Timed heating set to ${setpoint}`);
+        } else if(mode == 2) {
+            console.log("Setting timed cooling setpoint");
             await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 2);
             // Small delay to ensure mode is set
             await new Promise(resolve => setTimeout(resolve, 200));
             await thermostatNode.setValue(COOLINGVALUEID, setpoint);
-            client.publish(`home/app/thermostat/current`, `Cooling set to ${setpoint}`);
-            console.log("Manual cooling set successfully!");
+            oldTimeSetTemp = setpoint;
+            client.publish(`home/app/thermostat/current`, `Timed cooling set to ${setpoint}`);
         }
     }
-};
+}
 
 async function changeLight(settingLightLevel){
     console.log(`Changing light ${lightNode1.id} level to ${settingLightLevel}`); 
