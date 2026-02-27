@@ -198,16 +198,21 @@ export default function App() {
             />
           )}
         </Stack.Screen>
-        <Stack.Screen
+       <Stack.Screen
           name="TimedControl"
-          component={TimedControl}
           options={{
             title: 'Timed Settings',
             headerStyle: {
               backgroundColor: '#9C27B0',
             },
-          }}
-        />
+          }}>
+          {(props) => (
+            <TimedControl
+              {...props}
+              client={client}
+            />
+          )}
+</Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -505,102 +510,296 @@ function ThermostatControl({ navigation, client, thermostatPowerStatus, setTherm
   );
 }
 
-function TimedControl({ navigation }) {
-  const [startPeriod, setStartPeriod] = useState('AM');
-  const [endPeriod, setEndPeriod] = useState('AM');
+function TimedControl({ navigation, client }) {
   const [startHour, setStartHour] = useState('12');
-  const [startMinute, setStartMinute] = useState('00');
   const [endHour, setEndHour] = useState('12');
-  const [endMinute, setEndMinute] = useState('00');
+  const [isScheduleEnabled, setIsScheduleEnabled] = useState(false);
+  const [selectedMode, setSelectedMode] = useState('Heating');
+  const [temperature, setTemperature] = useState('72');
+  const [schedules, setSchedules] = useState([]);
 
-  const PeriodSelector = ({
-    period,
-    setPeriod,
-    label,
-    hour,
-    setHour,
-    minute,
-    setMinute,
-  }) => (
-    <Card style={styles.periodCard}>
-      <Card.Content>
-        <Text style={styles.periodLabel}>{label}</Text>
+  useEffect(() => {
+    loadSchedules();
+  }, []);
 
-        <View style={styles.timeInputContainer}>
-          <View style={styles.timeInput}>
-            <TextInput
-              style={styles.timeNumberInput}
-              value={hour}
-              onChangeText={setHour}
-              keyboardType="numeric"
-              maxLength={2}
-              placeholder="HH"
-            />
-            <Text style={styles.timeSeparator}>:</Text>
-            <TextInput
-              style={styles.timeNumberInput}
-              value={minute}
-              onChangeText={setMinute}
-              keyboardType="numeric"
-              maxLength={2}
-              placeholder="MM"
-            />
-          </View>
+  const loadSchedules = async () => {
+    try {
+      const savedSchedules = await AsyncStorage.getItem('timedSchedules');
+      if (savedSchedules) {
+        setSchedules(JSON.parse(savedSchedules));
+      }
+    } catch (error) {
+      console.error('Error loading schedules:', error);
+    }
+  };
 
-          <View style={styles.periodToggle}>
-            <Text
-              style={[
-                styles.periodText,
-                period === 'AM' && styles.activePeriodText,
-              ]}>
-              AM
-            </Text>
-            <Switch
-              value={period === 'PM'}
-              onValueChange={(value) => setPeriod(value ? 'PM' : 'AM')}
-              trackColor={{ false: '#767577', true: '#2196F3' }}
-            />
-            <Text
-              style={[
-                styles.periodText,
-                period === 'PM' && styles.activePeriodText,
-              ]}>
-              PM
-            </Text>
-          </View>
-        </View>
-      </Card.Content>
-    </Card>
-  );
+  const saveSchedule = async () => {
+    // Validate inputs
+    if (!startHour || !endHour || !temperature) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    if (parseInt(startHour) < 0 || parseInt(startHour) > 23 || 
+        parseInt(endHour) < 0 || parseInt(endHour) > 23) {
+      alert('Hours must be between 0 and 23');
+      return;
+    }
+
+    if (parseInt(temperature) < 68 || parseInt(temperature) > 75) {
+      alert('Temperature must be between 68°F and 75°F');
+      return;
+    }
+
+    const newSchedule = {
+      id: Date.now().toString(),
+      startHour: parseInt(startHour),
+      endHour: parseInt(endHour),
+      mode: selectedMode,
+      temperature: parseInt(temperature),
+      enabled: isScheduleEnabled,
+    };
+
+    try {
+      const updatedSchedules = [...schedules, newSchedule];
+      await AsyncStorage.setItem('timedSchedules', JSON.stringify(updatedSchedules));
+      setSchedules(updatedSchedules);
+      
+      if (client && client.connected) {
+        client.publish('home/zwave/timed/schedule', JSON.stringify(newSchedule));
+      }
+      
+      alert('Schedule saved successfully!');
+      
+      // Clear form
+      setStartHour('12');
+      setEndHour('12');
+      setSelectedMode('Heating');
+      setTemperature('72');
+      setIsScheduleEnabled(false);
+    } catch (error) {
+      console.error('Error saving schedule:', error);
+      alert('Error saving schedule');
+    }
+  };
+
+  const toggleSchedule = (scheduleId) => {
+    const updatedSchedules = schedules.map(schedule => {
+      if (schedule.id === scheduleId) {
+        const updated = { ...schedule, enabled: !schedule.enabled };
+        
+        // Publish status change to MQTT
+        if (client && client.connected) {
+          client.publish('home/zwave/timed/schedule/toggle', JSON.stringify({
+            id: scheduleId,
+            enabled: updated.enabled
+          }));
+        }
+        
+        return updated;
+      }
+      return schedule;
+    });
+    
+    setSchedules(updatedSchedules);
+    AsyncStorage.setItem('timedSchedules', JSON.stringify(updatedSchedules));
+  };
+
+  const deleteSchedule = (scheduleId) => {
+    const updatedSchedules = schedules.filter(s => s.id !== scheduleId);
+    setSchedules(updatedSchedules);
+    AsyncStorage.setItem('timedSchedules', JSON.stringify(updatedSchedules));
+    
+    // Publish deletion to MQTT
+    if (client && client.connected) {
+      client.publish('home/zwave/timed/schedule/delete', scheduleId);
+    }
+  };
+
+  const modes = [
+    { type: 'Heating', icon: 'fire', color: '#F44336' },
+    { type: 'Cooling', icon: 'snowflake', color: '#2196F3' },
+  ];
 
   return (
     <ScrollView style={styles.controlContainer}>
       <Text style={styles.timedTitle}>Schedule Automation</Text>
 
-      <PeriodSelector
-        period={startPeriod}
-        setPeriod={setStartPeriod}
-        hour={startHour}
-        setHour={setStartHour}
-        minute={startMinute}
-        setMinute={setStartMinute}
-        label="Start Time"
-      />
+      {/* Enable/Disable Toggle */}
+      <Card style={styles.periodCard}>
+        <Card.Content>
+          <View style={styles.enableContainer}>
+            <View style={styles.enableLeft}>
+              <Icon 
+                name={isScheduleEnabled ? 'clock-check' : 'clock-remove'} 
+                size={24} 
+                color={isScheduleEnabled ? '#4CAF50' : '#F44336'} 
+              />
+              <Text style={styles.enableText}>
+                {isScheduleEnabled ? 'Schedule Enabled' : 'Schedule Disabled'}
+              </Text>
+            </View>
+            <Switch
+              value={isScheduleEnabled}
+              onValueChange={setIsScheduleEnabled}
+              trackColor={{ false: '#767577', true: '#4CAF50' }}
+            />
+          </View>
+        </Card.Content>
+      </Card>
 
-      <PeriodSelector
-        period={endPeriod}
-        setPeriod={setEndPeriod}
-        hour={endHour}
-        setHour={setEndHour}
-        minute={endMinute}
-        setMinute={setEndMinute}
-        label="End Time"
-      />
+      {/* Time Selection - Hours Only */}
+      <Card style={styles.periodCard}>
+        <Card.Content>
+          <Text style={styles.periodLabel}>Schedule Time (24h format)</Text>
+          
+          <View style={styles.timeRangeContainer}>
+            <View style={styles.timeInputGroup}>
+              <Text style={styles.timeLabel}>Start Hour</Text>
+              <TextInput
+                style={styles.timeNumberInput}
+                value={startHour}
+                onChangeText={setStartHour}
+                keyboardType="numeric"
+                maxLength={2}
+                placeholder="HH"
+              />
+              <Text style={styles.timeHelp}>0-23</Text>
+            </View>
 
-      <TouchableOpacity style={styles.saveButton}>
+            <Icon name="arrow-right" size={24} color="#999" />
+
+            <View style={styles.timeInputGroup}>
+              <Text style={styles.timeLabel}>End Hour</Text>
+              <TextInput
+                style={styles.timeNumberInput}
+                value={endHour}
+                onChangeText={setEndHour}
+                keyboardType="numeric"
+                maxLength={2}
+                placeholder="HH"
+              />
+              <Text style={styles.timeHelp}>0-23</Text>
+            </View>
+          </View>
+        </Card.Content>
+      </Card>
+
+      {/* Mode Selection */}
+      <Card style={styles.periodCard}>
+        <Card.Content>
+          <Text style={styles.periodLabel}>Select Mode</Text>
+          <View style={styles.modesContainer}>
+            {modes.map((mode) => (
+              <TouchableOpacity
+                key={mode.type}
+                style={[
+                  styles.modeButton,
+                  {
+                    backgroundColor: selectedMode === mode.type ? mode.color + '30' : '#f5f5f5',
+                    borderColor: selectedMode === mode.type ? mode.color : '#ddd',
+                    borderWidth: 2,
+                  },
+                ]}
+                onPress={() => setSelectedMode(mode.type)}>
+                <Icon name={mode.icon} size={32} color={mode.color} />
+                <Text style={[styles.modeButtonText, { color: mode.color }]}>
+                  {mode.type}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </Card.Content>
+      </Card>
+
+      {/* Temperature Setting */}
+      <Card style={styles.periodCard}>
+        <Card.Content>
+          <Text style={styles.periodLabel}>Set Temperature</Text>
+          <View style={styles.temperatureControl}>
+            <TouchableOpacity
+              style={styles.tempButton}
+              onPress={() => setTemperature(prev => Math.max(68, parseInt(prev) - 1).toString())}>
+              <Icon name="minus-circle" size={32} color="#F44336" />
+            </TouchableOpacity>
+            
+            <View style={styles.tempDisplay}>
+              <TextInput
+                style={styles.tempInput}
+                value={temperature}
+                onChangeText={setTemperature}
+                keyboardType="numeric"
+                maxLength={2}
+                textAlign="center"
+              />
+              <Text style={styles.tempUnit}>°F</Text>
+            </View>
+            
+            <TouchableOpacity
+              style={styles.tempButton}
+              onPress={() => setTemperature(prev => Math.min(75, parseInt(prev) + 1).toString())}>
+              <Icon name="plus-circle" size={32} color="#4CAF50" />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.tempRange}>Range: 68°F - 75°F</Text>
+        </Card.Content>
+      </Card>
+
+      {/* Save Button */}
+      <TouchableOpacity 
+        style={[styles.saveButton, !isScheduleEnabled && styles.saveButtonDisabled]} 
+        onPress={saveSchedule}
+        disabled={!isScheduleEnabled}>
         <Icon name="check" size={24} color="#fff" />
         <Text style={styles.saveButtonText}>Save Schedule</Text>
       </TouchableOpacity>
+
+      {/* Existing Schedules */}
+      {schedules.length > 0 && (
+        <View style={styles.schedulesSection}>
+          <Text style={styles.sectionTitle}>Saved Schedules</Text>
+          {schedules.map((schedule) => (
+            <Card key={schedule.id} style={styles.scheduleCard}>
+              <Card.Content>
+                <View style={styles.scheduleHeader}>
+                  <View style={styles.scheduleInfo}>
+                    <Icon 
+                      name={schedule.mode === 'Heating' ? 'fire' : 'snowflake'} 
+                      size={20} 
+                      color={schedule.mode === 'Heating' ? '#F44336' : '#2196F3'} 
+                    />
+                    <Text style={styles.scheduleTime}>
+                      {schedule.startHour}:00 - {schedule.endHour}:00
+                    </Text>
+                  </View>
+                  <View style={styles.scheduleActions}>
+                    <Switch
+                      value={schedule.enabled}
+                      onValueChange={() => toggleSchedule(schedule.id)}
+                      trackColor={{ false: '#767577', true: '#4CAF50' }}
+                    />
+                    <TouchableOpacity onPress={() => deleteSchedule(schedule.id)}>
+                      <Icon name="delete" size={20} color="#F44336" />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                <View style={styles.scheduleDetails}>
+                  <Chip 
+                    icon={schedule.mode === 'Heating' ? 'fire' : 'snowflake'}
+                    style={[
+                      styles.modeChip,
+                      { backgroundColor: schedule.mode === 'Heating' ? '#F44336' : '#2196F3' }
+                    ]}
+                    textStyle={styles.chipText}>
+                    {schedule.mode}
+                  </Chip>
+                  <Text style={styles.scheduleTemp}>{schedule.temperature}°F</Text>
+                </View>
+              </Card.Content>
+            </Card>
+          ))}
+        </View>
+      )}
     </ScrollView>
   );
 }
@@ -735,8 +934,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 8,
   },
-
-  // Control Screens
   controlContainer: {
     flex: 1,
     backgroundColor: '#f5f5f5',
@@ -938,5 +1135,115 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginLeft: 8,
+  },enableContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  enableLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  enableText: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginLeft: 10,
+  },
+  timeRangeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
+  timeInputGroup: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  timeLabel: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 5,
+  },
+  timeHelp: {
+    fontSize: 12,
+    color: '#999',
+    marginTop: 5,
+  },
+  temperatureControl: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 10,
+  },
+  tempButton: {
+    padding: 10,
+  },
+  tempDisplay: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 20,
+  },
+  tempInput: {
+    fontSize: 36,
+    fontWeight: 'bold',
+    color: '#333',
+    width: 70,
+    borderBottomWidth: 2,
+    borderBottomColor: '#2196F3',
+  },
+  tempUnit: {
+    fontSize: 20,
+    color: '#666',
+    marginLeft: 5,
+  },
+  tempRange: {
+    textAlign: 'center',
+    color: '#999',
+    fontSize: 12,
+    marginTop: 5,
+  },
+  saveButtonDisabled: {
+    opacity: 0.5,
+  },
+  schedulesSection: {
+    marginTop: 20,
+  },
+  scheduleCard: {
+    marginBottom: 10,
+    borderRadius: 10,
+  },
+  scheduleHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  scheduleInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  scheduleTime: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginLeft: 8,
+  },
+  scheduleActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  scheduleDetails: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  modeChip: {
+    marginRight: 10,
+  },
+  chipText: {
+    color: '#fff',
+  },
+  scheduleTemp: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333',
   },
 });
