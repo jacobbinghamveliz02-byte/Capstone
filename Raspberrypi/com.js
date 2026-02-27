@@ -118,6 +118,7 @@ let oldCurrentTemp;
 let oldPowerValue;
 let oldLightLevel;
 let oldModeValue;
+let schedules = []
 
 for (const signal of ["SIGINT", "SIGTERM"]) {
     process.on(signal, async () => {
@@ -238,10 +239,25 @@ async function main() {
                     console.log(`Thermostat power status: ${powerStatus}`);
                 }else if(topicString == 'home/zwave/timed/schedule'){
                     let messageJSON = JSON.parse(messageString);
+                    schedules.push(messageJSON);
                     let startHour = messageJSON.startHour;
                     let endHour = messageJSON.endHour;
                     let timeSetTemp = messageJSON.temperature;
                     let timedMode = messageJSON.mode;
+                    let enabled = messageJSON.enabled;
+                    if(enabled){
+                        await timedControl(startHour, endHour, timeSetTemp, timedMode);
+                    }
+                }else if(topicString == 'home/zwave/timed/schedule/toggleMessage'){
+                    let messageJSON = JSON.parse(messageString);
+                    for (let schedule of schedules){
+                        if(schedule.id == messageJSON.id){
+                            schedule.active = !schedule.active;
+                        }if(schedule.active){
+                            await timedControl(schedule.startHour, schedule.endHour, schedule.temperature, schedule.mode);
+                        }
+                        break;
+                    }
                 }else{
                     client.publish(`home/app/thermostat/current/power`, `Lost connection to thermostat`);
                 }
