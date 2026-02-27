@@ -439,7 +439,7 @@ async function timedControl(startHour, endHour, setpoint, mode){
     console.log(`Current time: ${currentTime}, Start hour: ${startHour}, End hour: ${endHour}, Timed info: ${timedInfo}, Setpoint: ${setpoint}, Mode: ${mode}`);
     console.log("Processing timed command...");
     if(currentTime >= startHour && currentTime <= endHour) {
-        if(mode == 1) {
+        if(mode == heating) {
             console.log("Setting timed heating setpoint");
             await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 1);
             // Small delay to ensure mode is set
@@ -447,7 +447,7 @@ async function timedControl(startHour, endHour, setpoint, mode){
             await thermostatNode.setValue(HEATINGVALUEID, setpoint);
             oldTimeSetTemp = setpoint;
             client.publish(`home/app/thermostat/current`, `Timed heating set to ${setpoint}`);
-        } else if(mode == 2) {
+        } else if(mode == cooling) {
             console.log("Setting timed cooling setpoint");
             await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, 2);
             // Small delay to ensure mode is set
