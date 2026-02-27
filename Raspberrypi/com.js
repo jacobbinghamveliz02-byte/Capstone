@@ -234,8 +234,9 @@ async function main() {
                     }
                 }else if(topicString == 'home/zwave/thermostat/power/get' ){
                     let powerValue = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
-                    client.publish(`home/app/thermostat/current/power`, `${powerValue}`);
-                    console.log("Received power get request, current power value: " + powerValue);
+                    let powerStatus = (powerValue > 0) ? 'on' : 'off';
+                    client.publish(`home/app/thermostat/current/power`, powerStatus);
+                    console.log(`Thermostat power status: ${powerStatus}`);
                 }else{
                     client.publish(`home/app/thermostat/current/power`, `Lost connection to thermostat`);
                 }
