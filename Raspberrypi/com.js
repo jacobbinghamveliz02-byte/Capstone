@@ -379,8 +379,8 @@ async function basicChecking() {
 
 async function turnThermostatOffOn(mode){
     let currentMode = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
-    oldModeValue = currentMode;
     if(mode == 0){
+        oldModeValue = currentMode;
         console.log("Turning thermostat off");
         client.publish(`home/app/thermostat/current/power`, `off`);
         await thermostatNode.setValue(CURRENTTHERMOSTATMODEID, mode);
