@@ -163,6 +163,7 @@ async function main() {
     client.subscribe('home/zwave/#', function(err) {
         if (!err) {
             console.log("Successfully subscribed to home/zwave/#");
+            basicChecking(); // Initial check on startup
         } else {
             console.error("Subscription to home/zwave/# failed:", err);
         }
