@@ -256,7 +256,7 @@ async function main() {
             let endHour = messageJSON.endHour;
             let timeSetTemp = messageJSON.temperature;
             let timedMode = messageJSON.mode;
-            conosle.log(`Processing new schedule - Start Hour: ${startHour}, End Hour: ${endHour}, Temperature: ${timeSetTemp}, Mode: ${timedMode}`);
+            console.log(`Processing new schedule - Start Hour: ${startHour}, End Hour: ${endHour}, Temperature: ${timeSetTemp}, Mode: ${timedMode}`);
             await timedControl(startHour, endHour, timeSetTemp, timedMode);
         }else if(topicString == 'home/zwave/timed/schedule/toggleMessage'){
             let messageJSON = JSON.parse(messageString);
