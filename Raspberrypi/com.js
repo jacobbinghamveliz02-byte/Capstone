@@ -48,24 +48,24 @@ var options = {
 // [5-67-0-setpoint-1] Setpoint (Heating) 
 
 const TEMPATURE = {
-  commandClass: 49, // Multilevel Sensor command class
-  endpoint: 0,
-  property: "Air temperature",
-  propertyKey: undefined // Not the string "undefined", but actual undefined
+    commandClass: 49, // Multilevel Sensor command class
+    endpoint: 0,
+    property: "Air temperature",
+    propertyKey: undefined // Not the string "undefined", but actual undefined
 };
 
 const HEATINGVALUEID = {
-  commandClass: 67, // Thermostat Setpoint
-  endpoint: 0,
-  property: "setpoint",
-  propertyKey: 1 // Heating
+    commandClass: 67, // Thermostat Setpoint
+    endpoint: 0,
+    property: "setpoint",
+    propertyKey: 1 // Heating
 };
 
 const COOLINGVALUEID = {
-  commandClass: 67, // Thermostat Setpoint
-  endpoint: 0,
-  property: "setpoint",
-  propertyKey: 2 // Cooling
+    commandClass: 67, // Thermostat Setpoint
+    endpoint: 0,
+    property: "setpoint",
+    propertyKey: 2 // Cooling
 };
 
 const CURRENTTHERMOSTATMODEID =  {
@@ -78,10 +78,10 @@ const CURRENTTHERMOSTATMODEID =  {
 };
 
 const CURRENTTHERMOSTATBATTERYVALUEID = {
-  commandClass: 128, // Battery command class
-  endpoint: 0,
-  property: "level",
-  propertyKey: undefined
+    commandClass: 128, // Battery command class
+    endpoint: 0,
+    property: "level",
+    propertyKey: undefined
 };
 
 const LIGHTLEVELVALUEID =  {
@@ -104,11 +104,8 @@ const THERMID = 5; // Node ID of the thermostat
 const LIGHTID = [6]; // Node IDs of the lights          NEED TO CHANGE IF ADDING MORE LIGHTS
 var client = mqtt.connect(options);
 
-let startHour;
-let endHour;
+let messageJSON;
 let currentTime;
-let timedInfo;
-let timeSetTemp;
 let oldTimeSetTemp;
 let previouslyThermostatMode;
 let thermostatNode;
@@ -170,7 +167,7 @@ async function main() {
     });
 
     client.on("error", function (error) {
-         if (!err) {
+        if (!err) {
             console.log("Successfully subscribed to ALL topics (#)");
         } else {
             console.error("Subscription to # failed:", err);
@@ -214,19 +211,6 @@ async function main() {
                         console.log("Cooling setpoint parsed as: " + coolingSetpoint);
                         await betterThermostat(coolingSetpoint, false);
                     }
-                    // Time control
-                }else if(topicString == 'home/zwave/thermostat/time/set'){
-                    timedInfo = messageArray[0];
-                    timeSetTemp = parseInt(messageArray[1]);
-                    startHour = parseInt(messageArray[2]);
-                    endHour = parseInt(messageArray[3]);
-                }else if(topicString == 'home/zwave/thermostat/time/remove'){
-                    startHour = null;
-                    endHour = null;
-                    timeSetTemp = null;
-                    timedInfo = null;
-                    oldTimeSetTemp = null;
-                    client.publish(`home/app/thermostat/current`, `Timed temperature control removed`);
                 }else if(topicString == 'home/zwave/thermostat/power/set'){
                     if(messageString == 'on'){
                         await turnThermostatOffOn(1);
@@ -249,15 +233,11 @@ async function main() {
                     oldLightLevel = null;
                     await basicChecking();
         }else if(topicString == 'home/zwave/timed/schedule'){
-            let messageJSON = JSON.parse(messageString);
+            messageJSON = JSON.parse(messageString);
             console.log("Received new schedule: ", messageJSON);
             schedules.push(messageJSON);
-            let startHour = messageJSON.startHour;
-            let endHour = messageJSON.endHour;
-            let timeSetTemp = messageJSON.temperature;
-            let timedMode = messageJSON.mode;
-            console.log(`Processing new schedule - Start Hour: ${startHour}, End Hour: ${endHour}, Temperature: ${timeSetTemp}, Mode: ${timedMode}`);
-            await timedControl(startHour, endHour, timeSetTemp, timedMode);
+            console.log(`Processing new schedule - Start Hour: ${messageJSON.startHour}, End Hour: ${messageJSON.endHour}, Temperature: ${messageJSON.temperature}, Mode: ${messageJSON.mode}`);
+            await timedControl(messageJSON.startHour, messageJSON.endHour, messageJSON.temperature, messageJSON.mode);
         }else if(topicString == 'home/zwave/timed/schedule/toggleMessage'){
             let messageJSON = JSON.parse(messageString);
             for (let schedule of schedules){
@@ -275,15 +255,17 @@ async function main() {
             console.log(`Deleted schedule with ID: ${messageJSON.id}`);
         }
     });
-    // setInterval(basicChecking, 10000); // Check every second
+    setInterval(basicChecking, 10000);
     // debugThermostat();
 }
 
-async function scheduleCheck(){
-    currentTime = new Date().getHours();
+async function scheduleCheck(startHour, endHour, temp, timedMode){
     if(startHour != null && endHour != null){
+        currentTimeHR = new Date().getHours();
+        currentTimeMin = (new Date().getMinutes())/10;
+        currentTime = currentTimeHR + currentTimeMin;
         if(currentTime >= startHour && currentTime <= endHour){
-            if(previouslyThermostatMode != null && previouslyThermostatMode != await thermostatNode.getValue(CURRENTTHERMOSTATMODEID)){
+            if(previouslyThermostatMode != null){
                 previouslyThermostatMode = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
             }
             if(previouslyThermostatMode == 1){ // heating mode
@@ -291,10 +273,10 @@ async function scheduleCheck(){
             }else if(previouslyThermostatMode == 2){ // cooling mode
                 oldCoolingSetpoint = await thermostatNode.getValue(COOLINGVALUEID);
             }
-            if(oldTimeSetTemp != timeSetTemp && timedInfo == "heating"){
-                await betterThermostat(timeSetTemp, true);
-            }else if(oldTimeSetTemp != timeSetTemp && timedInfo == "cooling"){
-                await betterThermostat(timeSetTemp, false);
+            if(oldTimeSetTemp != temp && timedMode == "heating"){
+                await betterThermostat(temp, true);
+            }else if(oldTimeSetTemp != temp && timedMode == "cooling"){
+                await betterThermostat(temp, false);
             }
         }else{
             if(previouslyThermostatMode != null){
@@ -362,7 +344,6 @@ async function checkingLight(){
             oldLightLevel = lightLevel;
         }
     }
-
 }
 
 async function basicChecking() {
@@ -394,13 +375,18 @@ async function basicChecking() {
         } else {
             client.publish(`home/app/light/current/power`, `Lost connection to light`);
         }
-        
-        // Run schedule check separately (it's fast and doesn't need Z-Wave)
-        checks.push(scheduleCheck().catch(e => console.error("Schedule check failed:", e)));
-        
+        if (schedules && schedules.length > 0) {
+            for (const schedule of schedules) {
+                if (schedule.active) {
+                    checks.push(
+                        scheduleCheck(schedule.startHour, schedule.endHour, schedule.temperature, schedule.mode)
+                            .catch(e => console.error(`Schedule ${schedule.id} check failed:`, e))
+                    );
+                }
+            }
+        }
         // Run all checks in parallel
         await Promise.all(checks);
-
 }
 
 async function turnThermostatOffOn(mode){
@@ -441,7 +427,7 @@ async function betterThermostat(setpoint, shouldHeat){
 
 async function timedControl(startHour, endHour, setpoint, mode){
     currentTime = new Date().getHours();
-    console.log(`Current time: ${currentTime}, Start hour: ${startHour}, End hour: ${endHour}, Timed info: ${timedInfo}, Setpoint: ${setpoint}, Mode: ${mode}`);
+    console.log(`Current time: ${currentTime}, Start hour: ${startHour}, End hour: ${endHour}, Setpoint: ${setpoint}, Mode: ${mode}`);
     console.log("Processing timed command...");
     if(currentTime >= startHour && currentTime <= endHour) {
         if(mode.toLowerCase() == "heating") {
