@@ -1,0 +1,4697 @@
+[
+  {
+    "commandClassName": "Multilevel Switch",
+    "commandClass": 38,
+    "endpoint": 0,
+    "property": "currentValue",
+    "propertyName": "currentValue"
+  },
+  {
+    "commandClassName": "Multilevel Switch",
+    "commandClass": 38,
+    "endpoint": 0,
+    "property": "duration",
+    "propertyName": "duration"
+  },
+  {
+    "commandClassName": "Multilevel Switch",
+    "commandClass": 38,
+    "endpoint": 0,
+    "property": "targetValue",
+    "propertyName": "targetValue"
+  },
+  {
+    "commandClassName": "Multilevel Switch",
+    "commandClass": 38,
+    "endpoint": 0,
+    "property": "Up",
+    "propertyName": "Up"
+  },
+  {
+    "commandClassName": "Multilevel Switch",
+    "commandClass": 38,
+    "endpoint": 0,
+    "property": "Down",
+    "propertyName": "Down"
+  },
+  {
+    "commandClassName": "Multilevel Switch",
+    "commandClass": 38,
+    "endpoint": 0,
+    "property": "restorePrevious",
+    "propertyName": "restorePrevious"
+  },
+  {
+    "commandClassName": "Scene Activation",
+    "commandClass": 43,
+    "endpoint": 0,
+    "property": "sceneId",
+    "propertyName": "sceneId"
+  },
+  {
+    "commandClassName": "Scene Activation",
+    "commandClass": 43,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyName": "dimmingDuration"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 1,
+    "propertyName": "level",
+    "propertyKeyName": "1"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 1,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "1"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 2,
+    "propertyName": "level",
+    "propertyKeyName": "2"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 2,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "2"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 3,
+    "propertyName": "level",
+    "propertyKeyName": "3"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 3,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "3"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 4,
+    "propertyName": "level",
+    "propertyKeyName": "4"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 4,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "4"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 5,
+    "propertyName": "level",
+    "propertyKeyName": "5"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 5,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "5"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 6,
+    "propertyName": "level",
+    "propertyKeyName": "6"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 6,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "6"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 7,
+    "propertyName": "level",
+    "propertyKeyName": "7"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 7,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "7"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 8,
+    "propertyName": "level",
+    "propertyKeyName": "8"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 8,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "8"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 9,
+    "propertyName": "level",
+    "propertyKeyName": "9"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 9,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "9"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 10,
+    "propertyName": "level",
+    "propertyKeyName": "10"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 10,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "10"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 11,
+    "propertyName": "level",
+    "propertyKeyName": "11"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 11,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "11"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 12,
+    "propertyName": "level",
+    "propertyKeyName": "12"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 12,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "12"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 13,
+    "propertyName": "level",
+    "propertyKeyName": "13"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 13,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "13"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 14,
+    "propertyName": "level",
+    "propertyKeyName": "14"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 14,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "14"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 15,
+    "propertyName": "level",
+    "propertyKeyName": "15"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 15,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "15"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 16,
+    "propertyName": "level",
+    "propertyKeyName": "16"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 16,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "16"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 17,
+    "propertyName": "level",
+    "propertyKeyName": "17"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 17,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "17"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 18,
+    "propertyName": "level",
+    "propertyKeyName": "18"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 18,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "18"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 19,
+    "propertyName": "level",
+    "propertyKeyName": "19"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 19,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "19"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 20,
+    "propertyName": "level",
+    "propertyKeyName": "20"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 20,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "20"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 21,
+    "propertyName": "level",
+    "propertyKeyName": "21"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 21,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "21"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 22,
+    "propertyName": "level",
+    "propertyKeyName": "22"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 22,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "22"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 23,
+    "propertyName": "level",
+    "propertyKeyName": "23"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 23,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "23"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 24,
+    "propertyName": "level",
+    "propertyKeyName": "24"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 24,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "24"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 25,
+    "propertyName": "level",
+    "propertyKeyName": "25"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 25,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "25"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 26,
+    "propertyName": "level",
+    "propertyKeyName": "26"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 26,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "26"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 27,
+    "propertyName": "level",
+    "propertyKeyName": "27"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 27,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "27"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 28,
+    "propertyName": "level",
+    "propertyKeyName": "28"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 28,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "28"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 29,
+    "propertyName": "level",
+    "propertyKeyName": "29"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 29,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "29"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 30,
+    "propertyName": "level",
+    "propertyKeyName": "30"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 30,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "30"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 31,
+    "propertyName": "level",
+    "propertyKeyName": "31"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 31,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "31"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 32,
+    "propertyName": "level",
+    "propertyKeyName": "32"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 32,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "32"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 33,
+    "propertyName": "level",
+    "propertyKeyName": "33"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 33,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "33"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 34,
+    "propertyName": "level",
+    "propertyKeyName": "34"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 34,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "34"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 35,
+    "propertyName": "level",
+    "propertyKeyName": "35"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 35,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "35"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 36,
+    "propertyName": "level",
+    "propertyKeyName": "36"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 36,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "36"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 37,
+    "propertyName": "level",
+    "propertyKeyName": "37"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 37,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "37"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 38,
+    "propertyName": "level",
+    "propertyKeyName": "38"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 38,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "38"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 39,
+    "propertyName": "level",
+    "propertyKeyName": "39"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 39,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "39"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 40,
+    "propertyName": "level",
+    "propertyKeyName": "40"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 40,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "40"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 41,
+    "propertyName": "level",
+    "propertyKeyName": "41"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 41,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "41"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 42,
+    "propertyName": "level",
+    "propertyKeyName": "42"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 42,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "42"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 43,
+    "propertyName": "level",
+    "propertyKeyName": "43"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 43,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "43"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 44,
+    "propertyName": "level",
+    "propertyKeyName": "44"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 44,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "44"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 45,
+    "propertyName": "level",
+    "propertyKeyName": "45"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 45,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "45"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 46,
+    "propertyName": "level",
+    "propertyKeyName": "46"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 46,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "46"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 47,
+    "propertyName": "level",
+    "propertyKeyName": "47"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 47,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "47"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 48,
+    "propertyName": "level",
+    "propertyKeyName": "48"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 48,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "48"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 49,
+    "propertyName": "level",
+    "propertyKeyName": "49"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 49,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "49"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 50,
+    "propertyName": "level",
+    "propertyKeyName": "50"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 50,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "50"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 51,
+    "propertyName": "level",
+    "propertyKeyName": "51"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 51,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "51"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 52,
+    "propertyName": "level",
+    "propertyKeyName": "52"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 52,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "52"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 53,
+    "propertyName": "level",
+    "propertyKeyName": "53"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 53,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "53"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 54,
+    "propertyName": "level",
+    "propertyKeyName": "54"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 54,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "54"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 55,
+    "propertyName": "level",
+    "propertyKeyName": "55"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 55,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "55"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 56,
+    "propertyName": "level",
+    "propertyKeyName": "56"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 56,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "56"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 57,
+    "propertyName": "level",
+    "propertyKeyName": "57"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 57,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "57"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 58,
+    "propertyName": "level",
+    "propertyKeyName": "58"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 58,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "58"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 59,
+    "propertyName": "level",
+    "propertyKeyName": "59"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 59,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "59"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 60,
+    "propertyName": "level",
+    "propertyKeyName": "60"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 60,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "60"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 61,
+    "propertyName": "level",
+    "propertyKeyName": "61"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 61,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "61"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 62,
+    "propertyName": "level",
+    "propertyKeyName": "62"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 62,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "62"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 63,
+    "propertyName": "level",
+    "propertyKeyName": "63"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 63,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "63"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 64,
+    "propertyName": "level",
+    "propertyKeyName": "64"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 64,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "64"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 65,
+    "propertyName": "level",
+    "propertyKeyName": "65"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 65,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "65"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 66,
+    "propertyName": "level",
+    "propertyKeyName": "66"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 66,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "66"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 67,
+    "propertyName": "level",
+    "propertyKeyName": "67"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 67,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "67"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 68,
+    "propertyName": "level",
+    "propertyKeyName": "68"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 68,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "68"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 69,
+    "propertyName": "level",
+    "propertyKeyName": "69"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 69,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "69"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 70,
+    "propertyName": "level",
+    "propertyKeyName": "70"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 70,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "70"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 71,
+    "propertyName": "level",
+    "propertyKeyName": "71"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 71,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "71"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 72,
+    "propertyName": "level",
+    "propertyKeyName": "72"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 72,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "72"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 73,
+    "propertyName": "level",
+    "propertyKeyName": "73"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 73,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "73"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 74,
+    "propertyName": "level",
+    "propertyKeyName": "74"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 74,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "74"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 75,
+    "propertyName": "level",
+    "propertyKeyName": "75"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 75,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "75"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 76,
+    "propertyName": "level",
+    "propertyKeyName": "76"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 76,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "76"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 77,
+    "propertyName": "level",
+    "propertyKeyName": "77"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 77,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "77"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 78,
+    "propertyName": "level",
+    "propertyKeyName": "78"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 78,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "78"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 79,
+    "propertyName": "level",
+    "propertyKeyName": "79"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 79,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "79"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 80,
+    "propertyName": "level",
+    "propertyKeyName": "80"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 80,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "80"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 81,
+    "propertyName": "level",
+    "propertyKeyName": "81"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 81,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "81"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 82,
+    "propertyName": "level",
+    "propertyKeyName": "82"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 82,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "82"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 83,
+    "propertyName": "level",
+    "propertyKeyName": "83"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 83,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "83"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 84,
+    "propertyName": "level",
+    "propertyKeyName": "84"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 84,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "84"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 85,
+    "propertyName": "level",
+    "propertyKeyName": "85"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 85,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "85"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 86,
+    "propertyName": "level",
+    "propertyKeyName": "86"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 86,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "86"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 87,
+    "propertyName": "level",
+    "propertyKeyName": "87"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 87,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "87"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 88,
+    "propertyName": "level",
+    "propertyKeyName": "88"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 88,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "88"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 89,
+    "propertyName": "level",
+    "propertyKeyName": "89"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 89,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "89"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 90,
+    "propertyName": "level",
+    "propertyKeyName": "90"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 90,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "90"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 91,
+    "propertyName": "level",
+    "propertyKeyName": "91"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 91,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "91"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 92,
+    "propertyName": "level",
+    "propertyKeyName": "92"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 92,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "92"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 93,
+    "propertyName": "level",
+    "propertyKeyName": "93"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 93,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "93"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 94,
+    "propertyName": "level",
+    "propertyKeyName": "94"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 94,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "94"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 95,
+    "propertyName": "level",
+    "propertyKeyName": "95"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 95,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "95"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 96,
+    "propertyName": "level",
+    "propertyKeyName": "96"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 96,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "96"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 97,
+    "propertyName": "level",
+    "propertyKeyName": "97"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 97,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "97"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 98,
+    "propertyName": "level",
+    "propertyKeyName": "98"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 98,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "98"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 99,
+    "propertyName": "level",
+    "propertyKeyName": "99"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 99,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "99"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 100,
+    "propertyName": "level",
+    "propertyKeyName": "100"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 100,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "100"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 101,
+    "propertyName": "level",
+    "propertyKeyName": "101"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 101,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "101"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 102,
+    "propertyName": "level",
+    "propertyKeyName": "102"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 102,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "102"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 103,
+    "propertyName": "level",
+    "propertyKeyName": "103"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 103,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "103"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 104,
+    "propertyName": "level",
+    "propertyKeyName": "104"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 104,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "104"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 105,
+    "propertyName": "level",
+    "propertyKeyName": "105"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 105,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "105"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 106,
+    "propertyName": "level",
+    "propertyKeyName": "106"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 106,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "106"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 107,
+    "propertyName": "level",
+    "propertyKeyName": "107"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 107,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "107"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 108,
+    "propertyName": "level",
+    "propertyKeyName": "108"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 108,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "108"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 109,
+    "propertyName": "level",
+    "propertyKeyName": "109"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 109,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "109"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 110,
+    "propertyName": "level",
+    "propertyKeyName": "110"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 110,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "110"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 111,
+    "propertyName": "level",
+    "propertyKeyName": "111"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 111,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "111"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 112,
+    "propertyName": "level",
+    "propertyKeyName": "112"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 112,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "112"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 113,
+    "propertyName": "level",
+    "propertyKeyName": "113"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 113,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "113"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 114,
+    "propertyName": "level",
+    "propertyKeyName": "114"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 114,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "114"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 115,
+    "propertyName": "level",
+    "propertyKeyName": "115"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 115,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "115"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 116,
+    "propertyName": "level",
+    "propertyKeyName": "116"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 116,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "116"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 117,
+    "propertyName": "level",
+    "propertyKeyName": "117"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 117,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "117"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 118,
+    "propertyName": "level",
+    "propertyKeyName": "118"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 118,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "118"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 119,
+    "propertyName": "level",
+    "propertyKeyName": "119"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 119,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "119"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 120,
+    "propertyName": "level",
+    "propertyKeyName": "120"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 120,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "120"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 121,
+    "propertyName": "level",
+    "propertyKeyName": "121"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 121,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "121"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 122,
+    "propertyName": "level",
+    "propertyKeyName": "122"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 122,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "122"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 123,
+    "propertyName": "level",
+    "propertyKeyName": "123"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 123,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "123"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 124,
+    "propertyName": "level",
+    "propertyKeyName": "124"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 124,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "124"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 125,
+    "propertyName": "level",
+    "propertyKeyName": "125"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 125,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "125"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 126,
+    "propertyName": "level",
+    "propertyKeyName": "126"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 126,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "126"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 127,
+    "propertyName": "level",
+    "propertyKeyName": "127"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 127,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "127"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 128,
+    "propertyName": "level",
+    "propertyKeyName": "128"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 128,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "128"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 129,
+    "propertyName": "level",
+    "propertyKeyName": "129"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 129,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "129"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 130,
+    "propertyName": "level",
+    "propertyKeyName": "130"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 130,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "130"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 131,
+    "propertyName": "level",
+    "propertyKeyName": "131"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 131,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "131"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 132,
+    "propertyName": "level",
+    "propertyKeyName": "132"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 132,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "132"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 133,
+    "propertyName": "level",
+    "propertyKeyName": "133"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 133,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "133"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 134,
+    "propertyName": "level",
+    "propertyKeyName": "134"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 134,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "134"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 135,
+    "propertyName": "level",
+    "propertyKeyName": "135"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 135,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "135"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 136,
+    "propertyName": "level",
+    "propertyKeyName": "136"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 136,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "136"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 137,
+    "propertyName": "level",
+    "propertyKeyName": "137"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 137,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "137"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 138,
+    "propertyName": "level",
+    "propertyKeyName": "138"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 138,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "138"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 139,
+    "propertyName": "level",
+    "propertyKeyName": "139"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 139,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "139"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 140,
+    "propertyName": "level",
+    "propertyKeyName": "140"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 140,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "140"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 141,
+    "propertyName": "level",
+    "propertyKeyName": "141"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 141,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "141"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 142,
+    "propertyName": "level",
+    "propertyKeyName": "142"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 142,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "142"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 143,
+    "propertyName": "level",
+    "propertyKeyName": "143"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 143,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "143"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 144,
+    "propertyName": "level",
+    "propertyKeyName": "144"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 144,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "144"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 145,
+    "propertyName": "level",
+    "propertyKeyName": "145"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 145,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "145"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 146,
+    "propertyName": "level",
+    "propertyKeyName": "146"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 146,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "146"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 147,
+    "propertyName": "level",
+    "propertyKeyName": "147"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 147,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "147"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 148,
+    "propertyName": "level",
+    "propertyKeyName": "148"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 148,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "148"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 149,
+    "propertyName": "level",
+    "propertyKeyName": "149"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 149,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "149"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 150,
+    "propertyName": "level",
+    "propertyKeyName": "150"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 150,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "150"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 151,
+    "propertyName": "level",
+    "propertyKeyName": "151"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 151,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "151"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 152,
+    "propertyName": "level",
+    "propertyKeyName": "152"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 152,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "152"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 153,
+    "propertyName": "level",
+    "propertyKeyName": "153"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 153,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "153"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 154,
+    "propertyName": "level",
+    "propertyKeyName": "154"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 154,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "154"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 155,
+    "propertyName": "level",
+    "propertyKeyName": "155"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 155,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "155"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 156,
+    "propertyName": "level",
+    "propertyKeyName": "156"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 156,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "156"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 157,
+    "propertyName": "level",
+    "propertyKeyName": "157"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 157,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "157"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 158,
+    "propertyName": "level",
+    "propertyKeyName": "158"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 158,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "158"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 159,
+    "propertyName": "level",
+    "propertyKeyName": "159"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 159,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "159"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 160,
+    "propertyName": "level",
+    "propertyKeyName": "160"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 160,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "160"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 161,
+    "propertyName": "level",
+    "propertyKeyName": "161"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 161,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "161"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 162,
+    "propertyName": "level",
+    "propertyKeyName": "162"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 162,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "162"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 163,
+    "propertyName": "level",
+    "propertyKeyName": "163"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 163,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "163"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 164,
+    "propertyName": "level",
+    "propertyKeyName": "164"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 164,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "164"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 165,
+    "propertyName": "level",
+    "propertyKeyName": "165"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 165,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "165"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 166,
+    "propertyName": "level",
+    "propertyKeyName": "166"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 166,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "166"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 167,
+    "propertyName": "level",
+    "propertyKeyName": "167"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 167,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "167"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 168,
+    "propertyName": "level",
+    "propertyKeyName": "168"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 168,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "168"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 169,
+    "propertyName": "level",
+    "propertyKeyName": "169"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 169,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "169"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 170,
+    "propertyName": "level",
+    "propertyKeyName": "170"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 170,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "170"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 171,
+    "propertyName": "level",
+    "propertyKeyName": "171"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 171,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "171"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 172,
+    "propertyName": "level",
+    "propertyKeyName": "172"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 172,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "172"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 173,
+    "propertyName": "level",
+    "propertyKeyName": "173"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 173,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "173"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 174,
+    "propertyName": "level",
+    "propertyKeyName": "174"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 174,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "174"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 175,
+    "propertyName": "level",
+    "propertyKeyName": "175"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 175,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "175"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 176,
+    "propertyName": "level",
+    "propertyKeyName": "176"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 176,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "176"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 177,
+    "propertyName": "level",
+    "propertyKeyName": "177"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 177,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "177"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 178,
+    "propertyName": "level",
+    "propertyKeyName": "178"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 178,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "178"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 179,
+    "propertyName": "level",
+    "propertyKeyName": "179"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 179,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "179"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 180,
+    "propertyName": "level",
+    "propertyKeyName": "180"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 180,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "180"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 181,
+    "propertyName": "level",
+    "propertyKeyName": "181"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 181,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "181"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 182,
+    "propertyName": "level",
+    "propertyKeyName": "182"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 182,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "182"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 183,
+    "propertyName": "level",
+    "propertyKeyName": "183"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 183,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "183"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 184,
+    "propertyName": "level",
+    "propertyKeyName": "184"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 184,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "184"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 185,
+    "propertyName": "level",
+    "propertyKeyName": "185"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 185,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "185"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 186,
+    "propertyName": "level",
+    "propertyKeyName": "186"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 186,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "186"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 187,
+    "propertyName": "level",
+    "propertyKeyName": "187"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 187,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "187"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 188,
+    "propertyName": "level",
+    "propertyKeyName": "188"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 188,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "188"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 189,
+    "propertyName": "level",
+    "propertyKeyName": "189"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 189,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "189"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 190,
+    "propertyName": "level",
+    "propertyKeyName": "190"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 190,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "190"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 191,
+    "propertyName": "level",
+    "propertyKeyName": "191"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 191,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "191"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 192,
+    "propertyName": "level",
+    "propertyKeyName": "192"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 192,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "192"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 193,
+    "propertyName": "level",
+    "propertyKeyName": "193"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 193,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "193"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 194,
+    "propertyName": "level",
+    "propertyKeyName": "194"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 194,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "194"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 195,
+    "propertyName": "level",
+    "propertyKeyName": "195"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 195,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "195"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 196,
+    "propertyName": "level",
+    "propertyKeyName": "196"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 196,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "196"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 197,
+    "propertyName": "level",
+    "propertyKeyName": "197"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 197,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "197"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 198,
+    "propertyName": "level",
+    "propertyKeyName": "198"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 198,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "198"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 199,
+    "propertyName": "level",
+    "propertyKeyName": "199"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 199,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "199"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 200,
+    "propertyName": "level",
+    "propertyKeyName": "200"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 200,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "200"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 201,
+    "propertyName": "level",
+    "propertyKeyName": "201"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 201,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "201"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 202,
+    "propertyName": "level",
+    "propertyKeyName": "202"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 202,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "202"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 203,
+    "propertyName": "level",
+    "propertyKeyName": "203"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 203,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "203"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 204,
+    "propertyName": "level",
+    "propertyKeyName": "204"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 204,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "204"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 205,
+    "propertyName": "level",
+    "propertyKeyName": "205"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 205,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "205"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 206,
+    "propertyName": "level",
+    "propertyKeyName": "206"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 206,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "206"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 207,
+    "propertyName": "level",
+    "propertyKeyName": "207"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 207,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "207"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 208,
+    "propertyName": "level",
+    "propertyKeyName": "208"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 208,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "208"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 209,
+    "propertyName": "level",
+    "propertyKeyName": "209"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 209,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "209"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 210,
+    "propertyName": "level",
+    "propertyKeyName": "210"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 210,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "210"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 211,
+    "propertyName": "level",
+    "propertyKeyName": "211"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 211,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "211"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 212,
+    "propertyName": "level",
+    "propertyKeyName": "212"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 212,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "212"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 213,
+    "propertyName": "level",
+    "propertyKeyName": "213"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 213,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "213"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 214,
+    "propertyName": "level",
+    "propertyKeyName": "214"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 214,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "214"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 215,
+    "propertyName": "level",
+    "propertyKeyName": "215"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 215,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "215"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 216,
+    "propertyName": "level",
+    "propertyKeyName": "216"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 216,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "216"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 217,
+    "propertyName": "level",
+    "propertyKeyName": "217"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 217,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "217"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 218,
+    "propertyName": "level",
+    "propertyKeyName": "218"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 218,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "218"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 219,
+    "propertyName": "level",
+    "propertyKeyName": "219"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 219,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "219"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 220,
+    "propertyName": "level",
+    "propertyKeyName": "220"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 220,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "220"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 221,
+    "propertyName": "level",
+    "propertyKeyName": "221"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 221,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "221"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 222,
+    "propertyName": "level",
+    "propertyKeyName": "222"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 222,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "222"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 223,
+    "propertyName": "level",
+    "propertyKeyName": "223"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 223,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "223"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 224,
+    "propertyName": "level",
+    "propertyKeyName": "224"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 224,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "224"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 225,
+    "propertyName": "level",
+    "propertyKeyName": "225"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 225,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "225"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 226,
+    "propertyName": "level",
+    "propertyKeyName": "226"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 226,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "226"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 227,
+    "propertyName": "level",
+    "propertyKeyName": "227"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 227,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "227"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 228,
+    "propertyName": "level",
+    "propertyKeyName": "228"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 228,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "228"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 229,
+    "propertyName": "level",
+    "propertyKeyName": "229"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 229,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "229"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 230,
+    "propertyName": "level",
+    "propertyKeyName": "230"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 230,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "230"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 231,
+    "propertyName": "level",
+    "propertyKeyName": "231"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 231,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "231"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 232,
+    "propertyName": "level",
+    "propertyKeyName": "232"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 232,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "232"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 233,
+    "propertyName": "level",
+    "propertyKeyName": "233"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 233,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "233"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 234,
+    "propertyName": "level",
+    "propertyKeyName": "234"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 234,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "234"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 235,
+    "propertyName": "level",
+    "propertyKeyName": "235"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 235,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "235"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 236,
+    "propertyName": "level",
+    "propertyKeyName": "236"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 236,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "236"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 237,
+    "propertyName": "level",
+    "propertyKeyName": "237"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 237,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "237"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 238,
+    "propertyName": "level",
+    "propertyKeyName": "238"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 238,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "238"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 239,
+    "propertyName": "level",
+    "propertyKeyName": "239"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 239,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "239"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 240,
+    "propertyName": "level",
+    "propertyKeyName": "240"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 240,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "240"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 241,
+    "propertyName": "level",
+    "propertyKeyName": "241"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 241,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "241"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 242,
+    "propertyName": "level",
+    "propertyKeyName": "242"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 242,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "242"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 243,
+    "propertyName": "level",
+    "propertyKeyName": "243"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 243,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "243"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 244,
+    "propertyName": "level",
+    "propertyKeyName": "244"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 244,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "244"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 245,
+    "propertyName": "level",
+    "propertyKeyName": "245"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 245,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "245"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 246,
+    "propertyName": "level",
+    "propertyKeyName": "246"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 246,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "246"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 247,
+    "propertyName": "level",
+    "propertyKeyName": "247"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 247,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "247"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 248,
+    "propertyName": "level",
+    "propertyKeyName": "248"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 248,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "248"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 249,
+    "propertyName": "level",
+    "propertyKeyName": "249"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 249,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "249"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 250,
+    "propertyName": "level",
+    "propertyKeyName": "250"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 250,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "250"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 251,
+    "propertyName": "level",
+    "propertyKeyName": "251"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 251,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "251"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 252,
+    "propertyName": "level",
+    "propertyKeyName": "252"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 252,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "252"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 253,
+    "propertyName": "level",
+    "propertyKeyName": "253"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 253,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "253"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 254,
+    "propertyName": "level",
+    "propertyKeyName": "254"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 254,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "254"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "level",
+    "propertyKey": 255,
+    "propertyName": "level",
+    "propertyKeyName": "255"
+  },
+  {
+    "commandClassName": "Scene Actuator Configuration",
+    "commandClass": 44,
+    "endpoint": 0,
+    "property": "dimmingDuration",
+    "propertyKey": 255,
+    "propertyName": "dimmingDuration",
+    "propertyKeyName": "255"
+  },
+  {
+    "commandClassName": "Manufacturer Specific",
+    "commandClass": 114,
+    "endpoint": 0,
+    "property": "productId",
+    "propertyName": "productId"
+  },
+  {
+    "commandClassName": "Manufacturer Specific",
+    "commandClass": 114,
+    "endpoint": 0,
+    "property": "productType",
+    "propertyName": "productType"
+  },
+  {
+    "commandClassName": "Manufacturer Specific",
+    "commandClass": 114,
+    "endpoint": 0,
+    "property": "manufacturerId",
+    "propertyName": "manufacturerId"
+  },
+  {
+    "commandClassName": "Version",
+    "commandClass": 134,
+    "endpoint": 0,
+    "property": "hardwareVersion",
+    "propertyName": "hardwareVersion"
+  },
+  {
+    "commandClassName": "Version",
+    "commandClass": 134,
+    "endpoint": 0,
+    "property": "firmwareVersions",
+    "propertyName": "firmwareVersions"
+  },
+  {
+    "commandClassName": "Version",
+    "commandClass": 134,
+    "endpoint": 0,
+    "property": "protocolVersion",
+    "propertyName": "protocolVersion"
+  },
+  {
+    "commandClassName": "Version",
+    "commandClass": 134,
+    "endpoint": 0,
+    "property": "libraryType",
+    "propertyName": "libraryType"
+  }
+]
