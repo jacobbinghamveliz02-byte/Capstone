@@ -105,7 +105,6 @@ const LIGHTID = [6]; // Node IDs of the lights          NEED TO CHANGE IF ADDING
 var client = mqtt.connect(options);
 
 let messageJSON;
-let currentTime;
 let oldTimeSetTemp;
 let previouslyThermostatMode;
 let thermostatNode;
@@ -259,11 +258,8 @@ async function main() {
     // debugThermostat();
 }
 
-async function scheduleCheck(startHour, endHour, temp, timedMode){
+async function scheduleCheck(startHour, endHour, temp, timedMode, currentTime){
     if(startHour != null && endHour != null){
-        currentTimeHR = new Date().getHours();
-        currentTimeMin = (new Date().getMinutes())/10;
-        currentTime = currentTimeHR + currentTimeMin;
         if(currentTime >= startHour && currentTime <= endHour){
             if(previouslyThermostatMode != null){
                 previouslyThermostatMode = await thermostatNode.getValue(CURRENTTHERMOSTATMODEID);
@@ -347,7 +343,8 @@ async function checkingLight(){
 }
 
 async function basicChecking() {
-    
+    const now = new Date();
+    let currentTime = now.getHours() + now.getMinutes() / 100;
     const [thermostatPing, lightPing] = await Promise.allSettled([
             pingingNode(thermostatNode).catch(() => false),
             pingingNode(lightNode1).catch(() => false)
@@ -379,7 +376,7 @@ async function basicChecking() {
             for (const schedule of schedules) {
                 if (schedule.active) {
                     checks.push(
-                        scheduleCheck(schedule.startHour, schedule.endHour, schedule.temperature, schedule.mode)
+                        scheduleCheck(schedule.startHour, schedule.endHour, schedule.temperature, schedule.mode, currentTime)
                             .catch(e => console.error(`Schedule ${schedule.id} check failed:`, e))
                     );
                 }
@@ -426,7 +423,8 @@ async function betterThermostat(setpoint, shouldHeat){
 };
 
 async function timedControl(startHour, endHour, setpoint, mode){
-    currentTime = new Date().getHours();
+    const now = new Date();
+    const currentTime = now.getHours() + now.getMinutes() / 100;
     console.log(`Current time: ${currentTime}, Start hour: ${startHour}, End hour: ${endHour}, Setpoint: ${setpoint}, Mode: ${mode}`);
     console.log("Processing timed command...");
     if(currentTime >= startHour && currentTime <= endHour) {
