@@ -239,24 +239,24 @@ async function main() {
                     console.log(`Thermostat power status: ${powerStatus}`);
                 }else if(topicString == 'home/zwave/timed/schedule'){
                     let messageJSON = JSON.parse(messageString);
+                    console.log("Received new schedule: ", messageJSON);
                     schedules.push(messageJSON);
                     let startHour = messageJSON.startHour;
                     let endHour = messageJSON.endHour;
                     let timeSetTemp = messageJSON.temperature;
                     let timedMode = messageJSON.mode;
-                    let enabled = messageJSON.enabled;
-                    if(enabled){
-                        await timedControl(startHour, endHour, timeSetTemp, timedMode);
-                    }
+                    conosle.log(`Processing new schedule - Start Hour: ${startHour}, End Hour: ${endHour}, Temperature: ${timeSetTemp}, Mode: ${timedMode}`);
+                    await timedControl(startHour, endHour, timeSetTemp, timedMode);
                 }else if(topicString == 'home/zwave/timed/schedule/toggleMessage'){
                     let messageJSON = JSON.parse(messageString);
                     for (let schedule of schedules){
                         if(schedule.id == messageJSON.id){
                             schedule.active = !schedule.active;
                         }if(schedule.active){
+                            console.log(`Toggling schedule - Start Hour: ${schedule.startHour}, End Hour: ${schedule.endHour}, Temperature: ${schedule.temperature}, Mode: ${schedule.mode}, Active: ${schedule.active}`);
                             await timedControl(schedule.startHour, schedule.endHour, schedule.temperature, schedule.mode);
+                            break; 
                         }
-                        break;
                     }
                 }else{
                     client.publish(`home/app/thermostat/current/power`, `Lost connection to thermostat`);
